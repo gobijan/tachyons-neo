@@ -468,6 +468,7 @@ img { max-width: 100% }
 .bg-black-10 { background-color: rgba(0, 0, 0, .1) }
 .bg-black-05 { background-color: rgba(0, 0, 0, .05) }
 .bg-black-025 { background-color: rgba(0, 0, 0, .025) }
+.bg-black-0125 { background-color: rgba(0, 0, 0, .0125) }
 .bg-white-90 { background-color: hsla(0, 0%, 100%, .9) }
 .bg-white-80 { background-color: hsla(0, 0%, 100%, .8) }
 .bg-white-70 { background-color: hsla(0, 0%, 100%, .7) }
@@ -2321,8 +2322,9 @@ img { max-width: 100% }
   .dm-bg-black-30 { background-color: rgba(0, 0, 0, .3) }
   .dm-bg-black-20 { background-color: rgba(0, 0, 0, .2) }
   .dm-bg-black-10 { background-color: rgba(0, 0, 0, .1) }
-  .dm-bg-black-025 { background-color: rgba(0, 0, 0, .025) }
   .dm-bg-black-05 { background-color: rgba(0, 0, 0, .05) }
+  .dm-bg-black-025 { background-color: rgba(0, 0, 0, .025) }
+  .dm-bg-black-0125 { background-color: rgba(0, 0, 0, .0125) }
   .dm-bg-white-90 { background-color: hsla(0, 0%, 100%, .9) }
   .dm-bg-white-80 { background-color: hsla(0, 0%, 100%, .8) }
   .dm-bg-white-70 { background-color: hsla(0, 0%, 100%, .7) }
@@ -2332,6 +2334,7 @@ img { max-width: 100% }
   .dm-bg-white-30 { background-color: hsla(0, 0%, 100%, .3) }
   .dm-bg-white-20 { background-color: hsla(0, 0%, 100%, .2) }
   .dm-bg-white-10 { background-color: hsla(0, 0%, 100%, .1) }
+  .dm-bg-white-05 { background-color: hsla(0, 0%, 100%, .05) }
   .dm-bg-white-025 { background-color: hsla(0, 0%, 100%, .025) }
   .dm-bg-white-0125 { background-color: hsla(0, 0%, 100%, .0125) }
   .dm-bg-black { background-color: #000 }
