@@ -2190,6 +2190,7 @@ img { max-width: 100% }
 /* Patches */
 .active-dim:active { opacity: .8; transition: opacity .15s ease-out }
 .invert { filter: invert(1) }
+.resize-none { resize: none }
 @media (prefers-color-scheme:dark) {
   .dm-no-invert { filter: invert(0) }
   .dm-invert { filter: invert(1) }
