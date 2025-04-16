@@ -785,6 +785,7 @@ img { max-width: 100% }
 .stripe-light:nth-child(odd) { background-color: hsla(0, 0%, 100%, .1) }
 .stripe-dark:nth-child(odd) { background-color: rgba(0, 0, 0, .1) }
 .strike { text-decoration: line-through }
+.stroke { -webkit-text-stroke: 1px currentColor; -webkit-text-fill-color: transparent; }
 .underline { text-decoration: underline }
 .no-underline { text-decoration: none }
 .tl { text-align: left }
@@ -1271,6 +1272,7 @@ img { max-width: 100% }
   .nt6-ns { margin-top: -8rem }
   .nt7-ns { margin-top: -16rem }
   .strike-ns { text-decoration: line-through }
+  .stroke-ns { -webkit-text-stroke: 1px currentColor; -webkit-text-fill-color: transparent; }
   .underline-ns { text-decoration: underline }
   .no-underline-ns { text-decoration: none }
   .tl-ns { text-align: left }
@@ -1710,6 +1712,7 @@ img { max-width: 100% }
   .nt6-m { margin-top: -8rem }
   .nt7-m { margin-top: -16rem }
   .strike-m { text-decoration: line-through }
+  .stroke-m { -webkit-text-stroke: 1px currentColor; -webkit-text-fill-color: transparent; }
   .underline-m { text-decoration: underline }
   .no-underline-m { text-decoration: none }
   .tl-m { text-align: left }
@@ -2149,6 +2152,7 @@ img { max-width: 100% }
   .nt6-l { margin-top: -8rem }
   .nt7-l { margin-top: -16rem }
   .strike-l { text-decoration: line-through }
+  .stroke-l { -webkit-text-stroke: 1px currentColor; -webkit-text-fill-color: transparent; }
   .underline-l { text-decoration: underline }
   .no-underline-l { text-decoration: none }
   .tl-l { text-align: left }
