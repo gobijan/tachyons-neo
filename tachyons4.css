@@ -1,4 +1,4 @@
-/*! TACHYONS v4.13.0 (gobijan) | http://tachyons.io */
+/*! TACHYONS v4.13.1 (gobijan) | http://tachyons.io */
 
 /*
 Patches by Screenisland:
@@ -411,6 +411,8 @@ img { max-width: 100% }
 .black-20 { color: rgba(0, 0, 0, .2) }
 .black-10 { color: rgba(0, 0, 0, .1) }
 .black-05 { color: rgba(0, 0, 0, .05) }
+.black-025 { color: rgba(0, 0, 0, .025) }
+.black-0125 { color: rgba(0, 0, 0, .0125) }
 .white-90 { color: hsla(0, 0%, 100%, .9) }
 .white-80 { color: hsla(0, 0%, 100%, .8) }
 .white-70 { color: hsla(0, 0%, 100%, .7) }
@@ -420,6 +422,9 @@ img { max-width: 100% }
 .white-30 { color: hsla(0, 0%, 100%, .3) }
 .white-20 { color: hsla(0, 0%, 100%, .2) }
 .white-10 { color: hsla(0, 0%, 100%, .1) }
+.white-05 { color: hsla(0, 0%, 100%, .05) }
+.white-025 { color: hsla(0, 0%, 100%, .025) }
+.white-0125 { color: hsla(0, 0%, 100%, .0125) }
 .black { color: #000 }
 .near-black { color: #111 }
 .dark-gray { color: #333 }
@@ -539,6 +544,9 @@ img { max-width: 100% }
 .hover-black-30:focus, .hover-black-30:hover { color: rgba(0, 0, 0, .3) }
 .hover-black-20:focus, .hover-black-20:hover { color: rgba(0, 0, 0, .2) }
 .hover-black-10:focus, .hover-black-10:hover { color: rgba(0, 0, 0, .1) }
+.hover-black-05:focus, .hover-black-05:hover { color: rgba(0, 0, 0, .05) }
+.hover-black-025:focus, .hover-black-025:hover { color: rgba(0, 0, 0, .025) }
+.hover-black-0125:focus, .hover-black-0125:hover { color: rgba(0, 0, 0, .0125) }
 .hover-white-90:focus, .hover-white-90:hover { color: hsla(0, 0%, 100%, .9) }
 .hover-white-80:focus, .hover-white-80:hover { color: hsla(0, 0%, 100%, .8) }
 .hover-white-70:focus, .hover-white-70:hover { color: hsla(0, 0%, 100%, .7) }
@@ -548,6 +556,9 @@ img { max-width: 100% }
 .hover-white-30:focus, .hover-white-30:hover { color: hsla(0, 0%, 100%, .3) }
 .hover-white-20:focus, .hover-white-20:hover { color: hsla(0, 0%, 100%, .2) }
 .hover-white-10:focus, .hover-white-10:hover { color: hsla(0, 0%, 100%, .1) }
+.hover-white-05:focus, .hover-white-05:hover { color: hsla(0, 0%, 100%, .05) }
+.hover-white-025:focus, .hover-white-025:hover { color: hsla(0, 0%, 100%, .025) }
+.hover-white-0125:focus, .hover-white-0125:hover { color: hsla(0, 0%, 100%, .0125) }
 .hover-inherit:focus, .hover-inherit:hover { color: inherit }
 .hover-bg-black:focus, .hover-bg-black:hover { background-color: #000 }
 .hover-bg-near-black:focus, .hover-bg-near-black:hover { background-color: #111 }
@@ -570,6 +581,9 @@ img { max-width: 100% }
 .hover-bg-black-30:focus, .hover-bg-black-30:hover { background-color: rgba(0, 0, 0, .3) }
 .hover-bg-black-20:focus, .hover-bg-black-20:hover { background-color: rgba(0, 0, 0, .2) }
 .hover-bg-black-10:focus, .hover-bg-black-10:hover { background-color: rgba(0, 0, 0, .1) }
+.hover-bg-black-05:focus, .hover-bg-black-05:hover { background-color: rgba(0, 0, 0, .05) }
+.hover-bg-black-025:focus, .hover-bg-black-025:hover { background-color: rgba(0, 0, 0, .025) }
+.hover-bg-black-0125:focus, .hover-bg-black-0125:hover { background-color: rgba(0, 0, 0, .0125) }
 .hover-bg-white-90:focus, .hover-bg-white-90:hover { background-color: hsla(0, 0%, 100%, .9) }
 .hover-bg-white-80:focus, .hover-bg-white-80:hover { background-color: hsla(0, 0%, 100%, .8) }
 .hover-bg-white-70:focus, .hover-bg-white-70:hover { background-color: hsla(0, 0%, 100%, .7) }
@@ -579,6 +593,9 @@ img { max-width: 100% }
 .hover-bg-white-30:focus, .hover-bg-white-30:hover { background-color: hsla(0, 0%, 100%, .3) }
 .hover-bg-white-20:focus, .hover-bg-white-20:hover { background-color: hsla(0, 0%, 100%, .2) }
 .hover-bg-white-10:focus, .hover-bg-white-10:hover { background-color: hsla(0, 0%, 100%, .1) }
+.hover-bg-white-05:focus, .hover-bg-white-05:hover { background-color: hsla(0, 0%, 100%, .05) }
+.hover-bg-white-025:focus, .hover-bg-white-025:hover { background-color: hsla(0, 0%, 100%, .025) }
+.hover-bg-white-0125:focus, .hover-bg-white-0125:hover { background-color: hsla(0, 0%, 100%, .0125) }
 .hover-dark-red:focus, .hover-dark-red:hover { color: #e7040f }
 .hover-red:focus, .hover-red:hover { color: #ff4136 }
 .hover-light-red:focus, .hover-light-red:hover { color: #ff725c }
@@ -2272,6 +2289,8 @@ img { max-width: 100% }
   .dm-black-20 { color: rgba(0, 0, 0, .2) }
   .dm-black-10 { color: rgba(0, 0, 0, .1) }
   .dm-black-05 { color: rgba(0, 0, 0, .05) }
+  .dm-black-025 { color: rgba(0, 0, 0, .025) }
+  .dm-black-0125 { color: rgba(0, 0, 0, .0125) }
   .dm-white-90 { color: hsla(0, 0%, 100%, .9) }
   .dm-white-80 { color: hsla(0, 0%, 100%, .8) }
   .dm-white-70 { color: hsla(0, 0%, 100%, .7) }
@@ -2281,6 +2300,9 @@ img { max-width: 100% }
   .dm-white-30 { color: hsla(0, 0%, 100%, .3) }
   .dm-white-20 { color: hsla(0, 0%, 100%, .2) }
   .dm-white-10 { color: hsla(0, 0%, 100%, .1) }
+  .dm-white-05 { color: hsla(0, 0%, 100%, .05) }
+  .dm-white-025 { color: hsla(0, 0%, 100%, .025) }
+  .dm-white-0125 { color: hsla(0, 0%, 100%, .0125) }
   .dm-black { color: #000 }
   .dm-near-black { color: #111 }
   .dm-dark-gray { color: #333 }
@@ -2400,6 +2422,9 @@ img { max-width: 100% }
   .dm-hover-black-30:focus, .dm-hover-black-30:hover { color: rgba(0, 0, 0, .3) }
   .dm-hover-black-20:focus, .dm-hover-black-20:hover { color: rgba(0, 0, 0, .2) }
   .dm-hover-black-10:focus, .dm-hover-black-10:hover { color: rgba(0, 0, 0, .1) }
+  .dm-hover-black-05:focus, .dm-hover-black-05:hover { color: rgba(0, 0, 0, .05) }
+  .dm-hover-black-025:focus, .dm-hover-black-025:hover { color: rgba(0, 0, 0, .025) }
+  .dm-hover-black-0125:focus, .dm-hover-black-0125:hover { color: rgba(0, 0, 0, .0125) }
   .dm-hover-white-90:focus, .dm-hover-white-90:hover { color: hsla(0, 0%, 100%, .9) }
   .dm-hover-white-80:focus, .dm-hover-white-80:hover { color: hsla(0, 0%, 100%, .8) }
   .dm-hover-white-70:focus, .dm-hover-white-70:hover { color: hsla(0, 0%, 100%, .7) }
@@ -2409,6 +2434,9 @@ img { max-width: 100% }
   .dm-hover-white-30:focus, .dm-hover-white-30:hover { color: hsla(0, 0%, 100%, .3) }
   .dm-hover-white-20:focus, .dm-hover-white-20:hover { color: hsla(0, 0%, 100%, .2) }
   .dm-hover-white-10:focus, .dm-hover-white-10:hover { color: hsla(0, 0%, 100%, .1) }
+  .dm-hover-white-05:focus, .dm-hover-white-05:hover { color: hsla(0, 0%, 100%, .05) }
+  .dm-hover-white-025:focus, .dm-hover-white-025:hover { color: hsla(0, 0%, 100%, .025) }
+  .dm-hover-white-0125:focus, .dm-hover-white-0125:hover { color: hsla(0, 0%, 100%, .0125) }
   .dm-hover-inherit:focus, .dm-hover-inherit:hover { color: inherit }
   .dm-hover-bg-black:focus, .dm-hover-bg-black:hover { background-color: #000 }
   .dm-hover-bg-near-black:focus, .dm-hover-bg-near-black:hover { background-color: #111 }
@@ -2431,6 +2459,9 @@ img { max-width: 100% }
   .dm-hover-bg-black-30:focus, .dm-hover-bg-black-30:hover { background-color: rgba(0, 0, 0, .3) }
   .dm-hover-bg-black-20:focus, .dm-hover-bg-black-20:hover { background-color: rgba(0, 0, 0, .2) }
   .dm-hover-bg-black-10:focus, .dm-hover-bg-black-10:hover { background-color: rgba(0, 0, 0, .1) }
+  .dm-hover-bg-black-05:focus, .dm-hover-bg-black-05:hover { background-color: rgba(0, 0, 0, .05) }
+  .dm-hover-bg-black-025:focus, .dm-hover-bg-black-025:hover { background-color: rgba(0, 0, 0, .025) }
+  .dm-hover-bg-black-0125:focus, .dm-hover-bg-black-0125:hover { background-color: rgba(0, 0, 0, .0125) }
   .dm-hover-bg-white-90:focus, .dm-hover-bg-white-90:hover { background-color: hsla(0, 0%, 100%, .9) }
   .dm-hover-bg-white-80:focus, .dm-hover-bg-white-80:hover { background-color: hsla(0, 0%, 100%, .8) }
   .dm-hover-bg-white-70:focus, .dm-hover-bg-white-70:hover { background-color: hsla(0, 0%, 100%, .7) }
@@ -2440,6 +2471,9 @@ img { max-width: 100% }
   .dm-hover-bg-white-30:focus, .dm-hover-bg-white-30:hover { background-color: hsla(0, 0%, 100%, .3) }
   .dm-hover-bg-white-20:focus, .dm-hover-bg-white-20:hover { background-color: hsla(0, 0%, 100%, .2) }
   .dm-hover-bg-white-10:focus, .dm-hover-bg-white-10:hover { background-color: hsla(0, 0%, 100%, .1) }
+  .dm-hover-bg-white-05:focus, .dm-hover-bg-white-05:hover { background-color: hsla(0, 0%, 100%, .05) }
+  .dm-hover-bg-white-025:focus, .dm-hover-bg-white-025:hover { background-color: hsla(0, 0%, 100%, .025) }
+  .dm-hover-bg-white-0125:focus, .dm-hover-bg-white-0125:hover { background-color: hsla(0, 0%, 100%, .0125) }
   .dm-hover-dark-red:focus, .dm-hover-dark-red:hover { color: #e7040f }
   .dm-hover-red:focus, .dm-hover-red:hover { color: #ff4136 }
   .dm-hover-light-red:focus, .dm-hover-light-red:hover { color: #ff725c }
