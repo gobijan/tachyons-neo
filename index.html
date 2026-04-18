@@ -4,46 +4,239 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="tachyons4.css">
-  <title>Tachyons 4 Bijan</title>
+  <link rel="stylesheet" href="tachyons.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <title>Tachyons</title>
+  <style>
+    pre, code, .ff-mono { font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+    .stroke-2 { -webkit-text-stroke-width: 2px }
+    pre { white-space: pre; tab-size: 2 }
+    .grid-demo > div {
+      background: repeating-linear-gradient(
+        45deg,
+        currentColor 0 1px,
+        transparent 1px 6px
+      );
+      aspect-ratio: 4 / 1;
+    }
+  </style>
 </head>
-<body class="sans-serif pa3 pa5-m pa6-l lh-copy bg-dark-blue white antialiased">
-  <h1 class="lh-title f2 f1-ns f-subheadline-m f-headline-l ttu fw9 stroke tracked light-blue" style="-webkit-text-stroke-width: 2px;">Tachyons 4 Modded.</h1>
-  <p>This version of Tachyons 4 has additional support for the following features:</p>
+<body class="sans-serif bg-near-white near-black ma0 pa0 antialiased">
 
-  <dl>
-    <dt class="fw5">Dark Mode classes prefixed with <code>dm-</code> prefix</dt>
-    <dd>Works for colors, backgrounds, borders and hover and some utility classes.</dd>
-  </dl>
+  <!-- TOP BAR -->
+  <header class="bb b--near-black bw1 ph3 ph4-ns pv3 flex justify-between items-baseline f6 ttu tracked fw7">
+    <span>Tachyons</span>
+    <span class="tnum">v6.0.0 &mdash; MMXXVI</span>
+  </header>
 
-  <dl>
-    <dt class="fw5">Additional helpers utility classes</dt>
-    <dd>
-      <code class="">
-        <pre class="">
-// Gaps (responsive variants available)
-.g0 {gap: 0}
-.g1 {gap: .25rem}
-.g2 {gap: .5rem}
-.g3 {gap: 1rem}
-.g4 {gap: 2rem}
-.g5 {gap: 4rem}
-.g6 {gap: 8rem}
-.g7 {gap: 16rem}
+  <!-- HERO -->
+  <section class="bb b--near-black bw1 ph3 ph4-ns pt4 pt5-ns pb5 pb6-ns">
+    <div class="ttu tracked f6 fw7 mb4 mb5-ns flex items-baseline">
+      <span class="tnum mr3">§ 00</span>
+      <span>Index — A Functional CSS Toolkit</span>
+    </div>
 
-// Filters
-.active-dim:active { opacity: .8; transition: opacity .15s ease-out }
+    <h1 class="lh-headline ttu fw9 ma0 f1 f-subheadline-m f-headline-l tracked-tight">
+      Tachyons.<br>
+      <span class="stroke stroke-2 dark-pink">Six.</span>
+    </h1>
+
+    <div class="cf mt5 mt6-l">
+      <div class="fl w-100 w-60-l">
+        <p class="f4 f3-l lh-copy measure-wide mt0 mb0">
+          A small, composable CSS toolkit. Sharper defaults for modern viewports, finer-grained colour steps, a small CSS&nbsp;Grid layer, and a handful of utilities for prototyping. No build step, no dependencies, one stylesheet.
+        </p>
+      </div>
+      <aside class="fl w-100 w-30-l mt5 mt0-l">
+        <ul class="list pa0 ma0 f6 ttu tracked tnum">
+          <li class="bt b--near-black bw1 pv2 flex justify-between"><span class="fw7">09</span><span>Patch&nbsp;sets</span></li>
+          <li class="bt b--near-black bw1 pv2 flex justify-between"><span class="fw7">04</span><span>Breakpoints</span></li>
+          <li class="bt b--near-black bw1 pv2 flex justify-between"><span class="fw7">00</span><span>Build&nbsp;steps</span></li>
+          <li class="bt bb b--near-black bw1 pv2 flex justify-between"><span class="fw7">01</span><span>Stylesheet</span></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- PATCHES -->
+  <section class="ph3 ph4-ns pt4 pt5-ns pb4 pb5-ns">
+    <div class="ttu tracked f6 fw7 mb4 mb5-ns flex items-baseline">
+      <span class="tnum mr3">§ 01</span>
+      <span>Patches</span>
+    </div>
+
+    <!-- 01 -->
+    <article class="bt b--near-black bw1 pv4 pv5-l flex flex-column flex-row-l">
+      <div class="tnum f3 f1-l fw9 lh-solid w-100 w-10-l mb3 mb0-l">01</div>
+      <div class="w-100 w-40-l pr4-l">
+        <h2 class="ttu tracked f5 f4-l fw7 mt0 mb3">-m breakpoint</h2>
+        <p class="lh-copy mt0 measure">The <code class="ph1 bg-light-blue near-black">-m</code> modifier has no upper bound — styles applied at the medium breakpoint continue applying at large unless explicitly overridden. Reduces repetition.</p>
+      </div>
+      <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>&lt;div class="pa3 pa5-m"&gt;
+  Padding-5 applies from
+  480px and up.
+&lt;/div&gt;</code></pre>
+    </article>
+
+    <!-- 02 -->
+    <article class="bt b--near-black bw1 pv4 pv5-l flex flex-column flex-row-l">
+      <div class="tnum f3 f1-l fw9 lh-solid w-100 w-10-l mb3 mb0-l">02</div>
+      <div class="w-100 w-40-l pr4-l">
+        <h2 class="ttu tracked f5 f4-l fw7 mt0 mb3">Gap scale</h2>
+        <p class="lh-copy mt0 measure">Eight gap utilities for flex and grid layouts, mapped to the Tachyons spacing scale. Responsive variants available at every breakpoint.</p>
+      </div>
+      <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>.g0 { gap: 0      }
+.g1 { gap: .25rem }
+.g2 { gap: .5rem  }
+.g3 { gap: 1rem   }
+.g4 { gap: 2rem   }
+.g5 { gap: 4rem   }
+.g6 { gap: 8rem   }
+.g7 { gap: 16rem  }</code></pre>
+    </article>
+
+    <!-- 03 -->
+    <article class="bt b--near-black bw1 pv4 pv5-l flex flex-column flex-row-l">
+      <div class="tnum f3 f1-l fw9 lh-solid w-100 w-10-l mb3 mb0-l">03</div>
+      <div class="w-100 w-40-l pr4-l">
+        <h2 class="ttu tracked f5 f4-l fw7 mt0 mb3">Dynamic viewport heights</h2>
+        <p class="lh-copy mt0 measure">Heights using the <code class="ph1 bg-light-blue near-black">dvh</code> unit — accounts for collapsible mobile browser chrome so 100&thinsp;% really means 100&thinsp;%. Responsive variants available.</p>
+      </div>
+      <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>.dvh-25      { height:     25dvh }
+.dvh-50      { height:     50dvh }
+.dvh-75      { height:     75dvh }
+.dvh-100     { height:    100dvh }
+.min-dvh-100 { min-height: 100dvh }</code></pre>
+    </article>
+
+    <!-- 04 -->
+    <article class="bt b--near-black bw1 pv4 pv5-l flex flex-column flex-row-l">
+      <div class="tnum f3 f1-l fw9 lh-solid w-100 w-10-l mb3 mb0-l">04</div>
+      <div class="w-100 w-40-l pr4-l">
+        <h2 class="ttu tracked f5 f4-l fw7 mt0 mb3">Hairline opacities</h2>
+        <p class="lh-copy mt0 measure">Extra-low opacity steps for whisper-thin overlays, dividers, and tints. Available as colour, background, and hover variants for both black and white.</p>
+      </div>
+      <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>.black-025   rgba(0,0,0,.025)
+.black-0125  rgba(0,0,0,.0125)
+.white-05    hsla(0,0%,100%,.05)
+.white-025   hsla(0,0%,100%,.025)
+.white-0125  hsla(0,0%,100%,.0125)
+
+// also: .hover-* and .hover-bg-*</code></pre>
+    </article>
+
+    <!-- 05 -->
+    <article class="bt b--near-black bw1 pv4 pv5-l flex flex-column flex-row-l">
+      <div class="tnum f3 f1-l fw9 lh-solid w-100 w-10-l mb3 mb0-l">05</div>
+      <div class="w-100 w-40-l pr4-l">
+        <h2 class="ttu tracked f5 f4-l fw7 mt0 mb3">Outlined type</h2>
+        <p class="lh-copy mt0 measure">Renders text as an outline using <code class="ph1 bg-light-blue near-black">-webkit-text-stroke</code>. Combine with an inline <code class="ph1 bg-light-blue near-black">stroke-width</code> for thicker strokes. See the headline above. Responsive variants available.</p>
+      </div>
+      <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>.stroke {
+  -webkit-text-stroke: 1px currentColor;
+  -webkit-text-fill-color: transparent;
+}</code></pre>
+    </article>
+
+    <!-- 06 -->
+    <article class="bt b--near-black bw1 pv4 pv5-l flex flex-column flex-row-l">
+      <div class="tnum f3 f1-l fw9 lh-solid w-100 w-10-l mb3 mb0-l">06</div>
+      <div class="w-100 w-40-l pr4-l">
+        <h2 class="ttu tracked f5 f4-l fw7 mt0 mb3">Grid system</h2>
+        <p class="lh-copy mt0 measure">A small, opinionated CSS&nbsp;Grid layer — equal-fraction columns and column spans. Pairs with the gap scale. Responsive variants available.</p>
+
+        <div class="grid gtc4 g1 mt4 grid-demo near-black" aria-hidden="true">
+          <div></div><div></div><div></div><div></div>
+        </div>
+      </div>
+      <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>.grid     display: grid
+
+.gtc1     grid-template-columns: 1fr × 1
+.gtc2     grid-template-columns: 1fr × 2
+.gtc3     grid-template-columns: 1fr × 3
+.gtc4     grid-template-columns: 1fr × 4
+
+.csp1     grid-column: span 1
+.csp2     grid-column: span 2
+.csp3     grid-column: span 3
+.csp-full grid-column: 1 / -1</code></pre>
+    </article>
+
+    <!-- 07 -->
+    <article class="bt b--near-black bw1 pv4 pv5-l flex flex-column flex-row-l">
+      <div class="tnum f3 f1-l fw9 lh-solid w-100 w-10-l mb3 mb0-l">07</div>
+      <div class="w-100 w-40-l pr4-l">
+        <h2 class="ttu tracked f5 f4-l fw7 mt0 mb3">Filters &amp; effects</h2>
+        <p class="lh-copy mt0 measure">A handful of one-shot effects: a tactile press dimmer, a colour inverter, and a backdrop blur for glass surfaces.</p>
+      </div>
+      <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>.active-dim:active {
+  opacity: .8;
+  transition: opacity .15s ease-out;
+}
 .invert { filter: invert(1) }
+.blur   {
+  backdrop-filter:         blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+}</code></pre>
+    </article>
 
-// Misc
-.resize-none { resize: none }
+    <!-- 08 -->
+    <article class="bt b--near-black bw1 pv4 pv5-l flex flex-column flex-row-l">
+      <div class="tnum f3 f1-l fw9 lh-solid w-100 w-10-l mb3 mb0-l">08</div>
+      <div class="w-100 w-40-l pr4-l">
+        <h2 class="ttu tracked f5 f4-l fw7 mt0 mb3">Form &amp; list helpers</h2>
+        <p class="lh-copy mt0 measure">Two small affordances. Disable the textarea resize handle, and place list markers inside the content box where they belong.</p>
+      </div>
+      <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>.resize-none { resize: none }
+.list-inside { list-style-position: inside }</code></pre>
+    </article>
 
-// Darkmode
-.dm-no-invert { filter: invert(0) }
-.dm-invert { filter: invert(1) }
-        </pre>
-      </code>
-    </dd>
-  </dl>
+    <!-- 09 -->
+    <article class="bt bb b--near-black bw1 pv4 pv5-l flex flex-column flex-row-l">
+      <div class="tnum f3 f1-l fw9 lh-solid w-100 w-10-l mb3 mb0-l">09</div>
+      <div class="w-100 w-40-l pr4-l">
+        <h2 class="ttu tracked f5 f4-l fw7 mt0 mb3">Placeholder backgrounds</h2>
+        <p class="lh-copy mt0 measure">Lorem-ipsum for backgrounds. Pulls a random photo from <code class="ph1 bg-light-blue near-black">picsum.photos</code> at three aspect ratios. For prototyping; don't ship to production.</p>
+      </div>
+      <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>.random-image
+.random-image-landscape
+.random-image-portrait</code></pre>
+    </article>
+
+  </section>
+
+  <!-- COLOPHON -->
+  <section class="bt b--near-black bw1 ph3 ph4-ns pt4 pt5-ns pb5 pb6-ns">
+    <div class="ttu tracked f6 fw7 mb4 mb5-ns flex items-baseline">
+      <span class="tnum mr3">§ 02</span>
+      <span>Colophon</span>
+    </div>
+    <div class="cf">
+      <div class="fl w-100 w-60-l">
+        <p class="f4 lh-copy measure mt0">
+          A Screen Island edition of Tachyons. Set in the system Helvetica/Avenir stack at the body, with <span class="ff-mono">JetBrains Mono</span> for code. Descended from Tachyons (tachyons.io, 2016–) under the long shadow of Müller-Brockmann, Hofmann, and Crouwel. Built for internal use at Screen Island; published in case it's useful to you.
+        </p>
+      </div>
+      <div class="fl w-100 w-30-l mt4 mt0-l f6 ttu tracked">
+        <dl class="ma0">
+          <dt class="bt b--near-black bw1 pv2 fw7">Source</dt>
+          <dd class="ma0 pv2 lh-copy">github.com/gobijan/tachyons</dd>
+          <dt class="bt b--near-black bw1 pv2 fw7">Upstream</dt>
+          <dd class="ma0 pv2 lh-copy">tachyons.io · v4.13.0</dd>
+          <dt class="bt bb b--near-black bw1 pv2 fw7">License</dt>
+          <dd class="ma0 pv2 lh-copy">MIT</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bt b--near-black bw1 ph3 ph4-ns pv3 flex justify-between items-baseline f6 ttu tracked fw7">
+    <span>Tachyons</span>
+    <span class="tnum"><a href="https://screenisland.com" class="link near-black underline">Screen Island</a> &middot; MMXXVI</span>
+  </footer>
+
 </body>
 </html>
