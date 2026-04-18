@@ -19,7 +19,13 @@
         currentColor 0 1px,
         transparent 1px 6px
       );
-      aspect-ratio: 4 / 1;
+    }
+    .grid-demo > div:nth-child(even) {
+      background-image: repeating-linear-gradient(
+        -45deg,
+        currentColor 0 1px,
+        transparent 1px 6px
+      );
     }
   </style>
 </head>
@@ -40,16 +46,16 @@
 
     <h1 class="lh-headline ttu fw9 ma0 f1 f-subheadline-m f-headline-l tracked-tight">
       Tachyons.<br>
-      <span class="stroke stroke-2 dark-pink">Six.</span>
+      <span class="stroke stroke-2 dark-pink i">Six.</span>
     </h1>
 
-    <div class="cf mt5 mt6-l">
-      <div class="fl w-100 w-60-l">
+    <div class="grid-l gtc3-l g4-l mt5 mt6-l">
+      <div class="csp2-l">
         <p class="f4 f3-l lh-copy measure-wide mt0 mb0">
           A small, composable CSS toolkit. Sharper defaults for modern viewports, finer-grained colour steps, a small CSS&nbsp;Grid layer, and a handful of utilities for prototyping. No build step, no dependencies, one stylesheet.
         </p>
       </div>
-      <aside class="fl w-100 w-30-l mt5 mt0-l">
+      <aside class="mt5 mt0-l csp1-l">
         <ul class="list pa0 ma0 f6 ttu tracked tnum">
           <li class="bt b--near-black bw1 pv2 flex justify-between"><span class="fw7">09</span><span>Patch&nbsp;sets</span></li>
           <li class="bt b--near-black bw1 pv2 flex justify-between"><span class="fw7">04</span><span>Breakpoints</span></li>
@@ -147,8 +153,10 @@
         <h2 class="ttu tracked f5 f4-l fw7 mt0 mb3">Grid system</h2>
         <p class="lh-copy mt0 measure">A small, opinionated CSS&nbsp;Grid layer — equal-fraction columns and column spans. Pairs with the gap scale. Responsive variants available.</p>
 
-        <div class="grid gtc4 g1 mt4 grid-demo near-black" aria-hidden="true">
-          <div></div><div></div><div></div><div></div>
+        <div class="grid gtc4 g2 mt4 h3 grid-demo near-black" aria-hidden="true">
+          <div class="csp1"></div>
+          <div class="csp2"></div>
+          <div class="csp1"></div>
         </div>
       </div>
       <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>.grid     display: grid
@@ -213,13 +221,13 @@
       <span class="tnum mr3">§ 02</span>
       <span>Colophon</span>
     </div>
-    <div class="cf">
-      <div class="fl w-100 w-60-l">
+    <div class="grid-l gtc3-l g4-l">
+      <div class="csp2-l">
         <p class="f4 lh-copy measure mt0">
           A Screen Island edition of Tachyons. Set in the system Helvetica/Avenir stack at the body, with <span class="ff-mono">JetBrains Mono</span> for code. Descended from Tachyons (tachyons.io, 2016–) under the long shadow of Müller-Brockmann, Hofmann, and Crouwel. Built for internal use at Screen Island; published in case it's useful to you.
         </p>
       </div>
-      <div class="fl w-100 w-30-l mt4 mt0-l f6 ttu tracked">
+      <div class="mt4 mt0-l f6 ttu tracked csp1-l">
         <dl class="ma0">
           <dt class="bt b--near-black bw1 pv2 fw7">Source</dt>
           <dd class="ma0 pv2 lh-copy">github.com/gobijan/tachyons</dd>
