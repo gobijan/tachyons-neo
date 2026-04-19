@@ -58,10 +58,14 @@ echo "→ releasing ${new}"
 sed -i.bak -E "1 s|TACHYONS NEO v[0-9]+\.[0-9]+\.[0-9]+|TACHYONS NEO ${new}|" tachyons.css
 rm tachyons.css.bak
 
-if git diff --quiet tachyons.css; then
-  echo "note: tachyons.css already at ${new}, skipping commit"
+# Update the version badge in index.html (the <span id="version">…</span>)
+sed -i.bak -E "s|(id=\"version\"[^>]*>)v[0-9]+\.[0-9]+\.[0-9]+|\1${new}|" index.html
+rm index.html.bak
+
+if git diff --quiet tachyons.css index.html; then
+  echo "note: tachyons.css and index.html already at ${new}, skipping commit"
 else
-  git add tachyons.css
+  git add tachyons.css index.html
   git commit -m "Release ${new}"
   git push origin main
 fi
