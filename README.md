@@ -14,6 +14,14 @@ Drop the stylesheet in and go. There is no build step.
 <link rel="stylesheet" href="tachyons.css">
 ```
 
+Or load from jsDelivr:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v1.0.1/tachyons.css">
+```
+
+Pin to a tag for production. For floating major, use `@1`; for bleeding-edge off `main`, drop the ref entirely (`…/tachyons-neo/tachyons.css`).
+
 Or vendor it:
 
 ```sh
