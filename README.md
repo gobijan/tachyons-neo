@@ -60,7 +60,19 @@ See [`tachyons.css`](tachyons.css) or the [live docs](https://screenisland.com/t
 
 ---
 
-## § 03 — Colophon
+## § 03 — Changelog
+
+Release notes, newest first.
+
+<!-- CHANGELOG:INSERT -->
+
+### v1.0.0 — 2026-04-19
+
+- Initial release. Tachyons v4.13.0 with nine patches, a 118-token design system, and a small grid layer.
+
+---
+
+## § 04 — Colophon
 
 A Screen Island edition of Tachyons. Descended from Tachyons (tachyons.io, 2016–) under the long shadow of Müller-Brockmann, Hofmann, and Crouwel. Built for internal use at [Screen Island](https://screenisland.com); published in case it's useful to you.
 
