@@ -65,6 +65,12 @@ See [`tachyons.css`](tachyons.css) or the [live docs](https://screenisland.com/t
 Release notes, newest first.
 
 <!-- CHANGELOG:INSERT -->
+### v1.0.1 — 2026-04-19
+
+- Swapped `:focus` for `:focus-visible` on `.link`, all `.hover-*` color/bg utilities, and interactive helpers (`.dim`, `.glow`, `.grow`, `.grow-large`, `.hide-child`, `.underline-hover`, `.shadow-hover`, `.bg-animate`, `.nested-links a`) in `tachyons.css`.
+- Added a Changelog section (§ 03) to `index.html` and `README.md`; renumbered Colophon to § 04.
+- Linked the Source and Upstream entries in the Colophon and switched the footer Screen Island link to `dark-blue underline-hover`.
+
 
 ### v1.0.0 — 2026-04-19
 
