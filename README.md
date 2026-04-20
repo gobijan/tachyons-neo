@@ -73,6 +73,12 @@ See [`tachyons.css`](tachyons.css) or the [live docs](https://screenisland.com/t
 Release notes, newest first.
 
 <!-- CHANGELOG:INSERT -->
+### v1.0.2 — 2026-04-20
+
+- Added `§ 01 Install` section to `index.html` and a jsDelivr `<link>` snippet to `README.md`
+- Rebuilt `--shadow-1` through `--shadow-5` tokens as layered elevation (softer alphas, dual-layer on 3–5)
+- Fixed self-referential `--ease-shadow` token to `cubic-bezier(.4, 0, .2, 1)`; bumped section borders to `bw2-ns`
+
 ### v1.0.1 — 2026-04-19
 
 - Swapped `:focus` for `:focus-visible` on `.link`, all `.hover-*` color/bg utilities, and interactive helpers (`.dim`, `.glow`, `.grow`, `.grow-large`, `.hide-child`, `.underline-hover`, `.shadow-hover`, `.bg-animate`, `.nested-links a`) in `tachyons.css`.
