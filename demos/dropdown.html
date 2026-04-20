@@ -1,0 +1,69 @@
+<!--
+  Dropdown — Popover API · CSS Anchor Positioning · @starting-style · transition-behavior: allow-discrete
+  Zero-JS. Rails-ready markup.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dropdown — tachyons-neo demo</title>
+  <link rel="stylesheet" href="../tachyons.css">
+  <style>
+    .dropdown-menu {
+      position: absolute;
+      position-anchor: var(--anchor);
+      position-try-fallbacks: flip-block, flip-inline;
+      top: anchor(bottom);
+      left: anchor(left);
+      margin: 0;
+      opacity: 1;
+      transform: translateY(0);
+      /* allow-discrete keeps the element displayed long enough for the exit transition */
+      transition: opacity var(--duration-fast) ease, transform var(--duration-fast) ease, display var(--duration-fast) allow-discrete;
+    }
+
+    .dropdown-menu:not(:popover-open) {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+
+    @starting-style {
+      .dropdown-menu:popover-open {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+    }
+  </style>
+</head>
+<body class="pa4 sans-serif antialiased bg-black-20">
+  
+  
+  <!-- Dropdown 1 -->
+  <div class="dib">
+    <button
+      popovertarget="dropdown-1"
+      class="button-reset pv2 ph3 br3 bg-animate bg-white hover-bg-white-80 active-dim ba pointer fw5 f6"
+      style="anchor-name: --anchor-1;"
+      aria-haspopup="menu"
+      aria-controls="dropdown-1"
+    >
+      Actions ▾
+    </button>
+
+    <div
+      id="dropdown-1"
+      popover
+      class="dropdown-menu pa2 bg-white shadow-3 br4 f6 fw5 bn"
+      style="--anchor: --anchor-1;"
+      role="menu"
+      aria-label="Actions"
+    >
+      <a href="#" role="menuitem" class="db pa2 no-underline dark-gray hover-bg-light-gray bg-animate br3">Edit</a>
+      <a href="#" role="menuitem" class="db pa2 no-underline dark-gray hover-bg-light-gray bg-animate br3">Duplicate</a>
+      <a href="#" role="menuitem" class="db pa2 no-underline dark-gray hover-bg-light-gray bg-animate br3">Delete</a>
+    </div>
+  </div>
+
+</body>
+</html>

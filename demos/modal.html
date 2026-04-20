@@ -1,0 +1,93 @@
+<!--
+  Modal — <dialog> · showModal() · ::backdrop · @starting-style · transition-behavior: allow-discrete · form method="dialog"
+  One line of JS per trigger (showModal). Close buttons use form method="dialog" — no JS needed.
+  Rails-ready: drop the <dialog> anywhere in the page; render the trigger via a button_to helper.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal — tachyons-neo demo</title>
+  <link rel="stylesheet" href="../tachyons.css">
+  <style>
+    dialog {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      max-width: 32rem;
+      width: calc(100% - 2rem);
+      opacity: 0;
+      transform: translateY(-8px);
+      transition:
+        opacity var(--duration-fast) ease,
+        transform var(--duration-fast) ease,
+        display var(--duration-fast) allow-discrete,
+        overlay var(--duration-fast) allow-discrete;
+    }
+
+    dialog[open] {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @starting-style {
+      dialog[open] {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+    }
+
+    dialog::backdrop {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      opacity: 0;
+      transition:
+        opacity var(--duration-fast) ease,
+        display var(--duration-fast) allow-discrete,
+        overlay var(--duration-fast) allow-discrete;
+    }
+
+    dialog[open]::backdrop {
+      opacity: 1;
+    }
+
+    @starting-style {
+      dialog[open]::backdrop {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body class="pa4 sans-serif antialiased bg-black-20">
+
+  <button
+    class="button-reset pv2 ph3 br3 bg-animate bg-white hover-bg-black-10 active-dim bn pointer fw5 f6"
+    onclick="document.getElementById('confirm-delete').showModal()"
+  >
+    Delete post
+  </button>
+
+  <dialog id="confirm-delete" class="shadow-5 br4 bg-white pa4" aria-labelledby="confirm-delete-title">
+    <h2 id="confirm-delete-title" class="mt0 mb3 f4 fw7">Delete this post?</h2>
+    <p class="mt0 mb4 lh-copy near-black">
+      "Hello world" will be permanently removed. This can't be undone.
+    </p>
+    <form method="dialog" class="tr">
+      <button
+        class="button-reset pv2 ph3 br3 bg-animate bg-white hover-bg-black-10 active-dim ba b--black-30 pointer fw5 f6 mr2"
+      >
+        Cancel
+      </button>
+      <button
+        value="confirm"
+        class="button-reset pv2 ph3 br3 bg-animate bg-dark-red hover-bg-black active-dim bn white pointer fw5 f6"
+      >
+        Delete
+      </button>
+    </form>
+  </dialog>
+
+</body>
+</html>

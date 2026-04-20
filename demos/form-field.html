@@ -1,0 +1,113 @@
+<!--
+  Form fields — canonical styling for Rails form_with output
+  Covers: text, textarea, select, radio group, checkbox, plus hint + error states
+  Markup mirrors Rails' form_with emission (name="post[title]", id="post_title") so it
+  drops into ERB templates as-is. One .field-input class handles the focus ring since
+  utilities don't compose for pseudo-state styling cleanly.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form fields — tachyons-neo demo</title>
+  <link rel="stylesheet" href="../tachyons.css">
+  <style>
+    .field-input {
+      width: 100%;
+      padding: .5rem .75rem;
+      border: 1px solid var(--black-30);
+      border-radius: var(--radius-2);
+      font: inherit;
+      background: white;
+      transition:
+        border-color var(--duration-fast) ease,
+        box-shadow var(--duration-fast) ease;
+    }
+
+    .field-input:focus {
+      outline: 0;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--lightest-blue);
+    }
+
+    .field-error .field-input {
+      border-color: var(--dark-red);
+    }
+
+    .field-error .field-input:focus {
+      box-shadow: 0 0 0 3px var(--washed-red);
+    }
+  </style>
+</head>
+<body class="pa4 sans-serif antialiased bg-black-05">
+
+  <form style="max-width: 32rem;">
+
+    <div class="mb4">
+      <label for="post_title" class="db f6 fw6 mb2">Title</label>
+      <input type="text" id="post_title" name="post[title]" class="field-input" value="Hello world">
+      <p class="mt2 mb0 f7 mid-gray lh-copy">Shown at the top of the post page.</p>
+    </div>
+
+    <div class="mb4">
+      <label for="post_body" class="db f6 fw6 mb2">Body</label>
+      <textarea id="post_body" name="post[body]" rows="4" class="field-input resize-none"></textarea>
+    </div>
+
+    <div class="mb4">
+      <label for="post_status" class="db f6 fw6 mb2">Status</label>
+      <select id="post_status" name="post[status]" class="field-input">
+        <option value="draft">Draft</option>
+        <option value="published" selected>Published</option>
+        <option value="archived">Archived</option>
+      </select>
+    </div>
+
+    <fieldset class="ma0 pa0 bn mb4">
+      <legend class="db f6 fw6 mb2 pa0">Visibility</legend>
+      <div class="flex flex-column g2">
+        <label class="flex items-center f6 pointer">
+          <input type="radio" name="post[visibility]" value="public" class="mr2" checked>
+          Public
+        </label>
+        <label class="flex items-center f6 pointer">
+          <input type="radio" name="post[visibility]" value="unlisted" class="mr2">
+          Unlisted
+        </label>
+        <label class="flex items-center f6 pointer">
+          <input type="radio" name="post[visibility]" value="private" class="mr2">
+          Private
+        </label>
+      </div>
+    </fieldset>
+
+    <div class="mb4">
+      <label class="flex items-center f6 pointer">
+        <input type="checkbox" name="post[featured]" class="mr2">
+        Feature this post on the homepage
+      </label>
+    </div>
+
+    <div class="mb4 field-error">
+      <label for="post_slug" class="db f6 fw6 mb2">Slug</label>
+      <input
+        type="text"
+        id="post_slug"
+        name="post[slug]"
+        class="field-input"
+        value="hello world"
+        aria-invalid="true"
+        aria-describedby="post_slug_error"
+      >
+      <p id="post_slug_error" class="mt2 mb0 f7 dark-red lh-copy">Can't contain spaces — use hyphens.</p>
+    </div>
+
+    <button type="submit" class="button-reset pv2 ph3 br3 bg-animate bg-near-black hover-bg-dark-gray active-dim bn white pointer fw5 f6">
+      Save post
+    </button>
+
+  </form>
+
+</body>
+</html>

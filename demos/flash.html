@@ -1,0 +1,79 @@
+<!--
+  Flash / toast — dismissible status messages
+  Platform: CSS @keyframes for slide-in, inline onclick for dismiss
+  Rails pattern:
+    <% flash.each do |type, msg| %>
+      <div data-flash role="status" class="..."> ... </div>
+    <% end %>
+  For auto-dismiss, append <script>setTimeout(() => el.remove(), 5000)</script> per flash.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flash — tachyons-neo demo</title>
+  <link rel="stylesheet" href="../tachyons.css">
+  <style>
+    [data-flash] {
+      animation: flash-in var(--duration-medium) ease-out;
+    }
+
+    @keyframes flash-in {
+      from {
+        opacity: 0;
+        transform: translateX(8px);
+      }
+    }
+  </style>
+</head>
+<body class="pa4 sans-serif antialiased bg-black-20">
+
+  <div class="fixed top-1 right-1 flex flex-column g2 w-100 measure-narrow">
+
+    <div
+      data-flash
+      role="status"
+      class="pv2 ph3 pr4 br4 shadow-3 bg-white-80 f6 lh-copy relative"
+    >
+      <span class="db fw5 dark-green">Saved</span>
+      <span class="black-80">Post "Hello world" was published.</span>
+      <button
+        class="button-reset bn bg-transparent absolute top-0 right-0 pa3 pointer hover-black dim"
+        aria-label="Dismiss"
+        onclick="this.closest('[data-flash]').remove()"
+      >×</button>
+    </div>
+
+    <div
+      data-flash
+      role="alert"
+      class="pv2 ph3 pr4 br4 shadow-3 bg-white-80 f6 lh-copy relative"
+    >
+      <span class="db fw5 dark-red">Something went wrong</span>
+      <span class="black-80">We couldn't delete the post. Try again?</span>
+      <button
+        class="button-reset bn bg-transparent absolute top-0 right-0 pa3 pointer  hover-black dim"
+        aria-label="Dismiss"
+        onclick="this.closest('[data-flash]').remove()"
+      >×</button>
+    </div>
+
+    <div
+      data-flash
+      role="status"
+      class="pv2 ph3 pr4 br4 shadow-3 bg-white-80 f6 lh-copy relative"
+    >
+      <span class="db fw5">Heads up</span>
+      <span class="black-80">Your session expires in 5 minutes.</span>
+      <button
+        class="button-reset bn bg-transparent absolute top-0 right-0 pa3 pointer hover-black dim"
+        aria-label="Dismiss"
+        onclick="this.closest('[data-flash]').remove()"
+      >×</button>
+    </div>
+
+  </div>
+
+</body>
+</html>
