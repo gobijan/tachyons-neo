@@ -570,6 +570,8 @@ img { max-width: 100% }
 .rotate-225 { -webkit-transform: rotate(225deg); transform: rotate(225deg) }
 .rotate-270 { -webkit-transform: rotate(270deg); transform: rotate(270deg) }
 .rotate-315 { -webkit-transform: rotate(315deg); transform: rotate(315deg) }
+.horizontal-tb { writing-mode: horizontal-tb }
+.sideways-lr { writing-mode: sideways-lr }
 .black-90 { color: var(--black-90) }
 .black-80 { color: var(--black-80) }
 .black-70 { color: var(--black-70) }
@@ -1002,6 +1004,8 @@ img { max-width: 100% }
 .center { margin-left: auto }
 .center, .mr-auto { margin-right: auto }
 .ml-auto { margin-left: auto }
+.mt-auto { margin-top: auto }
+.mb-auto { margin-bottom: auto }
 .clip { position: fixed !important; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px) }
 .ws-normal { white-space: normal }
 .nowrap { white-space: nowrap }
@@ -1316,6 +1320,8 @@ img { max-width: 100% }
   .rotate-225-ns { -webkit-transform: rotate(225deg); transform: rotate(225deg) }
   .rotate-270-ns { -webkit-transform: rotate(270deg); transform: rotate(270deg) }
   .rotate-315-ns { -webkit-transform: rotate(315deg); transform: rotate(315deg) }
+  .horizontal-tb-ns { writing-mode: horizontal-tb }
+  .sideways-lr-ns { writing-mode: sideways-lr }
   .pa0-ns { padding: 0 }
   .pa1-ns { padding: var(--spacing-1) }
   .pa2-ns { padding: var(--spacing-2) }
@@ -1494,6 +1500,8 @@ img { max-width: 100% }
   .center-ns { margin-left: auto }
   .center-ns, .mr-auto-ns { margin-right: auto }
   .ml-auto-ns { margin-left: auto }
+  .mt-auto-ns { margin-top: auto }
+  .mb-auto-ns { margin-bottom: auto }
   .clip-ns { position: fixed !important; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px) }
   .ws-normal-ns { white-space: normal }
   .nowrap-ns { white-space: nowrap }
@@ -1762,6 +1770,8 @@ img { max-width: 100% }
   .rotate-225-m { -webkit-transform: rotate(225deg); transform: rotate(225deg) }
   .rotate-270-m { -webkit-transform: rotate(270deg); transform: rotate(270deg) }
   .rotate-315-m { -webkit-transform: rotate(315deg); transform: rotate(315deg) }
+  .horizontal-tb-m { writing-mode: horizontal-tb }
+  .sideways-lr-m { writing-mode: sideways-lr }
   .pa0-m { padding: 0 }
   .pa1-m { padding: var(--spacing-1) }
   .pa2-m { padding: var(--spacing-2) }
@@ -1940,6 +1950,8 @@ img { max-width: 100% }
   .center-m { margin-left: auto }
   .center-m, .mr-auto-m { margin-right: auto }
   .ml-auto-m { margin-left: auto }
+  .mt-auto-m { margin-top: auto }
+  .mb-auto-m { margin-bottom: auto }
   .clip-m { position: fixed !important; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px) }
   .ws-normal-m { white-space: normal }
   .nowrap-m { white-space: nowrap }
@@ -2208,6 +2220,8 @@ img { max-width: 100% }
   .rotate-225-l { -webkit-transform: rotate(225deg); transform: rotate(225deg) }
   .rotate-270-l { -webkit-transform: rotate(270deg); transform: rotate(270deg) }
   .rotate-315-l { -webkit-transform: rotate(315deg); transform: rotate(315deg) }
+  .horizontal-tb-l { writing-mode: horizontal-tb }
+  .sideways-lr-l { writing-mode: sideways-lr }
   .pa0-l { padding: 0 }
   .pa1-l { padding: var(--spacing-1) }
   .pa2-l { padding: var(--spacing-2) }
@@ -2386,6 +2400,8 @@ img { max-width: 100% }
   .center-l { margin-left: auto }
   .center-l, .mr-auto-l { margin-right: auto }
   .ml-auto-l { margin-left: auto }
+  .mt-auto-l { margin-top: auto }
+  .mb-auto-l { margin-bottom: auto }
   .clip-l { position: fixed !important; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px) }
   .ws-normal-l { white-space: normal }
   .nowrap-l { white-space: nowrap }

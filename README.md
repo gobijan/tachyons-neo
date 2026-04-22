@@ -32,7 +32,7 @@ curl -O https://raw.githubusercontent.com/gobijan/tachyons-neo/main/tachyons.css
 
 ## § 01 — Patches
 
-Nine additions on top of Tachyons v4.13.0.
+Ten additions on top of Tachyons v4.13.0.
 
 | #  | Patch                      | Summary                                                                 |
 |----|----------------------------|-------------------------------------------------------------------------|
@@ -45,6 +45,7 @@ Nine additions on top of Tachyons v4.13.0.
 | 07 | Filters & effects          | `.active-dim`, `.invert`, `.blur` (backdrop).                           |
 | 08 | Form & list helpers        | `.resize-none`, `.list-inside`.                                         |
 | 09 | Placeholder backgrounds    | `.random-image`, `.random-image-landscape`, `.random-image-portrait`.   |
+| 10 | Writing-mode               | `.sideways-lr` for vertical spine labels; `.horizontal-tb` reset.       |
 
 Also: `.lh-headline` (tight leading for display type) and `.tnum` (tabular figures).
 
