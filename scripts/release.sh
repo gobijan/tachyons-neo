@@ -183,6 +183,11 @@ rm -f tachyons.css.bak
 sed -i.bak -E "s|(id=\"version\"[^>]*>)v[0-9]+\.[0-9]+\.[0-9]+|\1${new}|" index.html
 rm -f index.html.bak
 
+# Update the pinned CDN example (index.html + README.md). Leaves the
+# @1 floating-major and unpinned forms alone — only the semver @vX.Y.Z pin.
+sed -i.bak -E "s|tachyons-neo@v[0-9]+\.[0-9]+\.[0-9]+/tachyons\.css|tachyons-neo@${new}/tachyons.css|g" index.html README.md
+rm -f index.html.bak README.md.bak
+
 if git diff --quiet tachyons.css index.html README.md; then
   echo "note: no file changes, skipping commit"
 else
