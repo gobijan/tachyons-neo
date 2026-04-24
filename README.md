@@ -17,7 +17,7 @@ Drop the stylesheet in and go. There is no build step.
 Or load from jsDelivr:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v1.0.3/tachyons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v1.0.4/tachyons.css">
 ```
 
 Pin to a tag for production. For floating major, use `@1`; for bleeding-edge off `main`, drop the ref entirely (`…/tachyons-neo/tachyons.css`).
@@ -74,6 +74,10 @@ See [`tachyons.css`](tachyons.css) or the [live docs](https://screenisland.com/t
 Release notes, newest first.
 
 <!-- CHANGELOG:INSERT -->
+### v1.0.4 — 2026-04-24
+
+- Removed `-webkit-font-smoothing: antialiased` from the `body` rule in the CSS reset
+
 ### v1.0.3 — 2026-04-22
 
 - Add `.sideways-lr` and `.horizontal-tb` writing-mode utilities (Patch 10), with responsive `-ns/-m/-l` variants
