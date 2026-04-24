@@ -185,7 +185,6 @@ Extracted design tokens (spacing, font-size, colors, radius, etc.) into :root cu
 }
 body {
   line-height: var(--lh-copy);
-  -webkit-font-smoothing: antialiased;
 }
 img, picture, video, canvas, svg {
   display: block;
