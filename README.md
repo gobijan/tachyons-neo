@@ -17,7 +17,7 @@ Drop the stylesheet in and go. There is no build step.
 Or load from jsDelivr:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v1.0.4/tachyons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v1.0.5/tachyons.css">
 ```
 
 Pin to a tag for production. For floating major, use `@1`; for bleeding-edge off `main`, drop the ref entirely (`…/tachyons-neo/tachyons.css`).
@@ -74,6 +74,11 @@ See [`tachyons.css`](tachyons.css) or the [live docs](https://screenisland.com/t
 Release notes, newest first.
 
 <!-- CHANGELOG:INSERT -->
+### v1.0.5 — 2026-04-29
+
+- Replaced `--yellow: gold` keyword with hex `#ffd700` in `:root` token block
+- Removed `antialiased` class from `<body>` in index.html
+
 ### v1.0.4 — 2026-04-24
 
 - Removed `-webkit-font-smoothing: antialiased` from the `body` rule in the CSS reset
