@@ -224,6 +224,8 @@ h1, h2, h3, h4, h5, h6 {
 img { max-width: 100% }
 .cover { background-size: cover !important }
 .contain { background-size: contain !important }
+.object-cover { object-fit: cover }
+.object-contain { object-fit: contain }
 .bg-center { background-position: 50% }
 .bg-center, .bg-top { background-repeat: no-repeat }
 .bg-top { background-position: top }
@@ -1077,6 +1079,8 @@ img { max-width: 100% }
   .aspect-ratio--1x1-ns { aspect-ratio: 1; }
   .cover-ns { background-size: cover !important }
   .contain-ns { background-size: contain !important }
+  .object-cover-ns { object-fit: cover }
+  .object-contain-ns { object-fit: contain }
   .bg-center-ns { background-position: 50% }
   .bg-center-ns, .bg-top-ns { background-repeat: no-repeat }
   .bg-top-ns { background-position: top }
@@ -1528,6 +1532,8 @@ img { max-width: 100% }
   .aspect-ratio--1x1-m { aspect-ratio: 1; }
   .cover-m { background-size: cover !important }
   .contain-m { background-size: contain !important }
+  .object-cover-m { object-fit: cover }
+  .object-contain-m { object-fit: contain }
   .bg-center-m { background-position: 50% }
   .bg-center-m, .bg-top-m { background-repeat: no-repeat }
   .bg-top-m { background-position: top }
@@ -1979,6 +1985,8 @@ img { max-width: 100% }
   .aspect-ratio--1x1-l { aspect-ratio: 1; }
   .cover-l { background-size: cover !important }
   .contain-l { background-size: contain !important }
+  .object-cover-l { object-fit: cover }
+  .object-contain-l { object-fit: contain }
   .bg-center-l { background-position: 50% }
   .bg-center-l, .bg-top-l { background-repeat: no-repeat }
   .bg-top-l { background-position: top }

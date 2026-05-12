@@ -253,7 +253,7 @@
     </article>
 
     <!-- 10 -->
-    <article class="bt bb b--near-black bw1 pv4 pv5-l flex flex-column flex-row-l g3 g0-l">
+    <article class="bt b--near-black bw1 pv4 pv5-l flex flex-column flex-row-l g3 g0-l">
       <div class="tnum f3 f1-l fw9 lh-solid w-100 w-10-l">10</div>
       <div class="w-100 w-40-l pr4-l">
         <h2 class="ttu tracked f5 f4-l fw7 mt0 mb3">Writing-mode</h2>
@@ -261,6 +261,37 @@
       </div>
       <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>.horizontal-tb { writing-mode: horizontal-tb }
 .sideways-lr   { writing-mode: sideways-lr   }</code></pre>
+    </article>
+
+    <!-- 11 -->
+    <article class="bt bb b--near-black bw1 pv4 pv5-l flex flex-column flex-row-l g3 g0-l">
+      <div class="tnum f3 f1-l fw9 lh-solid w-100 w-10-l">11</div>
+      <div class="w-100 w-40-l pr4-l">
+        <h2 class="ttu tracked f5 f4-l fw7 mt0 mb3">Object-fit</h2>
+        <p class="lh-copy mt0 measure">The <code class="ph1 bg-light-blue near-black">&lt;img&gt;</code> counterpart to <code class="ph1 bg-light-blue near-black">.cover</code>/<code class="ph1 bg-light-blue near-black">.contain</code>. Pair with <code class="ph1 bg-light-blue near-black">.aspect-ratio--*</code> to crop images to a fixed ratio without distortion. Responsive variants available.</p>
+
+        <div class="flex g3 mt4" aria-hidden="true">
+          <figure class="ma0 w-50">
+            <div class="aspect-ratio--4x5">
+              <img src="https://picsum.photos/seed/tn-object-fit/800/1000" alt="" class="db w-100 h-100 object-cover">
+            </div>
+            <figcaption class="f7 ttu tracked mt2 silver">.object-cover</figcaption>
+          </figure>
+          <figure class="ma0 w-50">
+            <div class="aspect-ratio--4x5 bg-near-black">
+              <img src="https://picsum.photos/seed/tn-object-fit/800/1000" alt="" class="db w-100 h-100 object-contain">
+            </div>
+            <figcaption class="f7 ttu tracked mt2 silver">.object-contain</figcaption>
+          </figure>
+        </div>
+      </div>
+      <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>.object-cover   { object-fit: cover   }
+.object-contain { object-fit: contain }
+
+&lt;div class="aspect-ratio--4x5"&gt;
+  &lt;img class="db w-100 h-100 object-cover"
+       src="…" alt=""&gt;
+&lt;/div&gt;</code></pre>
     </article>
 
   </section>
