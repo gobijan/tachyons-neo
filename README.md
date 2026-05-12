@@ -17,7 +17,7 @@ Drop the stylesheet in and go. There is no build step.
 Or load from jsDelivr:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v1.0.6/tachyons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v1.0.7/tachyons.css">
 ```
 
 Pin to a tag for production. For floating major, use `@1`; for bleeding-edge off `main`, drop the ref entirely (`…/tachyons-neo/tachyons.css`).
@@ -74,6 +74,12 @@ See [`tachyons.css`](tachyons.css) or the [live docs](https://screenisland.com/t
 Release notes, newest first.
 
 <!-- CHANGELOG:INSERT -->
+### v1.0.7 — 2026-05-12
+
+- Add `.object-cover` / `.object-contain` utilities with `-ns`/`-m`/`-l` responsive variants, plus a new section 11 demo pairing them with `.aspect-ratio--4x5`
+- Drop the JetBrains Mono webfont; set `--font-sans-serif` to the system Helvetica stack and rely on system mono for code
+- Remove stray `bb` border on the section 10 (Writing-mode) article
+
 ### v1.0.6 — 2026-05-08
 
 - Add `.aspect-ratio--4x5` utility with `-ns`, `-m`, `-l` responsive variants
