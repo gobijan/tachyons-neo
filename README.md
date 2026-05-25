@@ -17,7 +17,7 @@ Drop the stylesheet in and go. There is no build step.
 Or load from jsDelivr:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v1.0.7/tachyons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v1.0.8/tachyons.css">
 ```
 
 Pin to a tag for production. For floating major, use `@1`; for bleeding-edge off `main`, drop the ref entirely (`…/tachyons-neo/tachyons.css`).
@@ -74,6 +74,12 @@ See [`tachyons.css`](tachyons.css) or the [live docs](https://screenisland.com/t
 Release notes, newest first.
 
 <!-- CHANGELOG:INSERT -->
+### v1.0.8 — 2026-05-25
+
+- `.hide-child` now toggles `visibility` alongside `opacity` (with `allow-discrete` transition) and triggers on `:focus-within` instead of `:focus-visible`
+- Hero copy swaps "finer-grained colour steps" for "css variable design tokens"; patch-set count bumped 10 → 11
+- Header and hero recolored to `bg-black`/`bg-purple` white; brand renamed "Tachyons Neo" and the `Neo` stroke accent changed `dark-pink` → `yellow`
+
 ### v1.0.7 — 2026-05-12
 
 - Add `.object-cover` / `.object-contain` utilities with `-ns`/`-m`/`-l` responsive variants, plus a new section 11 demo pairing them with `.aspect-ratio--4x5`
