@@ -1022,8 +1022,8 @@ img { max-width: 100% }
 .dim:active { opacity: .8; transition: opacity var(--duration-fast) ease-out }
 .glow, .glow:focus-visible, .glow:hover { transition: opacity var(--duration-fast) ease-in }
 .glow:focus-visible, .glow:hover { opacity: 1 }
-.hide-child .child { opacity: 0; transition: opacity var(--duration-fast) ease-in }
-.hide-child:active .child, .hide-child:focus-visible .child, .hide-child:hover .child { opacity: 1; transition: opacity var(--duration-fast) ease-in }
+.hide-child .child { opacity: 0; visibility: hidden; transition: opacity var(--duration-fast) ease-out, visibility var(--duration-fast) allow-discrete; }
+.hide-child:hover .child, .hide-child:focus-within .child, .hide-child:active .child { opacity: 1; visibility: visible; }
 .underline-hover:focus-visible, .underline-hover:hover { text-decoration: underline }
 .grow { -moz-osx-font-smoothing: grayscale; -webkit-backface-visibility: hidden; backface-visibility: hidden; -webkit-transform: translateZ(0); transform: translateZ(0); transition: -webkit-transform var(--duration-medium) ease-out; transition: transform var(--duration-medium) ease-out; transition: transform var(--duration-medium) ease-out, -webkit-transform var(--duration-medium) ease-out }
 .grow:focus-visible, .grow:hover { -webkit-transform: scale(1.05); transform: scale(1.05) }
