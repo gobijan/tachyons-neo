@@ -32,7 +32,7 @@ curl -O https://raw.githubusercontent.com/gobijan/tachyons-neo/main/tachyons.css
 
 ## § 01 — Patches
 
-Eleven additions on top of Tachyons v4.13.0.
+Twelve additions on top of Tachyons v4.13.0.
 
 | #  | Patch                      | Summary                                                                 |
 |----|----------------------------|-------------------------------------------------------------------------|
@@ -47,6 +47,7 @@ Eleven additions on top of Tachyons v4.13.0.
 | 09 | Placeholder backgrounds    | `.random-image`, `.random-image-landscape`, `.random-image-portrait`.   |
 | 10 | Writing-mode               | `.sideways-lr` for vertical spine labels; `.horizontal-tb` reset.       |
 | 11 | Cascade layers             | Ships as `@layer reset, tachyons` — your own unlayered CSS beats any utility regardless of specificity or load order. Put your own element resets in `@layer reset` so utilities still win. |
+| 12 | Min-width/-height 0        | `.min-w-0` / `.min-h-0` (+ responsive) let a flex or grid item shrink below its content — fixes blown-out `1fr` columns and lets a child `.truncate`. |
 
 Also: `.lh-headline` (tight leading for display type) and `.tnum` (tabular figures).
 
