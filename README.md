@@ -17,7 +17,7 @@ Drop the stylesheet in and go. There is no build step.
 Or load from jsDelivr:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v1.0.8/tachyons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v1.1.0/tachyons.css">
 ```
 
 Pin to a tag for production. For floating major, use `@1`; for bleeding-edge off `main`, drop the ref entirely (`…/tachyons-neo/tachyons.css`).
@@ -77,6 +77,12 @@ See [`tachyons.css`](tachyons.css) or the [live docs](https://screenisland.com/t
 Release notes, newest first.
 
 <!-- CHANGELOG:INSERT -->
+### v1.1.0 — 2026-05-29
+
+- Wrapped `tachyons.css` in `@layer reset, tachyons` — unlayered author CSS now beats any utility regardless of specificity or load order; added patch #11/#12 and tokens declared inside `@layer tachyons`
+- Dropped the stray `!important` from `.cover`, `.contain`, and `.clip` (plus their `-ns`/`-m`/`-l` variants)
+- this is a deliberate cascade-behavior change, so anyone relying on the old specificity/source-order model can pin to @v1.0.8
+
 ### v1.0.8 — 2026-05-25
 
 - `.hide-child` now toggles `visibility` alongside `opacity` (with `allow-discrete` transition) and triggers on `:focus-within` instead of `:focus-visible`
