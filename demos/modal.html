@@ -11,12 +11,7 @@
   <title>Modal — tachyons-neo demo</title>
   <link rel="stylesheet" href="../tachyons.css">
   <style>
-    dialog {
-      border: 0;
-      padding: 0;
-      background: transparent;
-      max-width: 32rem;
-      width: calc(100% - 2rem);
+    dialog {            
       opacity: 0;
       transform: translateY(-8px);
       transition:
@@ -69,7 +64,7 @@
     Delete post
   </button>
 
-  <dialog id="confirm-delete" class="shadow-5 br4 bg-white pa4" aria-labelledby="confirm-delete-title">
+  <dialog id="confirm-delete" class="shadow-5 br4 bg-white pa4 bn" aria-labelledby="confirm-delete-title">
     <h2 id="confirm-delete-title" class="mt0 mb3 f4 fw7">Delete this post?</h2>
     <p class="mt0 mb4 lh-copy near-black">
       "Hello world" will be permanently removed. This can't be undone.

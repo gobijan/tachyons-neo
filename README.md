@@ -32,7 +32,7 @@ curl -O https://raw.githubusercontent.com/gobijan/tachyons-neo/main/tachyons.css
 
 ## § 01 — Patches
 
-Ten additions on top of Tachyons v4.13.0.
+Eleven additions on top of Tachyons v4.13.0.
 
 | #  | Patch                      | Summary                                                                 |
 |----|----------------------------|-------------------------------------------------------------------------|
@@ -46,6 +46,7 @@ Ten additions on top of Tachyons v4.13.0.
 | 08 | Form & list helpers        | `.resize-none`, `.list-inside`.                                         |
 | 09 | Placeholder backgrounds    | `.random-image`, `.random-image-landscape`, `.random-image-portrait`.   |
 | 10 | Writing-mode               | `.sideways-lr` for vertical spine labels; `.horizontal-tb` reset.       |
+| 11 | Cascade layers             | Ships as `@layer reset, tachyons` — your own unlayered CSS beats any utility regardless of specificity or load order. Put your own element resets in `@layer reset` so utilities still win. |
 
 Also: `.lh-headline` (tight leading for display type) and `.tnum` (tabular figures).
 
@@ -64,6 +65,8 @@ Every design value — spacing, type scale, colours, radii, shadows, durations �
 ```
 
 **118 tokens** across **18 groups**: spacing, font-size, measure, line-height, letter-spacing, radius, border-width, shadow, duration, grayscale, black/white alpha, warm, purple/pink, green, blue, washed, font families.
+
+Tokens are declared inside `@layer tachyons`, so `var()` resolves everywhere and redefining one in your own (unlayered) `:root` overrides it.
 
 See [`tachyons.css`](tachyons.css) or the [live docs](https://screenisland.com/tachyons-neo/) for the full list.
 

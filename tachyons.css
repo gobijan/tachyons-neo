@@ -12,7 +12,14 @@ Added a small grid system: .grid and .gtc1-4, .csp1-3, .csp-full.
 Added .blur (backdrop) and .list-inside utilities.
 Added .lh-headline (tight leading for display type) and .tnum (tabular figures).
 Extracted design tokens (spacing, font-size, colors, radius, etc.) into :root custom properties so custom CSS can reference them via var(--spacing-3), var(--dark-pink), etc.
+Wrapped the stylesheet in cascade layers: `@layer reset, tachyons;` (reset < utilities < your CSS). Your own unlayered CSS now beats any utility regardless of specificity or load/bundle order — no !important, no specificity hacks. The reset lives in @layer reset so utilities still override it; put your OWN element-level resets in @layer reset too, or a utility won't be able to override them (an unlayered element rule like `dialog{padding:0}` beats a layered `.pa4`). Tokens live in @layer tachyons — var() still resolves everywhere, and redefining a token in your own :root overrides it. Removed the stray !important on .cover/.contain/.clip: they fought overrides, and inside a layer an !important fights even harder (layered !important beats unlayered !important).
 */
+
+/* Layer order (low → high priority): reset loses to utilities, both lose to
+   your own unlayered CSS. Put page-level element resets in @layer reset too. */
+@layer reset, tachyons;
+
+@layer tachyons {
 
 :root {
   /* Spacing scale — padding, margin, gap, width, height, position offsets */
@@ -168,6 +175,10 @@ Extracted design tokens (spacing, font-size, colors, radius, etc.) into :root cu
   --washed-red: #ffdfdf;
 }
 
+}  /* end @layer tachyons (tokens) */
+
+@layer reset {
+
 /*
   Josh's Custom CSS Reset
   https://www.joshwcomeau.com/css/custom-css-reset/
@@ -206,6 +217,10 @@ h1, h2, h3, h4, h5, h6 {
   isolation: isolate;
 }
 
+}  /* end @layer reset */
+
+@layer tachyons {
+
 .border-box, a, article, aside, blockquote, body, code, dd, div, dl, dt, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, input[type=email], input[type=number], input[type=password], input[type=tel], input[type=text], input[type=url], legend, li, main, nav, ol, p, pre, section, table, td, textarea, th, tr, ul { box-sizing: border-box }
 .aspect-ratio { aspect-ratio: auto; }
 .aspect-ratio--16x9 { aspect-ratio: 16/9; }
@@ -222,8 +237,8 @@ h1, h2, h3, h4, h5, h6 {
 .aspect-ratio--1x1 { aspect-ratio: 1; }
 .antialiased { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing:grayscale }
 img { max-width: 100% }
-.cover { background-size: cover !important }
-.contain { background-size: contain !important }
+.cover { background-size: cover }
+.contain { background-size: contain }
 .object-cover { object-fit: cover }
 .object-contain { object-fit: contain }
 .bg-center { background-position: 50% }
@@ -1008,7 +1023,7 @@ img { max-width: 100% }
 .ml-auto { margin-left: auto }
 .mt-auto { margin-top: auto }
 .mb-auto { margin-bottom: auto }
-.clip { position: fixed !important; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px) }
+.clip { position: fixed; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px) }
 .ws-normal { white-space: normal }
 .nowrap { white-space: nowrap }
 .pre { white-space: pre }
@@ -1077,8 +1092,8 @@ img { max-width: 100% }
   .aspect-ratio--7x5-ns { aspect-ratio: 7/5; }
   .aspect-ratio--5x7-ns { aspect-ratio: 5/7; }
   .aspect-ratio--1x1-ns { aspect-ratio: 1; }
-  .cover-ns { background-size: cover !important }
-  .contain-ns { background-size: contain !important }
+  .cover-ns { background-size: cover }
+  .contain-ns { background-size: contain }
   .object-cover-ns { object-fit: cover }
   .object-contain-ns { object-fit: contain }
   .bg-center-ns { background-position: 50% }
@@ -1507,7 +1522,7 @@ img { max-width: 100% }
   .ml-auto-ns { margin-left: auto }
   .mt-auto-ns { margin-top: auto }
   .mb-auto-ns { margin-bottom: auto }
-  .clip-ns { position: fixed !important; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px) }
+  .clip-ns { position: fixed; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px) }
   .ws-normal-ns { white-space: normal }
   .nowrap-ns { white-space: nowrap }
   .pre-ns { white-space: pre }
@@ -1530,8 +1545,8 @@ img { max-width: 100% }
   .aspect-ratio--7x5-m { aspect-ratio: 7/5; }
   .aspect-ratio--5x7-m { aspect-ratio: 5/7; }
   .aspect-ratio--1x1-m { aspect-ratio: 1; }
-  .cover-m { background-size: cover !important }
-  .contain-m { background-size: contain !important }
+  .cover-m { background-size: cover }
+  .contain-m { background-size: contain }
   .object-cover-m { object-fit: cover }
   .object-contain-m { object-fit: contain }
   .bg-center-m { background-position: 50% }
@@ -1960,7 +1975,7 @@ img { max-width: 100% }
   .ml-auto-m { margin-left: auto }
   .mt-auto-m { margin-top: auto }
   .mb-auto-m { margin-bottom: auto }
-  .clip-m { position: fixed !important; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px) }
+  .clip-m { position: fixed; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px) }
   .ws-normal-m { white-space: normal }
   .nowrap-m { white-space: nowrap }
   .pre-m { white-space: pre }
@@ -1983,8 +1998,8 @@ img { max-width: 100% }
   .aspect-ratio--7x5-l { aspect-ratio: 7/5; }
   .aspect-ratio--5x7-l { aspect-ratio: 5/7; }
   .aspect-ratio--1x1-l { aspect-ratio: 1; }
-  .cover-l { background-size: cover !important }
-  .contain-l { background-size: contain !important }
+  .cover-l { background-size: cover }
+  .contain-l { background-size: contain }
   .object-cover-l { object-fit: cover }
   .object-contain-l { object-fit: contain }
   .bg-center-l { background-position: 50% }
@@ -2413,7 +2428,7 @@ img { max-width: 100% }
   .ml-auto-l { margin-left: auto }
   .mt-auto-l { margin-top: auto }
   .mb-auto-l { margin-bottom: auto }
-  .clip-l { position: fixed !important; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px) }
+  .clip-l { position: fixed; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px) }
   .ws-normal-l { white-space: normal }
   .nowrap-l { white-space: nowrap }
   .pre-l { white-space: pre }
@@ -2492,3 +2507,5 @@ img { max-width: 100% }
   .csp3-l { grid-column: span 3; }
   .csp-full-l { grid-column: 1 / -1; }
 }
+
+} /* @layer tachyons */
