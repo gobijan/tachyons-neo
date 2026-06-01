@@ -17,7 +17,7 @@ Drop the stylesheet in and go. There is no build step.
 Or load from jsDelivr:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v1.1.1/tachyons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v1.1.2/tachyons.css">
 ```
 
 Pin to a tag for production. For floating major, use `@1`; for bleeding-edge off `main`, drop the ref entirely (`…/tachyons-neo/tachyons.css`).
@@ -79,6 +79,11 @@ See [`tachyons.css`](tachyons.css) or the [live docs](https://screenisland.com/t
 Release notes, newest first.
 
 <!-- CHANGELOG:INSERT -->
+### v1.1.2 — 2026-06-01
+
+- Patch #11 added: `.object-cover` / `.object-contain` (+ responsive), the `<img>` counterpart to `.cover`/`.contain`; patch list renumbered to thirteen (cascade layers → #12, min-w-0/min-h-0 → #13).
+- `.gtc1`–`.gtc4` tracks (all breakpoints) now use `repeat(n, minmax(0, 1fr))` instead of `repeat(n, 1fr)`, so columns shrink-safe and no longer blow out on long content.
+
 ### v1.1.1 — 2026-05-29
 
 - Add `.min-w-0` / `.min-h-0` utilities (+ `-ns`/`-m`/`-l` responsive variants) so flex and grid items can shrink below their content — fixes blown-out `1fr` columns and lets a child `.truncate` clip.
