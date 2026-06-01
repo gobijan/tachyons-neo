@@ -193,7 +193,7 @@
       <div class="tnum f3 f1-l fw9 lh-solid w-100 w-10-l">06</div>
       <div class="w-100 w-40-l pr4-l">
         <h2 class="ttu tracked f5 f4-l fw7 mt0 mb3">Grid system</h2>
-        <p class="lh-copy mt0 measure">A small, opinionated CSS&nbsp;Grid layer — equal-fraction columns and column spans. Pairs with the gap scale. Responsive variants available.</p>
+        <p class="lh-copy mt0 measure">A small, opinionated CSS&nbsp;Grid layer — equal-fraction, shrink-safe columns and column spans. Pairs with the gap scale. Responsive variants available.</p>
 
         <div class="grid gtc4 g2 mt4 h3 grid-demo near-black" aria-hidden="true">
           <div class="csp1"></div>
@@ -203,10 +203,10 @@
       </div>
       <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>.grid     display: grid
 
-.gtc1     grid-template-columns: 1fr × 1
-.gtc2     grid-template-columns: 1fr × 2
-.gtc3     grid-template-columns: 1fr × 3
-.gtc4     grid-template-columns: 1fr × 4
+.gtc1     grid-template-columns: repeat(1, minmax(0, 1fr))
+.gtc2     grid-template-columns: repeat(2, minmax(0, 1fr))
+.gtc3     grid-template-columns: repeat(3, minmax(0, 1fr))
+.gtc4     grid-template-columns: repeat(4, minmax(0, 1fr))
 
 .csp1     grid-column: span 1
 .csp2     grid-column: span 2
@@ -321,7 +321,7 @@
       <div class="tnum f3 f1-l fw9 lh-solid w-100 w-10-l">13</div>
       <div class="w-100 w-40-l pr4-l">
         <h2 class="ttu tracked f5 f4-l fw7 mt0 mb3">Min-width / -height 0</h2>
-        <p class="lh-copy mt0 measure">Flex and grid items default to <code class="ph1 bg-light-blue near-black">min-width:&nbsp;auto</code> — they refuse to shrink below their content, so a long string blows a <code class="ph1 bg-light-blue near-black">1fr</code> column wide open and <code class="ph1 bg-light-blue near-black">.truncate</code> never clips. <code class="ph1 bg-light-blue near-black">.min-w-0</code> / <code class="ph1 bg-light-blue near-black">.min-h-0</code> let the item shrink. Responsive variants available.</p>
+        <p class="lh-copy mt0 measure">Flex items and custom grid tracks can default to content-sized minimums, so a long string may blow a layout wide open and <code class="ph1 bg-light-blue near-black">.truncate</code> never clips. <code class="ph1 bg-light-blue near-black">.min-w-0</code> / <code class="ph1 bg-light-blue near-black">.min-h-0</code> let the item shrink. Responsive variants available.</p>
         <p class="lh-copy mt0 measure"><code class="ph1 bg-light-blue near-black">.flex-auto</code> already bakes this in, and <code class="ph1 bg-light-blue near-black">.truncate</code> self-fixes via <code class="ph1 bg-light-blue near-black">overflow:hidden</code> — reach for these on the <code class="ph1 bg-light-blue near-black">overflow:visible</code> items in between.</p>
       </div>
       <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>.min-w-0 { min-width: 0 }
@@ -331,8 +331,9 @@
   &lt;div class="min-w-0"&gt;long-url…&lt;/div&gt;
   &lt;div&gt;…&lt;/div&gt;
 &lt;/div&gt;
-/* without min-w-0 the column
-   blows past its 1fr track */</code></pre>
+/* .gtc* tracks are shrink-safe;
+   use min-w-0 when the item itself
+   still needs to clip */</code></pre>
     </article>
 
   </section>

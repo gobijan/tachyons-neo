@@ -41,7 +41,7 @@ Thirteen additions on top of Tachyons v4.13.0.
 | 03 | Dynamic viewport heights   | `.dvh-25/50/75/100`, `.min-dvh-100` using the `dvh` unit.               |
 | 04 | Hairline opacities         | `.black-025`, `.black-0125`, `.white-05/025/0125` + hover variants.     |
 | 05 | Outlined type              | `.stroke` using `-webkit-text-stroke`.                                  |
-| 06 | Grid system                | `.grid`, `.gtc1-4`, `.csp1-3`, `.csp-full`.                             |
+| 06 | Grid system                | `.grid`, `.gtc1-4`, `.csp1-3`, `.csp-full`; `gtc*` tracks use `minmax(0, 1fr)`. |
 | 07 | Filters & effects          | `.active-dim`, `.invert`, `.blur` (backdrop).                           |
 | 08 | Form & list helpers        | `.resize-none`, `.list-inside`.                                         |
 | 09 | Placeholder backgrounds    | `.random-image`, `.random-image-landscape`, `.random-image-portrait`.   |

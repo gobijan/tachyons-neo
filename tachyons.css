@@ -8,7 +8,7 @@ Therefore one doesn't need to implement again for l-size if no changes shall be 
 There is a new class for inverting images using a filter: .invert
 Added .g0-7 utility classes for Gap (flex and grid).
 Added .dvh-* variations mirroring .vh-* for mobile devices with dynamic toolbars.
-Added a small grid system: .grid and .gtc1-4, .csp1-3, .csp-full.
+Added a small grid system: .grid and .gtc1-4, .csp1-3, .csp-full; .gtc* tracks use minmax(0, 1fr).
 Added .blur (backdrop) and .list-inside utilities.
 Added .lh-headline (tight leading for display type) and .tnum (tabular figures).
 Extracted design tokens (spacing, font-size, colors, radius, etc.) into :root custom properties so custom CSS can reference them via var(--spacing-3), var(--dark-pink), etc.
@@ -2470,10 +2470,10 @@ img { max-width: 100% }
 
 .grid { display: grid; }
 
-.gtc1 { grid-template-columns: repeat(1, 1fr); }
-.gtc2 { grid-template-columns: repeat(2, 1fr); }
-.gtc3 { grid-template-columns: repeat(3, 1fr); }
-.gtc4 { grid-template-columns: repeat(4, 1fr); }
+.gtc1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.gtc2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.gtc3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.gtc4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
 .csp1 { grid-column: span 1; }
 .csp2 { grid-column: span 2; }
@@ -2482,10 +2482,10 @@ img { max-width: 100% }
 
 @media screen and (min-width: 30em) {
   .grid-ns { display: grid; }
-  .gtc1-ns { grid-template-columns: repeat(1, 1fr); }
-  .gtc2-ns { grid-template-columns: repeat(2, 1fr); }
-  .gtc3-ns { grid-template-columns: repeat(3, 1fr); }
-  .gtc4-ns { grid-template-columns: repeat(4, 1fr); }
+  .gtc1-ns { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  .gtc2-ns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gtc3-ns { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .gtc4-ns { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .csp1-ns { grid-column: span 1; }
   .csp2-ns { grid-column: span 2; }
   .csp3-ns { grid-column: span 3; }
@@ -2494,10 +2494,10 @@ img { max-width: 100% }
 
 @media screen and (min-width: 48em) {
   .grid-m { display: grid; }
-  .gtc1-m { grid-template-columns: repeat(1, 1fr); }
-  .gtc2-m { grid-template-columns: repeat(2, 1fr); }
-  .gtc3-m { grid-template-columns: repeat(3, 1fr); }
-  .gtc4-m { grid-template-columns: repeat(4, 1fr); }
+  .gtc1-m { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  .gtc2-m { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gtc3-m { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .gtc4-m { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .csp1-m { grid-column: span 1; }
   .csp2-m { grid-column: span 2; }
   .csp3-m { grid-column: span 3; }
@@ -2506,10 +2506,10 @@ img { max-width: 100% }
 
 @media screen and (min-width: 64em) {
   .grid-l { display: grid; }
-  .gtc1-l { grid-template-columns: repeat(1, 1fr); }
-  .gtc2-l { grid-template-columns: repeat(2, 1fr); }
-  .gtc3-l { grid-template-columns: repeat(3, 1fr); }
-  .gtc4-l { grid-template-columns: repeat(4, 1fr); }
+  .gtc1-l { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  .gtc2-l { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gtc3-l { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .gtc4-l { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .csp1-l { grid-column: span 1; }
   .csp2-l { grid-column: span 2; }
   .csp3-l { grid-column: span 3; }
