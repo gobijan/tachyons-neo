@@ -1,0 +1,152 @@
+<!--
+  Application shell — app.css semantic token demo
+  Covers: bg-surface-*, text-*, b--border-*, action/state/on-* utilities,
+  focus helpers, root theme defaults, and scoped data-theme="dark" surfaces.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application shell — tachyons-neo demo</title>
+  <link rel="stylesheet" href="../tachyons.css">
+  <link rel="stylesheet" href="../app.css">
+</head>
+<body class="sans-serif lh-copy">
+
+  <header class="sticky top-0 z-999 bg-surface-base bb b--border-1">
+    <div class="ph3 ph4-ns pv3 flex items-center justify-between g3">
+      <div class="flex items-center g3 min-w-0">
+        <div class="flex items-center justify-center bg-brand on-brand br3 w2 h2 fw7 flex-shrink-0">N</div>
+        <div class="min-w-0">
+          <h1 class="f4 fw7 lh-title mt0 mb0 truncate">Neo Admin</h1>
+          <p class="f7 text-2 mt0 mb0 truncate">Application token layer</p>
+        </div>
+      </div>
+
+      <div class="flex items-center g2">
+        <button class="button-reset bg-surface-1 hover-bg-surface-2 text-1 ba b--border-1 hover-b--border-2 focus-ring pointer br3 ph3 pv2 f6">Preview</button>
+        <button class="button-reset bg-action on-action focus-ring active-dim pointer bn br3 ph3 pv2 f6 fw6">Publish</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="root flex flex-column flex-row-l min-dvh-100">
+    <aside class="w-100 w5-l flex-shrink-0 bg-surface-1 bb br-l b--border-1">
+      <nav class="pa3 flex flex-row flex-column-l g2 overflow-auto">
+        <a href="#" class="link text-1 hover-bg-surface-2 hover-border br3 ph3 pv2 nowrap">Dashboard</a>
+        <a href="#" class="link text-2 hover-text-1 hover-bg-surface-2 hover-border br3 ph3 pv2 nowrap">Orders</a>
+        <a href="#" class="link text-2 hover-text-1 hover-bg-surface-2 hover-border br3 ph3 pv2 nowrap">Customers</a>
+        <a href="#" class="link text-2 hover-text-1 hover-bg-surface-2 hover-border br3 ph3 pv2 nowrap">Reports</a>
+        <a href="#" class="link text-2 hover-text-1 hover-bg-surface-2 hover-border br3 ph3 pv2 nowrap">Settings</a>
+      </nav>
+    </aside>
+
+    <section class="flex-auto min-w-0 pa3 pa4-ns">
+      <div class="flex flex-column flex-row-ns justify-between items-start g3 mb4">
+        <div>
+          <h2 class="f2 fw7 lh-title mt0 mb2">Dashboard</h2>
+          <p class="text-2 mt0 mb0 measure">Semantic utilities keep the markup portable across light, dark, and scoped application surfaces.</p>
+        </div>
+
+        <div class="flex items-center g2">
+          <span class="f7 fw7 ttu tracked bg-success on-success br-pill ph2 pv1">Healthy</span>
+          <span class="f7 fw7 ttu tracked bg-warning on-warning br-pill ph2 pv1">11 queued</span>
+        </div>
+      </div>
+
+      <div class="grid gtc1 gtc3-m g3 mb4">
+        <article class="pa3 pa4-ns bg-surface-1 ba b--border-1 br3">
+          <p class="f7 ttu tracked text-2 mt0 mb2">Revenue</p>
+          <div class="f2 fw7 tnum lh-title">$48.2k</div>
+          <p class="f6 success mt2 mb0">+12.8% from last week</p>
+        </article>
+
+        <article class="pa3 pa4-ns bg-surface-1 ba b--border-1 br3">
+          <p class="f7 ttu tracked text-2 mt0 mb2">Orders</p>
+          <div class="f2 fw7 tnum lh-title">1,284</div>
+          <p class="f6 text-2 mt2 mb0">97 waiting for review</p>
+        </article>
+
+        <article class="pa3 pa4-ns bg-surface-1 ba b--border-1 br3">
+          <p class="f7 ttu tracked text-2 mt0 mb2">Alerts</p>
+          <div class="f2 fw7 tnum lh-title danger">3</div>
+          <p class="f6 text-2 mt2 mb0">Payment retries need attention</p>
+        </article>
+      </div>
+
+      <div class="grid gtc1 gtc2-l g4">
+        <article class="bg-surface-1 ba b--border-1 br3 overflow-hidden">
+          <div class="pa3 pa4-ns bb b--border-1 bg-surface-2">
+            <div class="flex items-center justify-between g3">
+              <div>
+                <h3 class="f4 fw7 lh-title mt0 mb1">Recent orders</h3>
+                <p class="f6 text-2 mt0 mb0">Synced 2 minutes ago</p>
+              </div>
+              <button class="button-reset bg-surface-base text-1 ba b--border-1 hover-bg-surface-2 focus-ring pointer br3 ph3 pv2 f6">Export</button>
+            </div>
+          </div>
+
+          <div class="overflow-auto">
+            <table class="collapse w-100 f6">
+              <thead>
+                <tr class="tl text-2">
+                  <th class="fw6 pa3 bb b--border-1">Customer</th>
+                  <th class="fw6 pa3 bb b--border-1">Status</th>
+                  <th class="fw6 pa3 bb b--border-1 tr">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="pa3 bb b--border-1">Mira Patel</td>
+                  <td class="pa3 bb b--border-1"><span class="f7 fw7 ttu tracked bg-success on-success br-pill ph2 pv1">Paid</span></td>
+                  <td class="pa3 bb b--border-1 tr tnum">$480</td>
+                </tr>
+                <tr>
+                  <td class="pa3 bb b--border-1">Jonas Klein</td>
+                  <td class="pa3 bb b--border-1"><span class="f7 fw7 ttu tracked bg-info on-info br-pill ph2 pv1">Pending</span></td>
+                  <td class="pa3 bb b--border-1 tr tnum">$126</td>
+                </tr>
+                <tr>
+                  <td class="pa3">Aya Brooks</td>
+                  <td class="pa3"><span class="f7 fw7 ttu tracked bg-danger on-danger br-pill ph2 pv1">Failed</span></td>
+                  <td class="pa3 tr tnum">$76</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article data-theme="dark" class="bg-surface-base text-1 ba b--border-1 br3 overflow-hidden">
+          <div class="pa3 pa4-ns bb b--border-1 bg-surface-2">
+            <h3 class="f4 fw7 lh-title mt0 mb1">Scoped dark surface</h3>
+            <p class="f6 text-2 mt0 mb0">The nested theme changes tokens without changing markup.</p>
+          </div>
+
+          <form action="#" class="pa3 pa4-ns">
+            <label for="name" class="db f6 fw6 mb2">Campaign name</label>
+            <input id="name" name="name" type="text" value="Spring launch" class="input-reset w-100 bg-surface-1 text-1 ba b--border-2 hover-b--border-3 focus-ring-box br2 ph3 pv2 mb3">
+
+            <label for="budget" class="db f6 fw6 mb2">Daily budget</label>
+            <div class="flex items-center g3 mb3">
+              <input id="budget" name="budget" type="range" min="0" max="100" value="68" class="w-100">
+              <output for="budget" class="tnum text-2">$680</output>
+            </div>
+
+            <label class="flex items-center g2 pointer mb4">
+              <input type="checkbox" checked>
+              <span>Notify team when the budget changes</span>
+            </label>
+
+            <div class="flex justify-end g2">
+              <button class="button-reset bg-surface-2 hover-bg-surface-3 text-1 ba b--border-1 focus-ring pointer br3 ph3 pv2 f6">Cancel</button>
+              <button class="button-reset bg-action on-action focus-ring active-dim pointer bn br3 ph3 pv2 f6 fw6">Save</button>
+            </div>
+          </form>
+        </article>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

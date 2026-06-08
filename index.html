@@ -5,9 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="tachyons.css">
+  <link rel="stylesheet" href="app.css">
 
   <title>Tachyons Neo</title>
-  <style>    
+  <style>
     :root {
       --font-sans-serif: helvetica, sans-serif;
     }
@@ -55,7 +56,7 @@
     <div class="grid-l gtc3-l g4-l mt5 mt6-l">
       <div class="csp2-l">
         <p class="f4 f3-l lh-copy measure-wide mt0 mb0">
-          A small, composable CSS toolkit. Sharper defaults for modern viewports, css variable design tokens, a small CSS&nbsp;Grid layer, and a handful of utilities for prototyping. No build step, no dependencies, one stylesheet.
+          A small, composable CSS toolkit. Sharper defaults for modern viewports, css variable design tokens, a small CSS&nbsp;Grid layer, and a handful of utilities for prototyping. No build step, no dependencies, one core stylesheet; add <code class="ph1 bg-black-20 white">app.css</code> for semantic application tokens.
         </p>
       </div>
       <aside class="mt5 mt0-l csp1-l">
@@ -63,7 +64,7 @@
           <li class="bt b--near-black bw1 pv2 flex justify-between"><span class="fw7">14</span><span>Patch&nbsp;sets</span></li>
           <li class="bt b--near-black bw1 pv2 flex justify-between"><span class="fw7">03</span><span>Query&nbsp;steps</span></li>
           <li class="bt b--near-black bw1 pv2 flex justify-between"><span class="fw7">00</span><span>Build&nbsp;steps</span></li>
-          <li class="bt bb b--near-black bw1 pv2 flex justify-between"><span class="fw7">01</span><span>Stylesheet</span></li>
+          <li class="bt bb b--near-black bw1 pv2 flex justify-between"><span class="fw7">01</span><span>Core&nbsp;file</span></li>
         </ul>
       </aside>
     </div>
@@ -79,7 +80,7 @@
     <div class="grid-l gtc3-l g4-l mb4 mb5-ns">
       <div class="csp2-l">
         <p class="f4 f3-l lh-copy measure-wide mt0 mb0">
-          Drop the stylesheet in and go. Page-level responsive utilities work by default. Load it from <a href="https://www.jsdelivr.com" class="link dark-blue underline-hover">jsDelivr</a>, vendor it with <code class="ph1 bg-light-blue near-black">curl</code>, or copy the single file into your project. No build step, no dependencies.
+          Drop the core stylesheet in and go. Page-level responsive utilities work by default. Load it from <a href="https://www.jsdelivr.com" class="link dark-blue underline-hover">jsDelivr</a>, vendor it with <code class="ph1 bg-light-blue near-black">curl</code>, or copy the file into your project. Add <code class="ph1 bg-light-blue near-black">app.css</code> after it when product UI needs semantic light/dark tokens.
         </p>
       </div>
     </div>
@@ -89,14 +90,26 @@
       <pre class="ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>&lt;!-- Pinned to a tag (recommended) --&gt;
 &lt;link rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v2.0.0/tachyons.css"&gt;
+&lt;link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v2.0.0/app.css"&gt;
 
 &lt;!-- Major-floating --&gt;
 &lt;link rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@2/tachyons.css"&gt;
+&lt;link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@2/app.css"&gt;
 
 &lt;!-- Latest main (no cache guarantee) --&gt;
 &lt;link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo/tachyons.css"&gt;</code></pre>
+      href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo/tachyons.css"&gt;
+&lt;link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo/app.css"&gt;</code></pre>
+    </article>
+
+    <article class="mt4 mt5-ns">
+      <h3 class="ttu tracked f6 fw7 mt0 mb3 bt b--near-black bw1 pt3">Application UI</h3>
+      <pre class="ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>&lt;link rel="stylesheet" href="tachyons.css"&gt;
+&lt;link rel="stylesheet" href="app.css"&gt;</code></pre>
     </article>
 
     <article class="mt4 mt5-ns">
@@ -104,7 +117,11 @@
       <pre class="ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>curl -O \
   https://raw.githubusercontent.com/gobijan/tachyons-neo/main/tachyons.css
 
-&lt;link rel="stylesheet" href="tachyons.css"&gt;</code></pre>
+curl -O \
+  https://raw.githubusercontent.com/gobijan/tachyons-neo/main/app.css
+
+&lt;link rel="stylesheet" href="tachyons.css"&gt;
+&lt;link rel="stylesheet" href="app.css"&gt;</code></pre>
     </article>
   </section>
 
@@ -302,15 +319,18 @@
       <div class="tnum f3 f1-l fw9 lh-solid w-100 w-10-l">12</div>
       <div class="w-100 w-40-l pr4-l">
         <h2 class="ttu tracked f5 f4-l fw7 mt0 mb3">Cascade layers</h2>
-        <p class="lh-copy mt0 measure">Ships as <code class="ph1 bg-light-blue near-black">@layer&nbsp;reset,&nbsp;tachyons,&nbsp;debug</code> — reset below utilities, debug above utilities, all below <em>your</em> CSS. Layered rules always lose to unlayered ones, so a plain selector of yours beats any utility, whatever its specificity, whatever order the stylesheets load in. No <code class="ph1 bg-light-blue near-black">!important</code>, no specificity games — handy when a bundler decides load order for you.</p>
+        <p class="lh-copy mt0 measure">Ships as <code class="ph1 bg-light-blue near-black">@layer&nbsp;reset,&nbsp;tachyons,&nbsp;app,&nbsp;debug</code> — reset below utilities, optional app styles above utilities, debug above app, all below <em>your</em> CSS. Layered rules always lose to unlayered ones, so a plain selector of yours beats any utility, whatever its specificity, whatever order the stylesheets load in. No <code class="ph1 bg-light-blue near-black">!important</code>, no specificity games — handy when a bundler decides load order for you.</p>
         <p class="lh-copy mt0 measure">One catch: an unlayered element reset of <em>yours</em> (say <code class="ph1 bg-light-blue near-black">dialog&nbsp;&#123;&nbsp;padding:&nbsp;0&nbsp;&#125;</code>) would beat a utility too. Drop such resets into <code class="ph1 bg-light-blue near-black">@layer&nbsp;reset</code> and utilities win again.</p>
         <p class="lh-copy mt0 measure">Debug helpers now live in their own layer: <code class="ph1 bg-light-blue near-black">.debug</code> outlines children with CSS variables, and <code class="ph1 bg-light-blue near-black">.debug-grid</code> uses adjustable gradients instead of embedded image tiles.</p>
       </div>
-      <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>@layer reset, tachyons, debug; /* tachyons.css */
+      <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>@layer reset, tachyons, app, debug; /* tachyons.css */
 
 /* your component — unlayered, wins */
 .btn { background: rebeccapurple }
 &lt;button class="btn bg-gold"&gt;  → purple
+
+/* optional app.css — layered, beats utilities */
+@layer app { .bg-action { background: var(--action) } }
 
 /* your reset — layered, utilities win */
 @layer reset { dialog { padding: 0 } }
@@ -572,10 +592,118 @@
     </div>
   </section>
 
+  <!-- APP CSS -->
+  <section id="app-css" class="bt b--near-black bw1 bw2-ns ph3 ph4-ns pt4 pt5-ns pb4 pb5-ns">
+    <div class="ttu tracked f6 fw7 mb4 mb5-ns flex items-baseline">
+      <span class="tnum nowrap w3">§ 04</span>
+      <span>Application CSS</span>
+    </div>
+
+    <div class="grid-l gtc3-l g4-l mb4 mb5-ns">
+      <div class="csp2-l">
+        <p class="f4 f3-l lh-copy measure-wide mt0 mb0">
+          <code class="ph1 bg-light-blue near-black">app.css</code> is an optional semantic layer for product UI. It maps the core tokens into theme-aware names for surfaces, text, borders, actions, states, and focus rings. Neutral text, surface, and border ramps use the black/white transparency ladder; action and focus use Apple-style System Blue with a Display P3 override. Load it after <code class="ph1 bg-light-blue near-black">tachyons.css</code>; use <code class="ph1 bg-light-blue near-black">data-theme</code> on the root or any subtree to force light or dark.
+        </p>
+      </div>
+      <aside class="mt4 mt0-l csp1-l">
+        <ul class="list pa0 ma0 f6 ttu tracked tnum">
+          <li class="bt b--near-black bw1 pv2 flex justify-between"><span class="fw7">app</span><span>Layer</span></li>
+          <li class="bt b--near-black bw1 pv2 flex justify-between"><span class="fw7">data</span><span>Themes</span></li>
+          <li class="bt bb b--near-black bw1 pv2 flex justify-between"><span class="fw7">0</span><span>Components</span></li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="grid-l gtc2-l g4-l">
+      <article class="ba b--border-1 bg-surface-base text-1 br3 overflow-hidden">
+        <div class="pa3 pa4-ns bg-surface-1 bt-0">
+          <div class="flex items-center justify-between g3">
+            <div>
+              <h3 class="f4 fw7 lh-title mt0 mb1">Orders</h3>
+              <p class="f6 text-2 lh-copy mt0 mb0">Monday pipeline</p>
+            </div>
+            <button class="button-reset bg-action on-action focus-ring dim pointer bn br3 ph3 pv2 f6 fw6">Create</button>
+          </div>
+        </div>
+        <div class="pa3 pa4-ns">
+          <div class="grid gtc1 gtc3-m g3">
+            <div class="pa3 ba b--border-1 bg-surface-1 br3">
+              <div class="f7 ttu tracked text-2">Open</div>
+              <div class="f3 fw7 tnum lh-title">128</div>
+            </div>
+            <div class="pa3 ba b--border-1 bg-surface-1 br3">
+              <div class="f7 ttu tracked text-2">Paid</div>
+              <div class="f3 fw7 tnum lh-title success">97%</div>
+            </div>
+            <div class="pa3 ba b--border-1 bg-surface-1 br3">
+              <div class="f7 ttu tracked text-2">Review</div>
+              <div class="f3 fw7 tnum lh-title warning">11</div>
+            </div>
+          </div>
+          <div class="mt3 pa3 ba b--border-1 bg-surface-1 br3 flex items-center justify-between g3">
+            <div class="min-w-0">
+              <div class="fw6 truncate">Invoice export</div>
+              <div class="f6 text-2 truncate">Queued for finance</div>
+            </div>
+            <span class="f7 fw7 ttu tracked bg-success on-success br-pill ph2 pv1">Ready</span>
+          </div>
+        </div>
+      </article>
+
+      <article data-theme="dark" class="ba b--border-1 bg-surface-base text-1 br3 overflow-hidden">
+        <div class="pa3 pa4-ns bg-surface-1">
+          <div class="flex items-center justify-between g3">
+            <div>
+              <h3 class="f4 fw7 lh-title mt0 mb1">Scanner</h3>
+              <p class="f6 text-2 lh-copy mt0 mb0">Night event</p>
+            </div>
+            <button class="button-reset bg-action on-action focus-ring dim pointer bn br3 ph3 pv2 f6 fw6">Pair</button>
+          </div>
+        </div>
+        <div class="pa3 pa4-ns">
+          <div class="grid gtc1 gtc3-m g3">
+            <div class="pa3 ba b--border-1 bg-surface-1 br3">
+              <div class="f7 ttu tracked text-2">Synced</div>
+              <div class="f3 fw7 tnum lh-title">2.4k</div>
+            </div>
+            <div class="pa3 ba b--border-1 bg-surface-1 br3">
+              <div class="f7 ttu tracked text-2">Offline</div>
+              <div class="f3 fw7 tnum lh-title info">34</div>
+            </div>
+            <div class="pa3 ba b--border-1 bg-surface-1 br3">
+              <div class="f7 ttu tracked text-2">Errors</div>
+              <div class="f3 fw7 tnum lh-title danger">3</div>
+            </div>
+          </div>
+          <div class="mt3 pa3 ba b--border-1 bg-surface-1 br3 flex items-center justify-between g3">
+            <div class="min-w-0">
+              <div class="fw6 truncate">Gate B handhelds</div>
+              <div class="f6 text-2 truncate">Last check-in 18 seconds ago</div>
+            </div>
+            <span class="f7 fw7 ttu tracked bg-warning on-warning br-pill ph2 pv1">Live</span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <article class="mt4 mt5-ns">
+      <h3 class="ttu tracked f6 fw7 mt0 mb3 bt b--near-black bw1 pt3">Pattern</h3>
+      <pre class="ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>&lt;main class="bg-surface-base text-1"&gt;
+  &lt;button class="button-reset bg-action on-action focus-ring"&gt;
+    Save
+  &lt;/button&gt;
+&lt;/main&gt;
+
+&lt;aside data-theme="dark" class="bg-surface-1 text-1 b--border-1"&gt;
+  Scoped dark surface
+&lt;/aside&gt;</code></pre>
+    </article>
+  </section>
+
   <!-- CHANGELOG -->
   <section id="changelog" class="bt b--near-black bw1 bw2-ns ph3 ph4-ns pt4 pt5-ns pb4 pb5-ns">
     <div class="ttu tracked f6 fw7 mb4 mb5-ns flex items-baseline">
-      <span class="tnum nowrap w3">§ 04</span>
+      <span class="tnum nowrap w3">§ 05</span>
       <span>Changelog</span>
     </div>
 
@@ -600,6 +728,11 @@
           <li class="mb2">Give <code>body</code> a reset-layer <code>min-height: 100dvh</code> so the page canvas remains at least the dynamic viewport height.</li>
           <li class="mb2">Add <code>.root</code> as the component query root for local responsive behavior.</li>
           <li class="mb2">Add Neo-native button and input demos for the stable v2 surface.</li>
+          <li class="mb2">Add optional <code>app.css</code> companion with semantic application tokens, surface/text/border/action/state utilities, focus helpers, and scoped light/dark theming via <code>data-theme</code>.</li>
+          <li class="mb2">Base neutral app text, surface, and border ramps on Tachyons' black/white transparency tokens.</li>
+          <li class="mb2">Use Apple-style System Blue as the action, focus, and native <code>accent-color</code> default, with a Display P3 override where supported.</li>
+          <li class="mb2">Reserve <code>@layer app</code> between core utilities and debug helpers in the layer order.</li>
+          <li class="mb2">Add an application demo showing <code>app.css</code> in a dashboard-style product surface.</li>
         </ul>
       </div>
     </article>
@@ -754,7 +887,7 @@
   <!-- COLOPHON -->
   <section class="bt b--near-black bw1 bw2-ns ph3 ph4-ns pt4 pt5-ns pb5 pb6-ns">
     <div class="ttu tracked f6 fw7 mb4 mb5-ns flex items-baseline">
-      <span class="tnum nowrap w3">§ 05</span>
+      <span class="tnum nowrap w3">§ 06</span>
       <span>Colophon</span>
     </div>
     <div class="grid-l gtc3-l g4-l">

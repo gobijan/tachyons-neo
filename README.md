@@ -1,6 +1,6 @@
 # Tachyons Neo
 
-A small, composable CSS toolkit. Sharper defaults for modern viewports, finer-grained colour steps, a small CSS Grid layer, and a handful of utilities for prototyping. No build step, no dependencies, one stylesheet.
+A small, composable CSS toolkit. Sharper defaults for modern viewports, finer-grained colour steps, a small CSS Grid layer, and a handful of utilities for prototyping. No build step, no dependencies, one core stylesheet; add `app.css` when an application needs semantic theme tokens.
 
 **Docs:** [screenisland.com/tachyons-neo](https://screenisland.com/tachyons-neo/) · **Upstream:** [tachyons.io](http://tachyons.io) v4.13.0 · **License:** MIT
 
@@ -8,7 +8,7 @@ A small, composable CSS toolkit. Sharper defaults for modern viewports, finer-gr
 
 ## § 00 — Install
 
-Drop the stylesheet in and go. There is no build step.
+Drop the core stylesheet in and go. There is no build step.
 
 ```html
 <link rel="stylesheet" href="tachyons.css">
@@ -16,10 +16,18 @@ Drop the stylesheet in and go. There is no build step.
 
 Responsive `-ns`, `-m`, and `-l` utilities query the page width by default. The reset keeps `body` at `min-height: 100dvh` for a full-height page canvas. Put `.root` on any component that should respond to its own width instead.
 
+For application UI, load the optional semantic layer after the core utilities:
+
+```html
+<link rel="stylesheet" href="tachyons.css">
+<link rel="stylesheet" href="app.css">
+```
+
 Or load from jsDelivr:
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v2.0.0/tachyons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v2.0.0/app.css">
 ```
 
 Pin to a tag for production. For floating major, use `@2`; for bleeding-edge off `main`, drop the ref entirely (`.../tachyons-neo/tachyons.css`).
@@ -28,6 +36,7 @@ Or vendor it:
 
 ```sh
 curl -O https://raw.githubusercontent.com/gobijan/tachyons-neo/main/tachyons.css
+curl -O https://raw.githubusercontent.com/gobijan/tachyons-neo/main/app.css
 ```
 
 ---
@@ -49,7 +58,7 @@ Fourteen additions on top of Tachyons v4.13.0.
 | 09 | Placeholder backgrounds    | `.random-image`, `.random-image-landscape`, `.random-image-portrait`.   |
 | 10 | Writing-mode               | `.sideways-lr` for vertical spine labels; `.horizontal-tb` reset.       |
 | 11 | Object-fit                 | `.object-cover` / `.object-contain` (+ responsive) — the `<img>` counterpart to `.cover`/`.contain`; pair with `.aspect-ratio--*` to crop without distortion. |
-| 12 | Cascade layers             | Ships as `@layer reset, tachyons, debug` — your own unlayered CSS beats any utility regardless of specificity or load order. Put your own element resets in `@layer reset` so utilities still win. |
+| 12 | Cascade layers             | Ships as `@layer reset, tachyons, app, debug` — optional `app.css` sits above utilities, debug stays above app, and your own unlayered CSS beats any layered rule. Put your own element resets in `@layer reset` so utilities still win. |
 | 13 | Min-width/-height 0        | `.min-w-0` / `.min-h-0` (+ responsive) let a flex or grid item shrink below its content — fixes blown-out `1fr` columns and lets a child `.truncate`. |
 | 14 | Container queries           | Responsive `-ns`/`-m`/`-l` variants query the page by default; use `.root` for component-local behavior. |
 
@@ -71,13 +80,40 @@ Every design value — spacing, type scale, colours, radii, shadows, durations �
 
 **118 tokens** across **18 groups**: spacing, font-size, measure, line-height, letter-spacing, radius, border-width, shadow, duration, grayscale, black/white alpha, warm, purple/pink, green, blue, washed, font families.
 
-Tokens are declared inside `@layer tachyons`, so `var()` resolves everywhere and redefining one in your own (unlayered) `:root` overrides it.
+Tokens are declared inside `@layer tachyons`, so `var()` resolves everywhere and redefining one in your own (unlayered) `:root` overrides it. The optional `app.css` companion aliases these base tokens into semantic application tokens.
 
 See [`tachyons.css`](tachyons.css) or the [live docs](https://screenisland.com/tachyons-neo/) for the full list.
 
 ---
 
-## § 03 — Changelog
+## § 03 — Application CSS
+
+`app.css` is a small semantic layer for product UI. It does not add components. It maps Tachyons Neo tokens into application names for text, surfaces, borders, action colours, state colours, focus rings, and light/dark themes. Neutral text, surface, and border ramps use the existing black/white transparency tokens; action and focus use Apple-style System Blue with a Display P3 override.
+
+```html
+<link rel="stylesheet" href="tachyons.css">
+<link rel="stylesheet" href="app.css">
+```
+
+Use `data-theme="light"` or `data-theme="dark"` on `html` or any subtree to force a theme; otherwise the root follows `prefers-color-scheme`.
+
+```html
+<main class="bg-surface-base text-1">
+  <button class="button-reset bg-action on-action focus-ring">
+    Save
+  </button>
+</main>
+
+<aside data-theme="dark" class="bg-surface-1 text-1 b--border-1">
+  Scoped dark surface
+</aside>
+```
+
+The companion exposes utilities such as `.bg-surface-1`, `.text-2`, `.bg-action`, `.on-action`, `.b--border-1`, `.bg-danger`, `.on-success`, `.focus-ring`, and `.hover-border`.
+
+---
+
+## § 04 — Changelog
 
 Release notes, newest first.
 
@@ -89,6 +125,11 @@ Release notes, newest first.
 - Give `body` a reset-layer `min-height: 100dvh` so the page canvas remains at least the dynamic viewport height.
 - Add `.root` as the component query root for local responsive behavior.
 - Add Neo-native button and input demos for the stable v2 surface.
+- Add optional `app.css` companion with semantic application tokens, surface/text/border/action/state utilities, focus helpers, and scoped light/dark theming via `data-theme`.
+- Base neutral app text, surface, and border ramps on Tachyons' black/white transparency tokens.
+- Use Apple-style System Blue as the action, focus, and native `accent-color` default, with a Display P3 override where supported.
+- Reserve `@layer app` between core utilities and debug helpers in the layer order.
+- Add an application demo showing `app.css` in a dashboard-style product surface.
 
 ### v1.1.2 — 2026-06-01
 
@@ -155,7 +196,7 @@ Release notes, newest first.
 
 ---
 
-## § 04 — Colophon
+## § 05 — Colophon
 
 A Screen Island edition of Tachyons. Descended from Tachyons (tachyons.io, 2016–) under the long shadow of Müller-Brockmann, Hofmann, and Crouwel. Built for internal use at [Screen Island](https://screenisland.com); published in case it's useful to you.
 

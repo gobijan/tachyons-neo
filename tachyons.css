@@ -16,13 +16,13 @@ Added .blur (backdrop) and .list-inside utilities.
 Added .lh-headline (tight leading for display type) and .tnum (tabular figures).
 Added .root utility for declaring component query roots.
 Extracted design tokens (spacing, font-size, colors, radius, etc.) into :root custom properties so custom CSS can reference them via var(--spacing-3), var(--dark-pink), etc.
-Wrapped the stylesheet in cascade layers: `@layer reset, tachyons, debug;` (reset < utilities < debug < your CSS). Your own unlayered CSS now beats any utility regardless of specificity or load/bundle order — no !important, no specificity hacks. The reset lives in @layer reset so utilities still override it; put your OWN element-level resets in @layer reset too, or a utility won't be able to override them (an unlayered element rule like `dialog{padding:0}` beats a layered `.pa4`). Tokens live in @layer tachyons — var() still resolves everywhere, and redefining a token in your own :root overrides it. Removed the stray !important on .cover/.contain/.clip: they fought overrides, and inside a layer an !important fights even harder (layered !important beats unlayered !important).
+Wrapped the stylesheet in cascade layers: `@layer reset, tachyons, app, debug;` (reset < utilities < optional app.css < debug < your CSS). Your own unlayered CSS now beats any utility regardless of specificity or load/bundle order — no !important, no specificity hacks. The reset lives in @layer reset so utilities still override it; put your OWN element-level resets in @layer reset too, or a utility won't be able to override them (an unlayered element rule like `dialog{padding:0}` beats a layered `.pa4`). Tokens live in @layer tachyons — var() still resolves everywhere, and redefining a token in your own :root overrides it. Removed the stray !important on .cover/.contain/.clip: they fought overrides, and inside a layer an !important fights even harder (layered !important beats unlayered !important).
 */
 
 /* Layer order (low → high priority): reset loses to utilities, utilities lose
-   to debug, and all layers lose to your own unlayered CSS. Put page-level
-   element resets in @layer reset too. */
-@layer reset, tachyons, debug;
+   to optional app.css, app loses to debug, and all layers lose to your own
+   unlayered CSS. Put page-level element resets in @layer reset too. */
+@layer reset, tachyons, app, debug;
 
 @layer tachyons {
 
