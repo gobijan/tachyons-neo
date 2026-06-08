@@ -16,12 +16,13 @@ Added .blur (backdrop) and .list-inside utilities.
 Added .lh-headline (tight leading for display type) and .tnum (tabular figures).
 Added .root utility for declaring component query roots.
 Extracted design tokens (spacing, font-size, colors, radius, etc.) into :root custom properties so custom CSS can reference them via var(--spacing-3), var(--dark-pink), etc.
-Wrapped the stylesheet in cascade layers: `@layer reset, tachyons;` (reset < utilities < your CSS). Your own unlayered CSS now beats any utility regardless of specificity or load/bundle order — no !important, no specificity hacks. The reset lives in @layer reset so utilities still override it; put your OWN element-level resets in @layer reset too, or a utility won't be able to override them (an unlayered element rule like `dialog{padding:0}` beats a layered `.pa4`). Tokens live in @layer tachyons — var() still resolves everywhere, and redefining a token in your own :root overrides it. Removed the stray !important on .cover/.contain/.clip: they fought overrides, and inside a layer an !important fights even harder (layered !important beats unlayered !important).
+Wrapped the stylesheet in cascade layers: `@layer reset, tachyons, debug;` (reset < utilities < debug < your CSS). Your own unlayered CSS now beats any utility regardless of specificity or load/bundle order — no !important, no specificity hacks. The reset lives in @layer reset so utilities still override it; put your OWN element-level resets in @layer reset too, or a utility won't be able to override them (an unlayered element rule like `dialog{padding:0}` beats a layered `.pa4`). Tokens live in @layer tachyons — var() still resolves everywhere, and redefining a token in your own :root overrides it. Removed the stray !important on .cover/.contain/.clip: they fought overrides, and inside a layer an !important fights even harder (layered !important beats unlayered !important).
 */
 
-/* Layer order (low → high priority): reset loses to utilities, both lose to
-   your own unlayered CSS. Put page-level element resets in @layer reset too. */
-@layer reset, tachyons;
+/* Layer order (low → high priority): reset loses to utilities, utilities lose
+   to debug, and all layers lose to your own unlayered CSS. Put page-level
+   element resets in @layer reset too. */
+@layer reset, tachyons, debug;
 
 @layer tachyons {
 
@@ -1082,13 +1083,6 @@ img { max-width: 100% }
 .nested-img img { width: 100%; max-width: 100%; display: block }
 .nested-links a { color: var(--blue); transition: color var(--duration-fast) ease-in }
 .nested-links a:focus-visible, .nested-links a:hover { color: var(--light-blue); transition: color var(--duration-fast) ease-in }
-.debug * { outline: 1px solid gold }
-.debug-white * { outline: 1px solid var(--white) }
-.debug-black * { outline: 1px solid var(--black) }
-.debug-grid { background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAFElEQVR4AWPAC97/9x0eCsAEPgwAVLshdpENIxcAAAAASUVORK5CYII=) repeat 0 0 }
-.debug-grid-16 { background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMklEQVR4AWOgCLz/b0epAa6UGuBOqQHOQHLUgFEDnAbcBZ4UGwDOkiCnkIhdgNgNxAYAiYlD+8sEuo8AAAAASUVORK5CYII=) repeat 0 0 }
-.debug-grid-8-solid { background: var(--white) url(data:image/gif;base64,R0lGODdhCAAIAPEAAADw/wDx/////wAAACwAAAAACAAIAAACDZQvgaeb/lxbAIKA8y0AOw==) repeat 0 0 }
-.debug-grid-16-solid { background: var(--white) url(data:image/gif;base64,R0lGODdhEAAQAPEAAADw/wDx/xXy/////ywAAAAAEAAQAAACIZyPKckYDQFsb6ZqD85jZ2+BkwiRFKehhqQCQgDHcgwEBQA7) repeat 0 0 }
 @container (min-width: 30em) {
   .aspect-ratio-ns { aspect-ratio: auto; }
   .aspect-ratio--16x9-ns { aspect-ratio: 16/9; }
@@ -2526,3 +2520,38 @@ img { max-width: 100% }
 }
 
 } /* @layer tachyons */
+
+@layer debug {
+
+.debug *,
+.debug-white *,
+.debug-black * {
+  --debug-color: 128 0 90;
+  --debug-opacity: .8;
+  outline: 1px solid rgb(var(--debug-color) / var(--debug-opacity));
+}
+
+.debug-white * { --debug-color: 255 255 255 }
+.debug-black * { --debug-color: 0 0 0 }
+
+.debug-grid,
+.debug-grid-8,
+.debug-grid-16,
+.debug-grid-8-solid,
+.debug-grid-16-solid {
+  --grid-size: 8px;
+  --grid-color: var(--dark-pink);
+  background-color: var(--grid-background, transparent);
+  background-image:
+    repeating-linear-gradient(0deg, var(--grid-color), var(--grid-color) 1px, transparent 1px, transparent var(--grid-size)),
+    repeating-linear-gradient(90deg, var(--grid-color), var(--grid-color) 1px, transparent 1px, transparent var(--grid-size));
+  background-size: var(--grid-size) var(--grid-size);
+}
+
+.debug-grid-16,
+.debug-grid-16-solid { --grid-size: 16px }
+
+.debug-grid-8-solid,
+.debug-grid-16-solid { --grid-background: var(--white) }
+
+} /* @layer debug */

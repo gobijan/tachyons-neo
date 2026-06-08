@@ -302,10 +302,11 @@
       <div class="tnum f3 f1-l fw9 lh-solid w-100 w-10-l">12</div>
       <div class="w-100 w-40-l pr4-l">
         <h2 class="ttu tracked f5 f4-l fw7 mt0 mb3">Cascade layers</h2>
-        <p class="lh-copy mt0 measure">Ships as <code class="ph1 bg-light-blue near-black">@layer&nbsp;reset,&nbsp;tachyons</code> — reset below utilities, both below <em>your</em> CSS. Layered rules always lose to unlayered ones, so a plain selector of yours beats any utility, whatever its specificity, whatever order the stylesheets load in. No <code class="ph1 bg-light-blue near-black">!important</code>, no specificity games — handy when a bundler decides load order for you.</p>
+        <p class="lh-copy mt0 measure">Ships as <code class="ph1 bg-light-blue near-black">@layer&nbsp;reset,&nbsp;tachyons,&nbsp;debug</code> — reset below utilities, debug above utilities, all below <em>your</em> CSS. Layered rules always lose to unlayered ones, so a plain selector of yours beats any utility, whatever its specificity, whatever order the stylesheets load in. No <code class="ph1 bg-light-blue near-black">!important</code>, no specificity games — handy when a bundler decides load order for you.</p>
         <p class="lh-copy mt0 measure">One catch: an unlayered element reset of <em>yours</em> (say <code class="ph1 bg-light-blue near-black">dialog&nbsp;&#123;&nbsp;padding:&nbsp;0&nbsp;&#125;</code>) would beat a utility too. Drop such resets into <code class="ph1 bg-light-blue near-black">@layer&nbsp;reset</code> and utilities win again.</p>
+        <p class="lh-copy mt0 measure">Debug helpers now live in their own layer: <code class="ph1 bg-light-blue near-black">.debug</code> outlines children with CSS variables, and <code class="ph1 bg-light-blue near-black">.debug-grid</code> uses adjustable gradients instead of embedded image tiles.</p>
       </div>
-      <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>@layer reset, tachyons; /* tachyons.css */
+      <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>@layer reset, tachyons, debug; /* tachyons.css */
 
 /* your component — unlayered, wins */
 .btn { background: rebeccapurple }
@@ -313,7 +314,10 @@
 
 /* your reset — layered, utilities win */
 @layer reset { dialog { padding: 0 } }
-&lt;dialog class="pa4"&gt;          → 2rem</code></pre>
+&lt;dialog class="pa4"&gt;          → 2rem
+
+/* debug — layered above utilities */
+.debug-grid { --grid-size: 8px }</code></pre>
     </article>
 
     <!-- 13 -->
