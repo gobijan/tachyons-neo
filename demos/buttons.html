@@ -1,0 +1,60 @@
+<!--
+  Buttons — port of the v5 button demo
+  Covers: default, primary, small, large, and icon-only button-like links.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buttons — tachyons-neo demo</title>
+  <link rel="stylesheet" href="../tachyons.css">
+  <style>
+    .button-glyph {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      border: .125em solid currentColor;
+      border-radius: var(--radius-1);
+      box-shadow: inset .25em .25em 0 var(--white-30);
+    }
+  </style>
+</head>
+<body class="pa4 pa5-ns sans-serif bg-near-white near-black lh-copy">
+
+  <main class="root flex flex-column g4">
+    <h1 class="f2 fw7 lh-title mt0 mb0">Buttons</h1>
+
+    <div class="flex flex-wrap g4">
+      <a href="#" class="link bn lh-copy pointer bg-animate bg-light-gray hover-bg-moon-gray active-dim near-black ph4 pv2 inline-flex items-center g2 flex-grow-0 self-start f5 br3">
+        <span class="button-glyph" aria-hidden="true">&nbsp;</span>
+        Default
+      </a>
+
+      <a href="#" class="link bn lh-copy pointer bg-animate bg-near-black hover-bg-dark-gray active-dim white ph4 pv2 inline-flex items-center g2 flex-grow-0 self-start f5 br3">
+        Primary
+      </a>
+    </div>
+
+    <div class="flex flex-wrap g4">
+      <a href="#" class="link bn lh-copy pointer bg-animate bg-light-gray hover-bg-moon-gray active-dim near-black ph3 pv2 inline-flex items-center g2 flex-grow-0 self-start f6 br3">
+        Small
+      </a>
+    </div>
+
+    <div class="flex flex-wrap g4">
+      <a href="#" class="link bn lh-copy pointer bg-animate bg-light-gray hover-bg-moon-gray active-dim near-black ph5 pv3 inline-flex items-center g2 flex-grow-0 self-start f4 br3">
+        <span class="button-glyph" aria-hidden="true">&nbsp;</span>
+        Large
+      </a>
+    </div>
+
+    <div class="flex flex-wrap g4">
+      <a href="#" aria-label="Open cube" class="link bn lh-copy pointer bg-animate bg-light-gray hover-bg-moon-gray active-dim near-black pa2 inline-flex items-center justify-center flex-grow-0 self-start f4 br3">
+        <span class="button-glyph" aria-hidden="true">&nbsp;</span>
+      </a>
+    </div>
+  </main>
+
+</body>
+</html>

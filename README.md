@@ -19,15 +19,15 @@ Responsive `-ns`, `-m`, and `-l` utilities query the page width by default. The 
 Or load from jsDelivr:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v2/tachyons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v2.0.0/tachyons.css">
 ```
 
-During v2 development, use `@v2`. Pin to a release tag for production; for floating major after release, use `@2`; for bleeding-edge off `main`, drop the ref entirely (`.../tachyons-neo/tachyons.css`).
+Pin to a tag for production. For floating major, use `@2`; for bleeding-edge off `main`, drop the ref entirely (`.../tachyons-neo/tachyons.css`).
 
 Or vendor it:
 
 ```sh
-curl -O https://raw.githubusercontent.com/gobijan/tachyons-neo/v2/tachyons.css
+curl -O https://raw.githubusercontent.com/gobijan/tachyons-neo/main/tachyons.css
 ```
 
 ---
@@ -82,13 +82,13 @@ See [`tachyons.css`](tachyons.css) or the [live docs](https://screenisland.com/t
 Release notes, newest first.
 
 <!-- CHANGELOG:INSERT -->
-### v2.0.0-alpha.1 — 2026-06-08
+### v2.0.0 — 2026-06-08
 
 - Responsive `-ns`, `-m`, and `-l` variants now use container queries instead of viewport media queries.
 - Make `html` an inline-size query container in the reset layer, so page-level responsive behavior works with only the stylesheet loaded.
 - Give `body` a reset-layer `min-height: 100dvh` so the page canvas remains at least the dynamic viewport height.
 - Add `.root` as the component query root for local responsive behavior.
-- Update docs and demos to remove the page-container setup step.
+- Add Neo-native button and input demos for the stable v2 surface.
 
 ### v1.1.2 — 2026-06-01
 

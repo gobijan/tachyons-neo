@@ -35,7 +35,7 @@
   <header class="ph3 ph4-ns pv3 flex justify-between items-baseline f6 ttu tracked fw7 bg-black white">
     <span>Tachyons Neo</span>
     <span class="flex items-baseline g3">
-      <span id="version" class="tnum">v2.0.0-alpha.1</span>
+      <span id="version" class="tnum">v2.0.0</span>
       <a href="https://github.com/gobijan/tachyons-neo" class="link white underline-hover">GitHub</a>
     </span>
   </header>
@@ -86,11 +86,11 @@
 
     <article>
       <h3 class="ttu tracked f6 fw7 mt0 mb3 bt b--near-black bw1 pt3">CDN &mdash; jsDelivr</h3>
-      <pre class="ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>&lt;!-- v2 branch while alpha --&gt;
+      <pre class="ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>&lt;!-- Pinned to a tag (recommended) --&gt;
 &lt;link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v2/tachyons.css"&gt;
+      href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v2.0.0/tachyons.css"&gt;
 
-&lt;!-- Major-floating after v2 release --&gt;
+&lt;!-- Major-floating --&gt;
 &lt;link rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@2/tachyons.css"&gt;
 
@@ -102,7 +102,7 @@
     <article class="mt4 mt5-ns">
       <h3 class="ttu tracked f6 fw7 mt0 mb3 bt b--near-black bw1 pt3">Vendor</h3>
       <pre class="ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>curl -O \
-  https://raw.githubusercontent.com/gobijan/tachyons-neo/v2/tachyons.css
+  https://raw.githubusercontent.com/gobijan/tachyons-neo/main/tachyons.css
 
 &lt;link rel="stylesheet" href="tachyons.css"&gt;</code></pre>
     </article>
@@ -586,7 +586,7 @@
     <!-- CHANGELOG:INSERT -->
     <article class="bt b--near-black bw1 pv4 pv5-l flex flex-column flex-row-l g3 g0-l">
       <div class="tnum f3 f1-l fw9 lh-solid w-100 w-20-l">
-        v2.0.0-alpha.1
+        v2.0.0
         <div class="f6 fw4 ttu tracked mt2 silver"><time datetime="2026-06-08">2026 &mdash; 06 &mdash; 08</time></div>
       </div>
       <div class="w-100 w-80-l pr4-l">
@@ -595,7 +595,7 @@
           <li class="mb2">Make <code>html</code> an inline-size query container in the reset layer, so page-level responsive behavior works with only the stylesheet loaded.</li>
           <li class="mb2">Give <code>body</code> a reset-layer <code>min-height: 100dvh</code> so the page canvas remains at least the dynamic viewport height.</li>
           <li class="mb2">Add <code>.root</code> as the component query root for local responsive behavior.</li>
-          <li class="mb2">Update docs and demos to remove the page-container setup step.</li>
+          <li class="mb2">Add Neo-native button and input demos for the stable v2 surface.</li>
         </ul>
       </div>
     </article>
@@ -606,7 +606,7 @@
       </div>
       <div class="w-100 w-80-l pr4-l">
         <ul class="list pa0 ma0 lh-copy measure">
-          <li class="mb2">Patch #11 added: `.object-cover` / `.object-contain` (+ responsive), the `<lt;img>gt;` counterpart to `.cover`/`.contain`; patch list renumbered to thirteen (cascade layers → #12, min-w-0/min-h-0 → #13).</li>
+          <li class="mb2">Patch #11 added: `.object-cover` / `.object-contain` (+ responsive), the <code>&lt;img&gt;</code> counterpart to `.cover`/`.contain`; patch list renumbered to thirteen (cascade layers → #12, min-w-0/min-h-0 → #13).</li>
           <li class="mb2">`.gtc1`–`.gtc4` tracks (all breakpoints) now use `repeat(n, minmax(0, 1fr))` instead of `repeat(n, 1fr)`, so columns shrink-safe and no longer blow out on long content.</li>
         </ul>
       </div>
@@ -680,7 +680,7 @@
       <div class="w-100 w-80-l pr4-l">
         <ul class="list pa0 ma0 lh-copy measure">
           <li class="mb2">Replaced `--yellow: gold` keyword with hex `#ffd700` in `:root` token block</li>
-          <li class="mb2">Removed `antialiased` class from `<lt;body>gt;` in index.html</li>
+          <li class="mb2">Removed `antialiased` class from <code>&lt;body&gt;</code> in index.html</li>
         </ul>
       </div>
     </article>
@@ -715,7 +715,7 @@
       </div>
       <div class="w-100 w-80-l pr4-l">
         <ul class="list pa0 ma0 lh-copy measure">
-          <li class="mb2">Added `§ 01 Install` section to `index.html` and a jsDelivr `<lt;link>gt;` snippet to `README.md`</li>
+          <li class="mb2">Added `§ 01 Install` section to `index.html` and a jsDelivr <code>&lt;link&gt;</code> snippet to `README.md`</li>
           <li class="mb2">Rebuilt `--shadow-1` through `--shadow-5` tokens as layered elevation (softer alphas, dual-layer on 3–5)</li>
           <li class="mb2">Fixed self-referential `--ease-shadow` token to `cubic-bezier(.4, 0, .2, 1)`; bumped section borders to `bw2-ns`</li>
         </ul>

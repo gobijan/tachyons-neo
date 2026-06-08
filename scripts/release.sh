@@ -30,6 +30,7 @@ git fetch --tags origin
 
 latest="$(git tag -l 'v*' --sort=-v:refname | head -n1)"
 latest="${latest:-v0.0.0}"
+version_pattern='v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?'
 
 if [[ "$arg" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
   new="$arg"
@@ -62,8 +63,8 @@ date_human="$(date +'%Y &mdash; %m &mdash; %d')"
 diff_text=""
 if [[ "$latest" != "v0.0.0" ]]; then
   diff_text="$(git diff "${latest}..HEAD" -- tachyons.css index.html README.md \
-    | grep -Ev '^[-+].*TACHYONS NEO v[0-9]+\.[0-9]+\.[0-9]+' \
-    | grep -Ev '^[-+].*id="version"[^>]*>v[0-9]+\.[0-9]+\.[0-9]+' \
+    | grep -Ev "^[-+].*TACHYONS NEO ${version_pattern}" \
+    | grep -Ev "^[-+].*id=\"version\"[^>]*>${version_pattern}" \
     || true)"
 fi
 
@@ -176,16 +177,16 @@ sed -i.bak "/<!-- CHANGELOG:INSERT -->/r ${entry_md}" README.md
 rm -f README.md.bak
 
 # Update the version banner on line 1 of tachyons.css.
-sed -i.bak -E "1 s|TACHYONS NEO v[0-9]+\.[0-9]+\.[0-9]+|TACHYONS NEO ${new}|" tachyons.css
+sed -i.bak -E "1 s|TACHYONS NEO ${version_pattern}|TACHYONS NEO ${new}|" tachyons.css
 rm -f tachyons.css.bak
 
 # Update the version badge in index.html (the <span id="version">…</span>).
-sed -i.bak -E "s|(id=\"version\"[^>]*>)v[0-9]+\.[0-9]+\.[0-9]+|\1${new}|" index.html
+sed -i.bak -E "s|(id=\"version\"[^>]*>)${version_pattern}|\1${new}|" index.html
 rm -f index.html.bak
 
-# Update the pinned CDN example (index.html + README.md). Leaves the
-# @1 floating-major and unpinned forms alone — only the semver @vX.Y.Z pin.
-sed -i.bak -E "s|tachyons-neo@v[0-9]+\.[0-9]+\.[0-9]+/tachyons\.css|tachyons-neo@${new}/tachyons.css|g" index.html README.md
+# Update the pinned CDN example (index.html + README.md). Leaves floating-major
+# and unpinned forms alone — only the semver @vX.Y.Z pin.
+sed -i.bak -E "s|tachyons-neo@${version_pattern}/tachyons\.css|tachyons-neo@${new}/tachyons.css|g" index.html README.md
 rm -f index.html.bak README.md.bak
 
 if git diff --quiet tachyons.css index.html README.md; then
