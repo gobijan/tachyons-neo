@@ -14,29 +14,31 @@ Drop the stylesheet in and go. There is no build step.
 <link rel="stylesheet" href="tachyons.css">
 ```
 
+Responsive `-ns`, `-m`, and `-l` utilities query the page width by default. The reset keeps `body` at `min-height: 100dvh` for a full-height page canvas. Put `.root` on any component that should respond to its own width instead.
+
 Or load from jsDelivr:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v1.1.2/tachyons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v2/tachyons.css">
 ```
 
-Pin to a tag for production. For floating major, use `@1`; for bleeding-edge off `main`, drop the ref entirely (`…/tachyons-neo/tachyons.css`).
+During v2 development, use `@v2`. Pin to a release tag for production; for floating major after release, use `@2`; for bleeding-edge off `main`, drop the ref entirely (`.../tachyons-neo/tachyons.css`).
 
 Or vendor it:
 
 ```sh
-curl -O https://raw.githubusercontent.com/gobijan/tachyons-neo/main/tachyons.css
+curl -O https://raw.githubusercontent.com/gobijan/tachyons-neo/v2/tachyons.css
 ```
 
 ---
 
 ## § 01 — Patches
 
-Thirteen additions on top of Tachyons v4.13.0.
+Fourteen additions on top of Tachyons v4.13.0.
 
 | #  | Patch                      | Summary                                                                 |
 |----|----------------------------|-------------------------------------------------------------------------|
-| 01 | `-m` breakpoint            | No upper bound — `-m` styles continue applying at large unless overridden. |
+| 01 | `-m` query step            | Container-query based and no upper bound — `-m` styles continue at large unless overridden. |
 | 02 | Gap scale                  | `.g0`–`.g7` for flex and grid, mapped to the spacing scale.             |
 | 03 | Dynamic viewport heights   | `.dvh-25/50/75/100`, `.min-dvh-100` using the `dvh` unit.               |
 | 04 | Hairline opacities         | `.black-025`, `.black-0125`, `.white-05/025/0125` + hover variants.     |
@@ -49,6 +51,7 @@ Thirteen additions on top of Tachyons v4.13.0.
 | 11 | Object-fit                 | `.object-cover` / `.object-contain` (+ responsive) — the `<img>` counterpart to `.cover`/`.contain`; pair with `.aspect-ratio--*` to crop without distortion. |
 | 12 | Cascade layers             | Ships as `@layer reset, tachyons` — your own unlayered CSS beats any utility regardless of specificity or load order. Put your own element resets in `@layer reset` so utilities still win. |
 | 13 | Min-width/-height 0        | `.min-w-0` / `.min-h-0` (+ responsive) let a flex or grid item shrink below its content — fixes blown-out `1fr` columns and lets a child `.truncate`. |
+| 14 | Container queries           | Responsive `-ns`/`-m`/`-l` variants query the page by default; use `.root` for component-local behavior. |
 
 Also: `.lh-headline` (tight leading for display type) and `.tnum` (tabular figures).
 
@@ -79,6 +82,14 @@ See [`tachyons.css`](tachyons.css) or the [live docs](https://screenisland.com/t
 Release notes, newest first.
 
 <!-- CHANGELOG:INSERT -->
+### v2.0.0-alpha.1 — 2026-06-08
+
+- Responsive `-ns`, `-m`, and `-l` variants now use container queries instead of viewport media queries.
+- Make `html` an inline-size query container in the reset layer, so page-level responsive behavior works with only the stylesheet loaded.
+- Give `body` a reset-layer `min-height: 100dvh` so the page canvas remains at least the dynamic viewport height.
+- Add `.root` as the component query root for local responsive behavior.
+- Update docs and demos to remove the page-container setup step.
+
 ### v1.1.2 — 2026-06-01
 
 - Patch #11 added: `.object-cover` / `.object-contain` (+ responsive), the `<img>` counterpart to `.cover`/`.contain`; patch list renumbered to thirteen (cascade layers → #12, min-w-0/min-h-0 → #13).

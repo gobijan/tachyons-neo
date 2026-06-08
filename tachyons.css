@@ -1,9 +1,12 @@
-/*! TACHYONS NEO v1.1.2 | Screen Island edition https://github.com/gobijan/tachyons-neo | http://tachyons.io */
+/*! TACHYONS NEO v2.0.0-alpha.1 | Screen Island edition https://github.com/gobijan/tachyons-neo | http://tachyons.io */
 
 /*
 Patches by Screen Island:
-The -m sizes are now without upper bound.
-Therefore one doesn't need to implement again for l-size if no changes shall be done.
+Responsive -ns, -m, and -l variants now use container queries.
+The html element is an inline-size container by default for page-level behavior.
+The body keeps a min-height of 100dvh for a full-height page canvas.
+Add .root to a component for local responsive behavior.
+The -m size still has no upper bound, so -m styles continue at large unless overridden.
 
 There is a new class for inverting images using a filter: .invert
 Added .g0-7 utility classes for Gap (flex and grid).
@@ -11,6 +14,7 @@ Added .dvh-* variations mirroring .vh-* for mobile devices with dynamic toolbars
 Added a small grid system: .grid and .gtc1-4, .csp1-3, .csp-full; .gtc* tracks use minmax(0, 1fr).
 Added .blur (backdrop) and .list-inside utilities.
 Added .lh-headline (tight leading for display type) and .tnum (tabular figures).
+Added .root utility for declaring component query roots.
 Extracted design tokens (spacing, font-size, colors, radius, etc.) into :root custom properties so custom CSS can reference them via var(--spacing-3), var(--dark-pink), etc.
 Wrapped the stylesheet in cascade layers: `@layer reset, tachyons;` (reset < utilities < your CSS). Your own unlayered CSS now beats any utility regardless of specificity or load/bundle order — no !important, no specificity hacks. The reset lives in @layer reset so utilities still override it; put your OWN element-level resets in @layer reset too, or a utility won't be able to override them (an unlayered element rule like `dialog{padding:0}` beats a layered `.pa4`). Tokens live in @layer tachyons — var() still resolves everywhere, and redefining a token in your own :root overrides it. Removed the stray !important on .cover/.contain/.clip: they fought overrides, and inside a layer an !important fights even harder (layered !important beats unlayered !important).
 */
@@ -189,12 +193,16 @@ Wrapped the stylesheet in cascade layers: `@layer reset, tachyons;` (reset < uti
 *:not(dialog) {
   margin: 0;
 }
+html {
+  container-type: inline-size;
+}
 @media (prefers-reduced-motion: no-preference) {
   html {
     interpolate-size: allow-keywords;
   }
 }
 body {
+  min-height: 100dvh;
   line-height: var(--lh-copy);
 }
 img, picture, video, canvas, svg {
@@ -222,6 +230,7 @@ h1, h2, h3, h4, h5, h6 {
 @layer tachyons {
 
 .border-box, a, article, aside, blockquote, body, code, dd, div, dl, dt, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, input[type=email], input[type=number], input[type=password], input[type=tel], input[type=text], input[type=url], legend, li, main, nav, ol, p, pre, section, table, td, textarea, th, tr, ul { box-sizing: border-box }
+.root { container-type: inline-size }
 .aspect-ratio { aspect-ratio: auto; }
 .aspect-ratio--16x9 { aspect-ratio: 16/9; }
 .aspect-ratio--9x16 { aspect-ratio: 9/16; }
@@ -1080,7 +1089,7 @@ img { max-width: 100% }
 .debug-grid-16 { background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMklEQVR4AWOgCLz/b0epAa6UGuBOqQHOQHLUgFEDnAbcBZ4UGwDOkiCnkIhdgNgNxAYAiYlD+8sEuo8AAAAASUVORK5CYII=) repeat 0 0 }
 .debug-grid-8-solid { background: var(--white) url(data:image/gif;base64,R0lGODdhCAAIAPEAAADw/wDx/////wAAACwAAAAACAAIAAACDZQvgaeb/lxbAIKA8y0AOw==) repeat 0 0 }
 .debug-grid-16-solid { background: var(--white) url(data:image/gif;base64,R0lGODdhEAAQAPEAAADw/wDx/xXy/////ywAAAAAEAAQAAACIZyPKckYDQFsb6ZqD85jZ2+BkwiRFKehhqQCQgDHcgwEBQA7) repeat 0 0 }
-@media screen and (min-width:30em) {
+@container (min-width: 30em) {
   .aspect-ratio-ns { aspect-ratio: auto; }
   .aspect-ratio--16x9-ns { aspect-ratio: 16/9; }
   .aspect-ratio--9x16-ns { aspect-ratio: 9/16; }
@@ -1535,7 +1544,7 @@ img { max-width: 100% }
   .v-top-ns { vertical-align: top }
   .v-btm-ns { vertical-align: bottom }
 }
-@media screen and (min-width:48em) {
+@container (min-width: 48em) {
   .aspect-ratio-m { aspect-ratio: auto; }
   .aspect-ratio--16x9-m { aspect-ratio: 16/9; }
   .aspect-ratio--9x16-m { aspect-ratio: 9/16; }
@@ -1990,7 +1999,7 @@ img { max-width: 100% }
   .v-top-m { vertical-align: top }
   .v-btm-m { vertical-align: bottom }
 }
-@media screen and (min-width:64em) {
+@container (min-width: 64em) {
   .aspect-ratio-l { aspect-ratio: auto; }
   .aspect-ratio--16x9-l { aspect-ratio: 16/9; }
   .aspect-ratio--9x16-l { aspect-ratio: 9/16; }
@@ -2480,7 +2489,7 @@ img { max-width: 100% }
 .csp3 { grid-column: span 3; }
 .csp-full { grid-column: 1 / -1; }
 
-@media screen and (min-width: 30em) {
+@container (min-width: 30em) {
   .grid-ns { display: grid; }
   .gtc1-ns { grid-template-columns: repeat(1, minmax(0, 1fr)); }
   .gtc2-ns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -2492,7 +2501,7 @@ img { max-width: 100% }
   .csp-full-ns { grid-column: 1 / -1; }
 }
 
-@media screen and (min-width: 48em) {
+@container (min-width: 48em) {
   .grid-m { display: grid; }
   .gtc1-m { grid-template-columns: repeat(1, minmax(0, 1fr)); }
   .gtc2-m { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -2504,7 +2513,7 @@ img { max-width: 100% }
   .csp-full-m { grid-column: 1 / -1; }
 }
 
-@media screen and (min-width: 64em) {
+@container (min-width: 64em) {
   .grid-l { display: grid; }
   .gtc1-l { grid-template-columns: repeat(1, minmax(0, 1fr)); }
   .gtc2-l { grid-template-columns: repeat(2, minmax(0, 1fr)); }

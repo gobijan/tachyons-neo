@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tachyons 5 - Codex UI</title>
+	<link rel="stylesheet" href="../tachyons.css">
+	<link
+	  rel="stylesheet"
+	  type="text/css"
+	  href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+	/>
+	<link
+	  rel="stylesheet"
+	  type="text/css"
+	  href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+		/>
+		<style>
+			:root {
+				--border-color: var(--slate-gray-10);
+			}
+
+			.form-control {
+				height: 2.5rem;
+			}
+
+			.form-choice {
+				width: 1.125rem;
+				height: 1.125rem;
+				flex: 0 0 auto;
+			}
+		</style>
+	</head>
+	<body class="sans-serif flex flex-column pa5 g4 lh-body">
+
+		<h1>Forms</h1>	
+		<div class="mw7">
+			<form action="#" class="grid gtc1 gtc4-m g1 g3-m">
+				<label for="title" class="fw5 pt2">Text input</label>
+				<input id="title" name="title" type="text" class="form-control input-reset ba b--black-30 br2 ph2 pv3 w-100 csp3-m bg-white slate-gray-2 lh-body" placeholder="The title">
+
+				<label for="email" class="fw5 pt2">Email</label>
+				<input id="email" name="email" type="email" class="form-control input-reset ba b--black-30 br2 ph2 pv3 w-100 csp3-m bg-white slate-gray-2 lh-body" placeholder="you@example.com">
+
+				<label for="password" class="fw5 pt2">Password</label>
+				<input id="password" name="password" type="password" class="form-control input-reset ba b--black-30 br2 ph2 pv3 w-100 csp3-m bg-white slate-gray-2 lh-body" value="password">
+
+				<label for="search" class="fw5 pt2">Search</label>
+				<input id="search" name="search" type="search" class="form-control input-reset ba b--black-30 br2 ph2 pv3 w-100 csp3-m bg-white slate-gray-2 lh-body" placeholder="Search forms">
+
+				<label for="url" class="fw5 pt2">URL</label>
+				<input id="url" name="url" type="url" class="form-control input-reset ba b--black-30 br2 ph2 pv3 w-100 csp3-m bg-white slate-gray-2 lh-body" value="https://tachyons.io">
+
+				<label for="phone" class="fw5 pt2">Telephone</label>
+				<input id="phone" name="phone" type="tel" class="form-control input-reset ba b--black-30 br2 ph2 pv3 w-100 csp3-m bg-white slate-gray-2 lh-body" placeholder="+1 555 123 4567">
+
+				<label for="quantity" class="fw5 pt2">Number</label>
+				<input id="quantity" name="quantity" type="number" min="1" max="10" value="3" class="form-control input-reset ba b--black-30 br2 ph2 pv3 w-100 csp3-m bg-white slate-gray-2 lh-body">
+
+				<label for="appointment" class="fw5 pt2">Date</label>
+				<input id="appointment" name="appointment" type="date" value="2026-06-07" class="form-control input-reset ba b--black-30 br2 ph2 pv3 w-100 csp3-m bg-white slate-gray-2 lh-body">
+
+				<label for="time" class="fw5 pt2">Time</label>
+				<input id="time" name="time" type="time" value="09:30" class="form-control input-reset ba b--black-30 br2 ph2 pv3 w-100 csp3-m bg-white slate-gray-2 lh-body">
+
+				<label for="city" class="fw5 pt2">Datalist</label>
+				<div class="csp3-m">
+					<input id="city" name="city" list="cities" class="form-control input-reset ba b--black-30 br2 ph2 pv3 w-100 bg-white slate-gray-2 lh-body" placeholder="Choose a city">
+					<datalist id="cities">
+						<option value="Berlin">
+						<option value="New York">
+						<option value="San Francisco">
+					</datalist>
+				</div>
+
+				<label for="category" class="fw5 pt2">Select</label>
+				<select id="category" name="category" class="form-control ba b--black-30 br2 ph2 pv3 w-100 csp3-m bg-white slate-gray-2 lh-body">
+					<option>Design systems</option>
+					<option>Documentation</option>
+					<option>Examples</option>
+				</select>
+
+				<label for="topics" class="fw5 pt2">Multiple select</label>
+				<select id="topics" name="topics" multiple size="4" class="ba b--black-30 br2 ph2 pv3 w-100 csp3-m bg-white slate-gray-2 lh-body">
+					<option selected>Layout</option>
+					<option>Typography</option>
+					<option>Color</option>
+					<option>Interaction</option>
+				</select>
+				
+				<label for="description" class="fw5 pt2">Textarea</label>
+				<textarea id="description" name="description" rows="4" class="input-reset ba b--black-30 br2 ph2 pv3 w-100 csp3-m bg-white slate-gray-2 lh-body">Description</textarea>
+
+				<div class="fw5 pv2">Checkboxes</div>
+				<fieldset class="bn pa0 ma0 csp3-m">
+					<legend class="clip">Checkboxes</legend>
+					<label class="flex items-center g2 mb2">
+						<input type="checkbox" name="features" value="grid" class="form-choice" checked>
+						<span>Grid utilities</span>
+					</label>
+					<label class="flex items-center g2 mb2">
+						<input type="checkbox" name="features" value="spacing" class="form-choice">
+						<span>Spacing scale</span>
+					</label>
+					<label class="flex items-center g2">
+						<input type="checkbox" name="features" value="disabled" class="form-choice" disabled>
+						<span class="o7">Disabled option</span>
+					</label>
+				</fieldset>
+
+				<div class="fw5 pv2">Radio buttons</div>
+				<fieldset class="bn pa0 ma0 csp3-m">
+					<legend class="clip">Radio buttons</legend>
+					<label class="flex items-center g2 mb2">
+						<input type="radio" name="density" value="compact" class="form-choice">
+						<span>Compact</span>
+					</label>
+					<label class="flex items-center g2 mb2">
+						<input type="radio" name="density" value="comfortable" class="form-choice" checked>
+						<span>Comfortable</span>
+					</label>
+					<label class="flex items-center g2">
+						<input type="radio" name="density" value="spacious" class="form-choice">
+						<span>Spacious</span>
+					</label>
+				</fieldset>
+
+				<label for="volume" class="fw5 pv2">Range</label>
+				<div class="csp3-m flex items-center g3">
+					<input id="volume" name="volume" type="range" min="0" max="100" value="64" class="w-100">
+					<output for="volume">64</output>
+				</div>
+
+				<label for="accent" class="fw5 pv2">Color</label>
+				<input id="accent" name="accent" type="color" value="#317fed" class="w4 h3 csp3-m">
+
+				<label for="attachment" class="fw5 pv2">File</label>
+				<input id="attachment" name="attachment" type="file" class="csp3-m lh-body">
+
+				<label for="readonly" class="fw5 pv2">Read-only</label>
+				<input id="readonly" name="readonly" type="text" readonly value="Read-only value" class="form-control input-reset ba b--black-30 br2 ph2 pv3 w-100 csp3-m bg-slate-gray-11 slate-gray-4 lh-body">
+
+				<label for="disabled" class="fw5 pv2">Disabled</label>
+				<input id="disabled" name="disabled" type="text" disabled value="Disabled value" class="form-control input-reset ba b--black-30 br2 ph2 pv3 w-100 csp3-m bg-slate-gray-10 slate-gray-5 lh-body o8">
+
+				<div class="bt csp-full b--black-30 flex justify-between pv4">
+					<input type="reset" class="bn lh-copy link pointer bg-animate bg-black-10 hover-bg-black-20 active-dim black ph4 pv2 inline-flex items-center g2 flex-grow-0 self-start f5 br3" value="Reset">
+					<button type="submit" class="bn lh-copy link pointer bg-animate bg-blue hover-bg-dark-blue active-dim white ph4 pv2 inline-flex items-center g2 flex-grow-0 self-start f5 br3">Save</button>
+				</div>
+			</form>
+			
+			<div class="mv5">
+				<h2>Creative Inputs</h2>
+			<form action="#">
+				<input id="title" name="title" type="text" class="input-reset f3 bn ph0 pv0 w-100 csp3-m bg-white slate-gray-2 lh-body o-70 glow outline-0 pv2" placeholder="Fill this out.">								
+			</form>
+			</div>
+		</div>
+		
+	</body>
+</html>
