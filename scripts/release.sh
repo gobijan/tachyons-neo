@@ -62,7 +62,7 @@ date_human="$(date +'%Y &mdash; %m &mdash; %d')"
 # Diff of real changes since the previous tag, stripping version-banner noise.
 diff_text=""
 if [[ "$latest" != "v0.0.0" ]]; then
-  diff_text="$(git diff "${latest}..HEAD" -- tachyons.css index.html README.md \
+  diff_text="$(git diff "${latest}..HEAD" -- tachyons.css app.css index.html README.md \
     | grep -Ev "^[-+].*TACHYONS NEO ${version_pattern}" \
     | grep -Ev "^[-+].*id=\"version\"[^>]*>${version_pattern}" \
     || true)"
@@ -184,9 +184,12 @@ rm -f tachyons.css.bak
 sed -i.bak -E "s|(id=\"version\"[^>]*>)${version_pattern}|\1${new}|" index.html
 rm -f index.html.bak
 
-# Update the pinned CDN example (index.html + README.md). Leaves floating-major
-# and unpinned forms alone — only the semver @vX.Y.Z pin.
-sed -i.bak -E "s|tachyons-neo@${version_pattern}/tachyons\.css|tachyons-neo@${new}/tachyons.css|g" index.html README.md
+# Update the pinned CDN examples (index.html + README.md). Leaves floating-major
+# and unpinned forms alone — only the semver @vX.Y.Z pins.
+sed -i.bak -E \
+  -e "s|tachyons-neo@${version_pattern}/tachyons\.css|tachyons-neo@${new}/tachyons.css|g" \
+  -e "s|tachyons-neo@${version_pattern}/app\.css|tachyons-neo@${new}/app.css|g" \
+  index.html README.md
 rm -f index.html.bak README.md.bak
 
 if git diff --quiet tachyons.css index.html README.md; then
