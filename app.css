@@ -228,6 +228,8 @@
 .hover-text-1:focus-visible { color: var(--text-1); }
 .hover-bg-text-1:hover,
 .hover-bg-text-1:focus-visible { background-color: var(--text-1); }
+.hover-b--text-1:hover,
+.hover-b--text-1:focus-visible { border-color: var(--text-1); }
 
 .text-2 { color: var(--text-2); }
 .bg-text-2 { background-color: var(--text-2); }
@@ -236,6 +238,8 @@
 .hover-text-2:focus-visible { color: var(--text-2); }
 .hover-bg-text-2:hover,
 .hover-bg-text-2:focus-visible { background-color: var(--text-2); }
+.hover-b--text-2:hover,
+.hover-b--text-2:focus-visible { border-color: var(--text-2); }
 
 .text-3 { color: var(--text-3); }
 .bg-text-3 { background-color: var(--text-3); }
@@ -244,10 +248,18 @@
 .hover-text-3:focus-visible { color: var(--text-3); }
 .hover-bg-text-3:hover,
 .hover-bg-text-3:focus-visible { background-color: var(--text-3); }
+.hover-b--text-3:hover,
+.hover-b--text-3:focus-visible { border-color: var(--text-3); }
 
 .text-inverted { color: var(--text-inverted); }
 .bg-text-inverted { background-color: var(--text-inverted); }
 .b--text-inverted { border-color: var(--text-inverted); }
+.hover-text-inverted:hover,
+.hover-text-inverted:focus-visible { color: var(--text-inverted); }
+.hover-bg-text-inverted:hover,
+.hover-bg-text-inverted:focus-visible { background-color: var(--text-inverted); }
+.hover-b--text-inverted:hover,
+.hover-b--text-inverted:focus-visible { border-color: var(--text-inverted); }
 
 .surface-base { color: var(--surface-base); }
 .bg-surface-base { background-color: var(--surface-base); }
@@ -256,6 +268,8 @@
 .hover-surface-base:focus-visible { color: var(--surface-base); }
 .hover-bg-surface-base:hover,
 .hover-bg-surface-base:focus-visible { background-color: var(--surface-base); }
+.hover-b--surface-base:hover,
+.hover-b--surface-base:focus-visible { border-color: var(--surface-base); }
 
 .surface-1 { color: var(--surface-1); }
 .bg-surface-1 { background-color: var(--surface-1); }
@@ -264,6 +278,8 @@
 .hover-surface-1:focus-visible { color: var(--surface-1); }
 .hover-bg-surface-1:hover,
 .hover-bg-surface-1:focus-visible { background-color: var(--surface-1); }
+.hover-b--surface-1:hover,
+.hover-b--surface-1:focus-visible { border-color: var(--surface-1); }
 
 .surface-2 { color: var(--surface-2); }
 .bg-surface-2 { background-color: var(--surface-2); }
@@ -272,6 +288,8 @@
 .hover-surface-2:focus-visible { color: var(--surface-2); }
 .hover-bg-surface-2:hover,
 .hover-bg-surface-2:focus-visible { background-color: var(--surface-2); }
+.hover-b--surface-2:hover,
+.hover-b--surface-2:focus-visible { border-color: var(--surface-2); }
 
 .surface-3 { color: var(--surface-3); }
 .bg-surface-3 { background-color: var(--surface-3); }
@@ -280,6 +298,8 @@
 .hover-surface-3:focus-visible { color: var(--surface-3); }
 .hover-bg-surface-3:hover,
 .hover-bg-surface-3:focus-visible { background-color: var(--surface-3); }
+.hover-b--surface-3:hover,
+.hover-b--surface-3:focus-visible { border-color: var(--surface-3); }
 
 .surface-4 { color: var(--surface-4); }
 .bg-surface-4 { background-color: var(--surface-4); }
@@ -288,14 +308,36 @@
 .hover-surface-4:focus-visible { color: var(--surface-4); }
 .hover-bg-surface-4:hover,
 .hover-bg-surface-4:focus-visible { background-color: var(--surface-4); }
+.hover-b--surface-4:hover,
+.hover-b--surface-4:focus-visible { border-color: var(--surface-4); }
 
+.border-1 { color: var(--border-1); }
+.bg-border-1 { background-color: var(--border-1); }
 .b--border-1 { border-color: var(--border-1); }
-.b--border-2 { border-color: var(--border-2); }
-.b--border-3 { border-color: var(--border-3); }
+.hover-border-1:hover,
+.hover-border-1:focus-visible { color: var(--border-1); }
+.hover-bg-border-1:hover,
+.hover-bg-border-1:focus-visible { background-color: var(--border-1); }
 .hover-b--border-1:hover,
 .hover-b--border-1:focus-visible { border-color: var(--border-1); }
+
+.border-2 { color: var(--border-2); }
+.bg-border-2 { background-color: var(--border-2); }
+.b--border-2 { border-color: var(--border-2); }
+.hover-border-2:hover,
+.hover-border-2:focus-visible { color: var(--border-2); }
+.hover-bg-border-2:hover,
+.hover-bg-border-2:focus-visible { background-color: var(--border-2); }
 .hover-b--border-2:hover,
 .hover-b--border-2:focus-visible { border-color: var(--border-2); }
+
+.border-3 { color: var(--border-3); }
+.bg-border-3 { background-color: var(--border-3); }
+.b--border-3 { border-color: var(--border-3); }
+.hover-border-3:hover,
+.hover-border-3:focus-visible { color: var(--border-3); }
+.hover-bg-border-3:hover,
+.hover-bg-border-3:focus-visible { background-color: var(--border-3); }
 .hover-b--border-3:hover,
 .hover-b--border-3:focus-visible { border-color: var(--border-3); }
 

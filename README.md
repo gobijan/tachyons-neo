@@ -109,7 +109,7 @@ Use `data-theme="light"` or `data-theme="dark"` on `html` or any subtree to forc
 </aside>
 ```
 
-The companion exposes utilities such as `.bg-surface-1`, `.text-2`, `.bg-action`, `.on-action`, `.b--border-1`, `.bg-danger`, `.on-success`, `.focus-ring`, and `.hover-border`.
+Brand, action, and state colours expose seven utilities: `.color`, `.bg-color`, `.b--color`, `.on-color`, `.hover-color`, `.hover-bg-color`, and `.hover-b--color`. Text, surface, and border ramps omit `on-*` and expose the other six utilities, for example `.surface-1`, `.bg-surface-1`, `.b--surface-1`, `.hover-surface-1`, `.hover-bg-surface-1`, and `.hover-b--surface-1`. Focus helpers are `.focus-ring`, `.focus-ring-box`, and `.hover-border`.
 
 ---
 
