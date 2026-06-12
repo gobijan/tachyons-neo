@@ -1,0 +1,2175 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tachyons Neo UI Components</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="../tachyons.css" />
+    <link rel="stylesheet" href="../app.css" />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      [data-scrollspy-target="section"] {
+        scroll-margin-top: 5rem;
+      }
+
+      [data-modal]::backdrop {
+        background: rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+      }
+
+      [data-floating] > input {
+        height: 3.5rem;
+        padding-top: 1.625rem;
+        padding-bottom: 0.5rem;
+      }
+
+      [data-floating] > input::placeholder {
+        color: transparent;
+      }
+
+      [data-floating] > label {
+        position: absolute;
+        inset: 0 auto 0 0;
+        max-width: 100%;
+        height: 100%;
+        padding: 1rem;
+        color: var(--text-2);
+        transform: scale(0.78) translateY(-0.45rem) translateX(0.282rem);
+        transform-origin: 0 0;
+        transition:
+          color var(--duration-fast) ease,
+          opacity var(--duration-fast) ease,
+          transform var(--duration-fast) ease;
+        pointer-events: none;
+      }
+
+      [data-floating] > input:placeholder-shown + label {
+        opacity: 0.72;
+        transform: none;
+      }
+
+      [data-floating]:focus-within > input + label,
+      [data-floating] > input:not(:placeholder-shown) + label {
+        opacity: 0.85;
+        transform: scale(0.78) translateY(-0.45rem) translateX(0.282rem);
+      }
+
+      [data-floating]:focus-within > input + label {
+        color: var(--text-1);
+      }
+
+      [data-validated="true"] input:invalid,
+      [data-validated="true"] select:invalid,
+      [data-validated="true"] textarea:invalid {
+        border-color: var(--dark-red);
+        box-shadow: 0 0 0 3px
+          color-mix(in srgb, var(--dark-red), transparent 78%);
+      }
+
+      [data-spinner] {
+        width: 2rem;
+        height: 2rem;
+        border: 0.25rem solid var(--moon-gray);
+        border-top-color: var(--text-1);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+
+      [data-spinner="small"] {
+        width: 1rem;
+        height: 1rem;
+        border-width: 0.15rem;
+      }
+
+      [data-toast] {
+        animation: toast-in var(--duration-medium) ease-out;
+      }
+
+      [data-drawer-target="backdrop"] {
+        opacity: 1;
+        transition: opacity var(--duration-medium) ease;
+      }
+
+      [data-drawer-target="backdrop"][data-drawer-open="false"] {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      [data-drawer-target="panel"] {
+        transform: translate3d(0, 0, 0);
+        transition: transform var(--duration-medium) ease;
+        will-change: transform;
+      }
+
+      [data-drawer-target="panel"][data-drawer-open="false"] {
+        pointer-events: none;
+      }
+
+      [data-drawer-placement="top"][data-drawer-open="false"] {
+        transform: translate3d(0, -100%, 0);
+      }
+
+      [data-drawer-placement="right"][data-drawer-open="false"] {
+        transform: translate3d(100%, 0, 0);
+      }
+
+      [data-drawer-placement="bottom"][data-drawer-open="false"] {
+        transform: translate3d(0, 100%, 0);
+      }
+
+      [data-drawer-placement="left"][data-drawer-open="false"] {
+        transform: translate3d(-100%, 0, 0);
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes toast-in {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="sans-serif lh-copy bg-surface-base text-1 min-dvh-100"
+    data-controller="theme scrollspy"
+  >
+    <header class="sticky top-0 z-999 bg-surface-base bb b--border-1">
+      <div class="ph3 ph4-ns pv3 flex items-center justify-between g3">
+        <a href="#overview" class="link text-1 flex items-center g3 min-w-0"
+          ><span
+            class="flex items-center justify-center bg-text-1 text-inverted br0 fw8 flex-shrink-0 w2 h2"
+            >N</span
+          >
+          <span class="min-w-0"
+            ><span class="db f4 fw8 lh-title truncate">Tachyons Neo UI</span>
+            <span class="db f7 text-2 truncate"
+              >Bootstrap-like components with utilities</span
+            ></span
+          ></a
+        >
+        <div class="flex items-center g2">
+          <button
+            type="button"
+            class="button-reset link pointer inline-flex items-center g2 bg-transparent hover-bg-surface-2 text-1 ba b--transparent br0 ph2 ph3-ns pv2 f6 fw6"
+            data-action="theme#toggle"
+          >
+            <span aria-hidden="true">◐</span>
+            <span data-theme-target="label">Light</span>
+          </button>
+          <a
+            href="../index.html"
+            class="link pointer inline-flex items-center bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 ph3 pv2 f6 fw6"
+            >Index</a
+          >
+        </div>
+      </div>
+    </header>
+    <div class="flex">
+      <aside
+        class="dn db-l sticky top-2 vh-100 overflow-y-auto w5 flex-shrink-0 bg-surface-base br b--border-1"
+      >
+        <nav
+          class="pa3 flex flex-column g1 f6 fw6"
+          aria-label="Component sections"
+        >
+          <a
+            href="#overview"
+            class="link db br0 bl bw1 b--transparent text-2 hover-text-1 hover-bg-surface-2 ph3 pv2"
+            data-scrollspy-target="link"
+            >Overview</a
+          >
+          <a
+            href="#buttons"
+            class="link db br0 bl bw1 b--transparent text-2 hover-text-1 hover-bg-surface-2 ph3 pv2"
+            data-scrollspy-target="link"
+            >Buttons and badges</a
+          >
+          <a
+            href="#forms"
+            class="link db br0 bl bw1 b--transparent text-2 hover-text-1 hover-bg-surface-2 ph3 pv2"
+            data-scrollspy-target="link"
+            >Forms</a
+          >
+          <a
+            href="#navs"
+            class="link db br0 bl bw1 b--transparent text-2 hover-text-1 hover-bg-surface-2 ph3 pv2"
+            data-scrollspy-target="link"
+            >Navs and tabs</a
+          >
+          <a
+            href="#feedback"
+            class="link db br0 bl bw1 b--transparent text-2 hover-text-1 hover-bg-surface-2 ph3 pv2"
+            data-scrollspy-target="link"
+            >Alerts and toasts</a
+          >
+          <a
+            href="#overlays"
+            class="link db br0 bl bw1 b--transparent text-2 hover-text-1 hover-bg-surface-2 ph3 pv2"
+            data-scrollspy-target="link"
+            >Overlays</a
+          >
+          <a
+            href="#content"
+            class="link db br0 bl bw1 b--transparent text-2 hover-text-1 hover-bg-surface-2 ph3 pv2"
+            data-scrollspy-target="link"
+            >Cards and content</a
+          >
+          <a
+            href="#status"
+            class="link db br0 bl bw1 b--transparent text-2 hover-text-1 hover-bg-surface-2 ph3 pv2"
+            data-scrollspy-target="link"
+            >Status utilities</a
+          >
+        </nav>
+      </aside>
+      <main class="flex-auto min-w-0 pa3 pa4-ns pa5-l">
+        <section id="overview" class="mb5" data-scrollspy-target="section">
+          <div class="mw8">
+            <p class="f7 fw8 ttu tracked text-2 mt0 mb2">Component catalog</p>
+            <h1 class="f2 f1-ns fw8 lh-title mt0 mb3">
+              Bootstrap coverage rebuilt with Tachyons Neo utilities.
+            </h1>
+            <p class="f5 text-2 measure-wide mt0 mb4">
+              This page uses <code>tachyons.css</code>, <code>app.css</code>,
+              and Stimulus from a CDN. Most styling is utility markup; the small
+              custom CSS block only handles missing browser-state primitives
+              like floating labels, spinners, and modal backdrops.
+            </p>
+            <div class="grid gtc1 gtc3-m g3">
+              <article class="pa3 bg-surface-base ba b--border-1 br0">
+                <p class="f7 fw8 ttu tracked text-2 mt0 mb2">CSS</p>
+                <h2 class="f4 fw8 mt0 mb1">Utility first</h2>
+                <p class="f6 text-2 mt0 mb0">
+                  Cards, buttons, navigation, tables, lists, badges, and forms
+                  are composed from Tachyons Neo utilities.
+                </p>
+              </article>
+              <article class="pa3 bg-surface-base ba b--border-1 br0">
+                <p class="f7 fw8 ttu tracked text-2 mt0 mb2">Behavior</p>
+                <h2 class="f4 fw8 mt0 mb1">Stimulus controllers</h2>
+                <p class="f6 text-2 mt0 mb0">
+                  Small controllers manage toggles, tabs, carousel, modal,
+                  drawers, toast, range output, validation, and scrollspy.
+                </p>
+              </article>
+              <article class="pa3 bg-surface-base ba b--border-1 br0">
+                <p class="f7 fw8 ttu tracked text-2 mt0 mb2">Scope</p>
+                <h2 class="f4 fw8 mt0 mb1">Bootstrap-like</h2>
+                <p class="f6 text-2 mt0 mb0">
+                  Includes accordion, alerts, badges, breadcrumbs, buttons,
+                  cards, carousel, drawers, forms, modal, navs, and more.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section id="buttons" class="mb5" data-scrollspy-target="section">
+          <div class="mb3">
+            <p class="f7 fw8 ttu tracked text-2 mt0 mb1">Controls</p>
+            <h2 class="f3 fw8 lh-title mt0 mb1">
+              Buttons, groups, badges, breadcrumbs, pagination
+            </h2>
+            <p class="text-2 mt0 mb0 measure">
+              Action components with size, state, and grouping variants.
+            </p>
+          </div>
+          <div class="grid gtc1 gtc2-l g3">
+            <article class="bg-surface-base ba b--border-1 br0 overflow-hidden">
+              <div class="pa3 bg-surface-1 bb b--border-1">
+                <h3 class="f4 fw8 mt0 mb0">Button variants</h3>
+              </div>
+              <div class="pa3 flex flex-column g3">
+                <div class="flex flex-wrap g2">
+                  <button
+                    type="button"
+                    class="button-reset link pointer inline-flex items-center justify-center bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 ph3 pv2 fw6"
+                  >
+                    Default
+                  </button>
+                  <button
+                    type="button"
+                    class="button-reset link pointer inline-flex items-center justify-center bg-text-1 text-inverted hover-bg-text-1 ba b--text-1 br0 ph3 pv2 fw6"
+                  >
+                    Primary
+                  </button>
+                  <button
+                    type="button"
+                    class="button-reset link pointer inline-flex items-center justify-center bg-dark-green white ba b--dark-green br0 ph3 pv2 fw6"
+                  >
+                    Success
+                  </button>
+                  <button
+                    type="button"
+                    class="button-reset link pointer inline-flex items-center justify-center bg-dark-red white ba b--dark-red br0 ph3 pv2 fw6"
+                  >
+                    Danger
+                  </button>
+                  <button
+                    type="button"
+                    class="button-reset link pointer inline-flex items-center justify-center bg-transparent hover-bg-surface-2 text-1 ba b--transparent br0 ph3 pv2 fw6"
+                  >
+                    Ghost
+                  </button>
+                </div>
+                <div class="flex flex-wrap items-center g2">
+                  <button
+                    type="button"
+                    class="button-reset link pointer bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 ph2 pv1 f6 fw6"
+                  >
+                    Small
+                  </button>
+                  <button
+                    type="button"
+                    class="button-reset link pointer bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 ph3 pv2 fw6"
+                  >
+                    Regular
+                  </button>
+                  <button
+                    type="button"
+                    class="button-reset link pointer bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 ph4 pv3 f4 fw7"
+                  >
+                    Large
+                  </button>
+                  <button
+                    type="button"
+                    class="button-reset link pointer inline-flex items-center justify-center bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 w2 h2 f4"
+                    aria-label="Refresh"
+                  >
+                    ↻
+                  </button>
+                  <button
+                    type="button"
+                    class="button-reset pointer bg-transparent hover-bg-surface-2 text-2 hover-text-1 bn br0 w2 h2 f4 lh-solid"
+                    aria-label="Close"
+                  >
+                    x
+                  </button>
+                </div>
+                <div class="inline-flex" role="group" aria-label="Button group">
+                  <button
+                    type="button"
+                    class="button-reset link pointer bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 br--right ph3 pv2 fw6"
+                  >
+                    Left
+                  </button>
+                  <button
+                    type="button"
+                    class="button-reset link pointer bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 ph3 pv2 fw6"
+                  >
+                    Middle
+                  </button>
+                  <button
+                    type="button"
+                    class="button-reset link pointer bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 br--left ph3 pv2 fw6"
+                  >
+                    Right
+                  </button>
+                </div>
+              </div>
+            </article>
+            <article class="bg-surface-base ba b--border-1 br0 overflow-hidden">
+              <div class="pa3 bg-surface-1 bb b--border-1">
+                <h3 class="f4 fw8 mt0 mb0">Badges and navigation helpers</h3>
+              </div>
+              <div class="pa3 flex flex-column g4">
+                <div class="flex flex-wrap items-center g2">
+                  <span class="dib br0 bg-surface-3 text-1 f7 fw8 ph2 pv1"
+                    >Default</span
+                  >
+                  <span class="dib br0 bg-text-1 text-inverted f7 fw8 ph2 pv1"
+                    >Primary</span
+                  >
+                  <span
+                    class="dib br0 bg-washed-green dark-green ba b--dark-green f7 fw8 ph2 pv1 ttu tracked"
+                    >Done</span
+                  >
+                  <span
+                    class="dib br0 bg-washed-yellow text-1 ba b--gold f7 fw8 ph2 pv1 ttu tracked"
+                    >Queued</span
+                  >
+                  <span
+                    class="dib br0 bg-washed-red dark-red ba b--dark-red f7 fw8 ph2 pv1 ttu tracked"
+                    >Failed</span
+                  >
+                </div>
+                <nav aria-label="Breadcrumb">
+                  <ol class="list pl0 ma0 flex flex-wrap items-center g2 f6">
+                    <li>
+                      <a class="link text-1 underline fw7" href="#">Home</a>
+                    </li>
+                    <li class="text-3" aria-hidden="true">/</li>
+                    <li>
+                      <a class="link text-1 underline fw7" href="#">Library</a>
+                    </li>
+                    <li class="text-3" aria-hidden="true">/</li>
+                    <li class="text-2" aria-current="page">Components</li>
+                  </ol>
+                </nav>
+                <nav aria-label="Pagination" class="flex flex-wrap g1">
+                  <a
+                    href="#"
+                    class="link inline-flex items-center justify-center min-w-0 bg-surface-base hover-bg-text-1 text-1 hover-text-inverted ba b--border-1 br0 w2 h2 fw7"
+                    aria-label="Previous"
+                    >&lt;</a
+                  >
+                  <a
+                    href="#"
+                    class="link inline-flex items-center justify-center bg-surface-base hover-bg-text-1 text-1 hover-text-inverted ba b--border-1 br0 w2 h2 fw7"
+                    >1</a
+                  >
+                  <a
+                    href="#"
+                    class="link inline-flex items-center justify-center bg-text-1 text-inverted ba b--text-1 br0 w2 h2 fw7"
+                    aria-current="page"
+                    >2</a
+                  >
+                  <a
+                    href="#"
+                    class="link inline-flex items-center justify-center bg-surface-base hover-bg-text-1 text-1 hover-text-inverted ba b--border-1 br0 w2 h2 fw7"
+                    >3</a
+                  >
+                  <a
+                    href="#"
+                    class="link inline-flex items-center justify-center bg-surface-base hover-bg-text-1 text-1 hover-text-inverted ba b--border-1 br0 w2 h2 fw7"
+                    aria-label="Next"
+                    >&gt;</a
+                  >
+                </nav>
+              </div>
+            </article>
+          </div>
+        </section>
+        <section id="forms" class="mb5" data-scrollspy-target="section">
+          <div class="mb3">
+            <p class="f7 fw8 ttu tracked text-2 mt0 mb1">Inputs</p>
+            <h2 class="f3 fw8 lh-title mt0 mb1">
+              Forms, input groups, floating labels, validation
+            </h2>
+            <p class="text-2 mt0 mb0 measure-wide">
+              Native controls with token colors and a Stimulus validation pass.
+            </p>
+          </div>
+          <form
+            class="pa3 pa4-ns bg-surface-base ba b--border-1 br0"
+            data-controller="validation"
+            data-action="submit-&gt;validation#submit"
+            novalidate=""
+          >
+            <div class="grid gtc1 gtc2-m g3">
+              <div>
+                <label for="demo-name" class="db f6 fw7 mb2">Name</label>
+                <input
+                  id="demo-name"
+                  class="input-reset w-100 bg-surface-base text-1 ba b--border-2 br0 ph3 pv2 focus-ring-box"
+                  type="text"
+                  placeholder="Ada Lovelace"
+                  required=""
+                />
+                <p class="f7 dark-red mt2 mb0">Required for validation demo.</p>
+              </div>
+              <div>
+                <label for="demo-email" class="db f6 fw7 mb2">Email</label>
+                <input
+                  id="demo-email"
+                  class="input-reset w-100 bg-surface-base text-1 ba b--border-2 br0 ph3 pv2 focus-ring-box"
+                  type="email"
+                  placeholder="ada@example.com"
+                  required=""
+                />
+              </div>
+              <div>
+                <label for="demo-select" class="db f6 fw7 mb2">Select</label>
+                <select
+                  id="demo-select"
+                  class="w-100 bg-surface-base text-1 ba b--border-2 br0 ph3 pv2 focus-ring-box"
+                  required=""
+                >
+                  <option value="">Choose...</option>
+                  <option>Design system</option>
+                  <option>Application UI</option>
+                  <option>Marketing surface</option>
+                </select>
+              </div>
+              <div class="relative" data-floating="">
+                <input
+                  id="demo-floating"
+                  class="input-reset w-100 bg-surface-base text-1 ba b--border-2 br0 ph3 focus-ring-box"
+                  type="text"
+                  placeholder="Floating label"
+                />
+                <label for="demo-floating">Floating label</label>
+              </div>
+              <div class="csp-full">
+                <label for="demo-message" class="db f6 fw7 mb2">Textarea</label>
+                <textarea
+                  id="demo-message"
+                  class="input-reset w-100 bg-surface-base text-1 ba b--border-2 br0 ph3 pv2 focus-ring-box"
+                  rows="4"
+                  placeholder="Write a note"
+                ></textarea>
+              </div>
+              <div>
+                <label class="db f6 fw7 mb2">Input group</label>
+                <div class="flex">
+                  <span
+                    class="inline-flex items-center bg-surface-2 text-2 ba b--border-2 br0 br--right ph3 pv2"
+                    >@</span
+                  >
+                  <input
+                    class="input-reset w-100 bg-surface-base text-1 ba b--border-2 br0 ph3 pv2 focus-ring-box"
+                    type="text"
+                    placeholder="username"
+                  />
+                  <button
+                    class="button-reset pointer bg-text-1 text-inverted ba b--text-1 br0 br--left ph3 pv2 fw7"
+                    type="button"
+                  >
+                    Check
+                  </button>
+                </div>
+              </div>
+              <div data-controller="range">
+                <label for="demo-range" class="db f6 fw7 mb2"
+                  >Range
+                  <output data-range-target="output" for="demo-range"
+                    >64</output
+                  ></label
+                >
+                <input
+                  id="demo-range"
+                  class="w-100"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="64"
+                  data-range-target="input"
+                  data-action="input-&gt;range#update"
+                />
+              </div>
+              <fieldset class="bn pa0 ma0">
+                <legend class="db f6 fw7 mb2">Checks</legend>
+                <label class="flex items-center g2 mb2 pointer"
+                  ><input class="w1 h1 flex-shrink-0" type="checkbox" checked />
+                  <span>Remember preferences</span></label
+                >
+                <label class="flex items-center g2"
+                  ><input
+                    class="w1 h1 flex-shrink-0"
+                    type="checkbox"
+                    disabled
+                  />
+                  <span class="text-3">Disabled check</span></label
+                >
+              </fieldset>
+              <fieldset class="bn pa0 ma0">
+                <legend class="db f6 fw7 mb2">Radios</legend>
+                <label class="flex items-center g2 mb2 pointer"
+                  ><input
+                    class="w1 h1 flex-shrink-0"
+                    type="radio"
+                    name="density"
+                    checked
+                  />
+                  <span>Comfortable</span></label
+                >
+                <label class="flex items-center g2 pointer"
+                  ><input
+                    class="w1 h1 flex-shrink-0"
+                    type="radio"
+                    name="density"
+                  />
+                  <span>Compact</span></label
+                >
+              </fieldset>
+              <div>
+                <label for="demo-file" class="db f6 fw7 mb2">File</label>
+                <input
+                  id="demo-file"
+                  class="w-100 bg-surface-base text-1 ba b--border-2 br0 ph3 pv2 focus-ring-box"
+                  type="file"
+                />
+              </div>
+              <div>
+                <label for="demo-color" class="db f6 fw7 mb2">Color</label>
+                <input
+                  id="demo-color"
+                  class="w-100 h3 bg-surface-base text-1 ba b--border-2 br0 pa1 focus-ring-box"
+                  type="color"
+                  value="#007aff"
+                />
+              </div>
+            </div>
+            <div
+              class="bt b--border-1 mt4 pt3 flex flex-wrap justify-between g2"
+            >
+              <button
+                type="reset"
+                class="button-reset pointer bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 ph3 pv2 fw6"
+              >
+                Reset
+              </button>
+              <button
+                type="submit"
+                class="button-reset pointer bg-text-1 text-inverted ba b--text-1 br0 ph3 pv2 fw7"
+              >
+                Validate form
+              </button>
+            </div>
+          </form>
+        </section>
+        <section id="navs" class="mb5" data-scrollspy-target="section">
+          <div class="mb3">
+            <p class="f7 fw8 ttu tracked text-2 mt0 mb1">Navigation</p>
+            <h2 class="f3 fw8 lh-title mt0 mb1">
+              Navbar, navs, tabs, pills, dropdowns
+            </h2>
+          </div>
+          <div class="flex flex-column g3">
+            <nav
+              class="pa3 bg-surface-base ba b--border-1 br0 root"
+              aria-label="Demo navbar"
+              data-controller="toggle"
+            >
+              <div
+                class="flex flex-column flex-row-m items-stretch items-center-m justify-between g3"
+              >
+                <div class="flex items-center justify-between g3">
+                  <a href="#" class="link text-1 fw8 f4">Navbar</a>
+                  <button
+                    type="button"
+                    class="button-reset pointer inline-flex dn-m items-center bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 ph3 pv2 f6 fw6"
+                    data-toggle-target="button"
+                    data-action="toggle#toggle"
+                    aria-expanded="false"
+                    aria-controls="demo-navbar-mobile"
+                  >
+                    Menu
+                  </button>
+                </div>
+                <div class="dn flex-m items-center g2">
+                  <a
+                    href="#"
+                    class="link text-1 bg-surface-2 br0 ph3 pv2"
+                    aria-current="page"
+                    >Home</a
+                  >
+                  <a
+                    href="#"
+                    class="link text-2 hover-text-1 hover-bg-surface-2 br0 ph3 pv2"
+                    >Features</a
+                  >
+                  <a
+                    href="#"
+                    class="link text-2 hover-text-1 hover-bg-surface-2 br0 ph3 pv2"
+                    >Pricing</a
+                  >
+                  <div class="relative dib" data-controller="dropdown">
+                    <button
+                      type="button"
+                      class="button-reset link pointer bg-transparent hover-bg-surface-2 text-1 ba b--transparent br0 ph3 pv2 fw7"
+                      data-dropdown-target="button"
+                      data-action="dropdown#toggle"
+                      aria-expanded="false"
+                    >
+                      Dropdown ▾
+                    </button>
+                    <div
+                      class="absolute left-0 z-5 mt2 w5 pa2 bg-surface-base ba b--border-1 br0"
+                      data-dropdown-target="menu"
+                      hidden=""
+                    >
+                      <a
+                        href="#"
+                        class="db link text-1 hover-bg-surface-2 br0 pa2"
+                        >Action</a
+                      >
+                      <a
+                        href="#"
+                        class="db link text-1 hover-bg-surface-2 br0 pa2"
+                        >Another action</a
+                      >
+                      <div class="bt b--border-1 mv2"></div>
+                      <a
+                        href="#"
+                        class="db link text-1 hover-bg-surface-2 br0 pa2"
+                        >Separated link</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div
+                  id="demo-navbar-mobile"
+                  class="db dn-m"
+                  data-toggle-target="content"
+                  hidden=""
+                >
+                  <div class="flex flex-column g2">
+                    <a
+                      href="#"
+                      class="link text-1 bg-surface-2 br0 ph3 pv2"
+                      aria-current="page"
+                      >Home</a
+                    >
+                    <a
+                      href="#"
+                      class="link text-2 hover-text-1 hover-bg-surface-2 br0 ph3 pv2"
+                      >Features</a
+                    >
+                    <a
+                      href="#"
+                      class="link text-2 hover-text-1 hover-bg-surface-2 br0 ph3 pv2"
+                      >Pricing</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </nav>
+            <div class="grid gtc1 gtc2-l g3">
+              <article
+                class="bg-surface-base ba b--border-1 br0 overflow-hidden"
+                data-controller="tabs"
+              >
+                <div class="pa3">
+                  <div
+                    class="flex g1 bb b--border-1 overflow-x-auto"
+                    role="tablist"
+                    aria-label="Example tabs"
+                  >
+                    <button
+                      id="tab-home"
+                      type="button"
+                      class="button-reset pointer bg-transparent text-1 ba bl-0 bt-0 br-0 bw1 b--text-1 ph3 pv2 fw7 nowrap"
+                      role="tab"
+                      aria-controls="panel-home"
+                      aria-selected="true"
+                      data-tabs-target="tab"
+                      data-action="tabs#select"
+                      data-active-class="text-1 b--text-1"
+                      data-inactive-class="text-2 b--transparent"
+                    >
+                      Home
+                    </button>
+                    <button
+                      id="tab-profile"
+                      type="button"
+                      class="button-reset pointer bg-transparent text-2 ba bl-0 bt-0 br-0 bw1 b--transparent ph3 pv2 fw7 nowrap"
+                      role="tab"
+                      aria-controls="panel-profile"
+                      aria-selected="false"
+                      data-tabs-target="tab"
+                      data-action="tabs#select"
+                      data-active-class="text-1 b--text-1"
+                      data-inactive-class="text-2 b--transparent"
+                    >
+                      Profile
+                    </button>
+                    <button
+                      id="tab-contact"
+                      type="button"
+                      class="button-reset pointer bg-transparent text-2 ba bl-0 bt-0 br-0 bw1 b--transparent ph3 pv2 fw7 nowrap"
+                      role="tab"
+                      aria-controls="panel-contact"
+                      aria-selected="false"
+                      data-tabs-target="tab"
+                      data-action="tabs#select"
+                      data-active-class="text-1 b--text-1"
+                      data-inactive-class="text-2 b--transparent"
+                    >
+                      Contact
+                    </button>
+                  </div>
+                </div>
+                <div
+                  id="panel-home"
+                  class="pa3 pt0"
+                  role="tabpanel"
+                  aria-labelledby="tab-home"
+                  data-tabs-target="panel"
+                >
+                  <p class="mt0 mb0 text-2">
+                    Tabs use Stimulus to manage selected state, utility classes,
+                    panels, and ARIA attributes.
+                  </p>
+                </div>
+                <div
+                  id="panel-profile"
+                  class="pa3 pt0"
+                  role="tabpanel"
+                  aria-labelledby="tab-profile"
+                  data-tabs-target="panel"
+                  hidden=""
+                >
+                  <p class="mt0 mb0 text-2">
+                    Profile panel content can hold forms, cards, tables, or
+                    anything else.
+                  </p>
+                </div>
+                <div
+                  id="panel-contact"
+                  class="pa3 pt0"
+                  role="tabpanel"
+                  aria-labelledby="tab-contact"
+                  data-tabs-target="panel"
+                  hidden=""
+                >
+                  <p class="mt0 mb0 text-2">
+                    Contact panel content is hidden with the native hidden
+                    attribute.
+                  </p>
+                </div>
+              </article>
+              <article
+                class="pa3 bg-surface-base ba b--border-1 br0"
+                data-controller="tabs"
+              >
+                <div
+                  class="flex flex-wrap g2 mb3"
+                  role="tablist"
+                  aria-label="Example pills"
+                >
+                  <button
+                    type="button"
+                    class="button-reset pointer bg-text-1 text-inverted ba b--text-1 br0 ph3 pv2 fw7"
+                    role="tab"
+                    aria-selected="true"
+                    data-tabs-target="tab"
+                    data-action="tabs#select"
+                    data-active-class="bg-text-1 text-inverted b--text-1"
+                    data-inactive-class="bg-surface-1 text-2 b--transparent"
+                  >
+                    Active
+                  </button>
+                  <button
+                    type="button"
+                    class="button-reset pointer bg-surface-1 text-2 ba b--transparent br0 ph3 pv2 fw7"
+                    role="tab"
+                    aria-selected="false"
+                    data-tabs-target="tab"
+                    data-action="tabs#select"
+                    data-active-class="bg-text-1 text-inverted b--text-1"
+                    data-inactive-class="bg-surface-1 text-2 b--transparent"
+                  >
+                    Link
+                  </button>
+                  <button
+                    type="button"
+                    class="button-reset pointer bg-surface-1 text-2 ba b--transparent br0 ph3 pv2 fw7"
+                    role="tab"
+                    aria-selected="false"
+                    data-tabs-target="tab"
+                    data-action="tabs#select"
+                    data-active-class="bg-text-1 text-inverted b--text-1"
+                    data-inactive-class="bg-surface-1 text-2 b--transparent"
+                  >
+                    Disabled look
+                  </button>
+                </div>
+                <div data-tabs-target="panel">
+                  <p class="mt0 mb0 text-2">
+                    Pill navigation mirrors Bootstrap nav-pills with Tachyons
+                    utility classes.
+                  </p>
+                </div>
+                <div data-tabs-target="panel" hidden="">
+                  <p class="mt0 mb0 text-2">Second pill panel.</p>
+                </div>
+                <div data-tabs-target="panel" hidden="">
+                  <p class="mt0 mb0 text-2">Third pill panel.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section id="feedback" class="mb5" data-scrollspy-target="section">
+          <div class="mb3">
+            <p class="f7 fw8 ttu tracked text-2 mt0 mb1">Feedback</p>
+            <h2 class="f3 fw8 lh-title mt0 mb1">
+              Alerts, toasts, progress, spinners
+            </h2>
+          </div>
+          <div class="grid gtc1 gtc2-l g3">
+            <article class="flex flex-column g3">
+              <div
+                class="flex items-start g3 pa3 bg-washed-green ba b--dark-green br0"
+                role="status"
+                data-controller="dismiss"
+              >
+                <span class="dark-green fw8">✓</span>
+                <div class="flex-auto">
+                  <p class="fw8 mt0 mb1">Saved successfully</p>
+                  <p class="mt0 mb0 text-2">
+                    This alert can be dismissed with its close button.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  class="button-reset pointer bg-transparent hover-bg-surface-2 text-2 hover-text-1 bn br0 w2 h2 f4 lh-solid"
+                  aria-label="Dismiss"
+                  data-action="dismiss#close"
+                >
+                  x
+                </button>
+              </div>
+              <div
+                class="flex items-start g3 pa3 bg-washed-yellow ba b--gold br0"
+                role="status"
+                data-controller="dismiss"
+              >
+                <span class="gold fw8">!</span>
+                <div class="flex-auto">
+                  <p class="fw8 mt0 mb1">Review recommended</p>
+                  <p class="mt0 mb0 text-2">
+                    Contextual alert color with utility classes.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  class="button-reset pointer bg-transparent hover-bg-surface-2 text-2 hover-text-1 bn br0 w2 h2 f4 lh-solid"
+                  aria-label="Dismiss"
+                  data-action="dismiss#close"
+                >
+                  x
+                </button>
+              </div>
+              <div
+                class="flex items-start g3 pa3 bg-washed-red ba b--dark-red br0"
+                role="alert"
+                data-controller="dismiss"
+              >
+                <span class="dark-red fw8">x</span>
+                <div class="flex-auto">
+                  <p class="fw8 mt0 mb1">Payment failed</p>
+                  <p class="mt0 mb0 text-2">
+                    There was a problem with the transaction.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  class="button-reset pointer bg-transparent hover-bg-surface-2 text-2 hover-text-1 bn br0 w2 h2 f4 lh-solid"
+                  aria-label="Dismiss"
+                  data-action="dismiss#close"
+                >
+                  x
+                </button>
+              </div>
+            </article>
+            <article
+              class="pa3 bg-surface-base ba b--border-1 br0"
+              data-controller="toast"
+            >
+              <h3 class="f4 fw8 mt0 mb2">Toast stack</h3>
+              <p class="text-2 mt0 mb3">
+                Click the button to insert a toast into the fixed stack.
+              </p>
+              <button
+                type="button"
+                class="button-reset pointer bg-text-1 text-inverted ba b--text-1 br0 ph3 pv2 fw7"
+                data-action="toast#show"
+              >
+                Show toast
+              </button>
+              <div class="mt4">
+                <p class="f6 fw8 mt0 mb2">Progress</p>
+                <div
+                  class="h1 overflow-hidden br0 bg-surface-3 mb3"
+                  role="progressbar"
+                  aria-label="Upload progress"
+                  aria-valuenow="72"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                >
+                  <div class="h-100 br0 bg-text-1 w-70"></div>
+                </div>
+                <div class="flex items-center g3">
+                  <span data-spinner aria-label="Loading"></span>
+                  <button
+                    type="button"
+                    class="button-reset pointer inline-flex items-center g2 bg-text-1 text-inverted ba b--text-1 br0 ph3 pv2 fw7"
+                  >
+                    <span data-spinner="small" aria-hidden="true"></span>
+                    Loading
+                  </button>
+                </div>
+              </div>
+              <div
+                class="fixed right-1 bottom-1 z-9999 flex flex-column g2 w-90 mw6"
+                data-toast-target="stack"
+                aria-live="polite"
+              ></div>
+              <template data-toast-target="template">
+                <div
+                  class="flex items-start g3 pa3 bg-surface-base ba b--border-1 br0"
+                  data-toast=""
+                >
+                  <div class="flex-auto">
+                    <p class="fw8 mt0 mb1">Toast notification</p>
+                    <p class="f6 text-2 mt0 mb0">
+                      Generated by a Stimulus controller.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    class="button-reset pointer bg-transparent hover-bg-surface-2 text-2 hover-text-1 bn br0 w2 h2 f4 lh-solid"
+                    aria-label="Dismiss"
+                    data-action="toast#dismiss"
+                  >
+                    x
+                  </button>
+                </div>
+              </template>
+            </article>
+          </div>
+        </section>
+        <section id="overlays" class="mb5" data-scrollspy-target="section">
+          <div class="mb3">
+            <p class="f7 fw8 ttu tracked text-2 mt0 mb1">Overlays</p>
+            <h2 class="f3 fw8 lh-title mt0 mb1">
+              Dropdowns, modal, drawers, tooltip, popover
+            </h2>
+          </div>
+          <div class="grid gtc1 gtc2-l g3">
+            <article class="pa3 bg-surface-base ba b--border-1 br0">
+              <h3 class="f4 fw8 mt0 mb3">Menus and micro overlays</h3>
+              <div class="flex flex-wrap items-center g3">
+                <div class="relative dib" data-controller="dropdown">
+                  <button
+                    type="button"
+                    class="button-reset pointer bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 ph3 pv2 fw7"
+                    data-dropdown-target="button"
+                    data-action="dropdown#toggle"
+                    aria-expanded="false"
+                  >
+                    Actions ▾
+                  </button>
+                  <div
+                    class="absolute left-0 z-5 mt2 w5 pa2 bg-surface-base ba b--border-1 br0"
+                    data-dropdown-target="menu"
+                    hidden=""
+                  >
+                    <a
+                      href="#"
+                      class="db link text-1 hover-bg-surface-2 br0 pa2"
+                      >Edit</a
+                    >
+                    <a
+                      href="#"
+                      class="db link text-1 hover-bg-surface-2 br0 pa2"
+                      >Duplicate</a
+                    >
+                    <a
+                      href="#"
+                      class="db link text-1 hover-bg-surface-2 br0 pa2"
+                      >Archive</a
+                    >
+                    <div class="bt b--border-1 mv2"></div>
+                    <button
+                      type="button"
+                      class="button-reset db w-100 tl pointer bg-transparent dark-red hover-bg-surface-2 br0 pa2"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+                <span
+                  class="relative dib"
+                  data-controller="tooltip"
+                  data-action="mouseenter-&gt;tooltip#show mouseleave-&gt;tooltip#hide focusin-&gt;tooltip#show focusout-&gt;tooltip#hide"
+                  ><button
+                    type="button"
+                    class="button-reset pointer bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 ph3 pv2 fw7"
+                    aria-describedby="tip-save"
+                  >
+                    Tooltip
+                  </button>
+                  <span
+                    id="tip-save"
+                    class="absolute left-0 top-2 z-5 mt2 nowrap bg-text-1 text-inverted br0 ph2 pv1 f7 fw7"
+                    data-tooltip-target="bubble"
+                    role="tooltip"
+                    hidden=""
+                    >Helpful label</span
+                  ></span
+                >
+                <span class="relative dib" data-controller="popover"
+                  ><button
+                    type="button"
+                    class="button-reset pointer bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 ph3 pv2 fw7"
+                    data-popover-target="button"
+                    data-action="popover#toggle"
+                    aria-expanded="false"
+                  >
+                    Popover
+                  </button>
+                  <span
+                    class="absolute left-0 top-2 z-5 mt2 w5 bg-surface-base text-1 ba b--border-1 br0"
+                    data-popover-target="panel"
+                    hidden=""
+                    ><span class="db pa3 bb b--border-1 fw8"
+                      >Popover title</span
+                    >
+                    <span class="db pa3 text-2"
+                      >A clickable popover with body content and
+                      close-on-outside behavior.</span
+                    ></span
+                  ></span
+                >
+              </div>
+            </article>
+            <article
+              class="pa3 bg-surface-base ba b--border-1 br0"
+              data-controller="modal"
+            >
+              <h3 class="f4 fw8 mt0 mb2">Modal dialog</h3>
+              <p class="text-2 mt0 mb3">
+                Native <code>&lt;dialog&gt;</code> with Stimulus open and close
+                actions.
+              </p>
+              <button
+                type="button"
+                class="button-reset pointer bg-text-1 text-inverted ba b--text-1 br0 ph3 pv2 fw7"
+                data-action="modal#open"
+              >
+                Open modal
+              </button>
+              <dialog
+                class="w-90 mw6 pa0 bg-surface-base text-1 ba b--border-1 br0"
+                data-modal=""
+                data-modal-target="dialog"
+                data-action="click-&gt;modal#backdrop"
+              >
+                <div
+                  class="pa3 bb b--border-1 flex items-center justify-between g3"
+                >
+                  <h4 class="f4 fw8 mt0 mb0">Confirm change</h4>
+                  <button
+                    type="button"
+                    class="button-reset pointer bg-transparent hover-bg-surface-2 text-2 hover-text-1 bn br0 w2 h2 f4 lh-solid"
+                    aria-label="Close"
+                    data-action="modal#close"
+                  >
+                    x
+                  </button>
+                </div>
+                <div class="pa3">
+                  <p class="mt0 mb0 text-2">
+                    This modal follows Bootstrap's header, body, and footer
+                    structure while relying on native dialog behavior.
+                  </p>
+                </div>
+                <div class="pa3 bt b--border-1 flex justify-end g2">
+                  <button
+                    type="button"
+                    class="button-reset pointer bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 ph3 pv2 fw6"
+                    data-action="modal#close"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    class="button-reset pointer bg-text-1 text-inverted ba b--text-1 br0 ph3 pv2 fw7"
+                    data-action="modal#close"
+                  >
+                    Save changes
+                  </button>
+                </div>
+              </dialog>
+            </article>
+            <article class="pa3 bg-surface-base ba b--border-1 br0 csp-full">
+              <h3 class="f4 fw8 mt0 mb2">Offcanvas drawers</h3>
+              <p class="text-2 mt0 mb3">
+                Top, right, bottom, and left drawer positions cover Bootstrap
+                offcanvas patterns.
+              </p>
+              <div class="flex flex-wrap g2">
+                <div data-controller="drawer" class="dib">
+                  <button
+                    type="button"
+                    class="button-reset pointer bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 ph3 pv2 fw7"
+                    data-action="drawer#open"
+                  >
+                    Top drawer
+                  </button>
+                  <div
+                    class="fixed absolute--fill z-999 bg-black-50 blur"
+                    data-drawer-target="backdrop"
+                    data-action="click-&gt;drawer#close"
+                    hidden=""
+                  ></div>
+                  <aside
+                    class="fixed top-0 left-0 right-0 z-9999 bg-surface-base text-1 ba b--border-1 br0 br--top overflow-auto"
+                    data-drawer-target="panel"
+                    data-drawer-placement="top"
+                    hidden=""
+                    aria-label="Top drawer"
+                  >
+                    <div
+                      class="pa3 bb b--border-1 flex items-center justify-between g3"
+                    >
+                      <h4 class="f4 fw8 mt0 mb0">Top drawer</h4>
+                      <button
+                        type="button"
+                        class="button-reset pointer bg-transparent hover-bg-surface-2 text-2 hover-text-1 bn br0 w2 h2 f4 lh-solid"
+                        aria-label="Close"
+                        data-action="drawer#close"
+                      >
+                        x
+                      </button>
+                    </div>
+                    <div
+                      class="pa3 flex flex-column flex-row-ns justify-between items-start items-center-ns g3"
+                    >
+                      <p class="text-2 mt0 mb0">
+                        A top offcanvas works well for short global notices or
+                        compact filters.
+                      </p>
+                      <div class="flex flex-wrap g2">
+                        <button
+                          type="button"
+                          class="button-reset pointer bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 ph3 pv2 fw6"
+                        >
+                          Clear
+                        </button>
+                        <button
+                          type="button"
+                          class="button-reset pointer bg-text-1 text-inverted ba b--text-1 br0 ph3 pv2 fw7"
+                        >
+                          Apply
+                        </button>
+                      </div>
+                    </div>
+                  </aside>
+                </div>
+                <div data-controller="drawer" class="dib">
+                  <button
+                    type="button"
+                    class="button-reset pointer bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 ph3 pv2 fw7"
+                    data-action="drawer#open"
+                  >
+                    Left drawer
+                  </button>
+                  <div
+                    class="fixed absolute--fill z-999 bg-black-50 blur"
+                    data-drawer-target="backdrop"
+                    data-action="click-&gt;drawer#close"
+                    hidden=""
+                  ></div>
+                  <aside
+                    class="fixed top-0 bottom-0 left-0 z-9999 w-90 mw5 bg-surface-base text-1 ba b--border-1 br0 br--left overflow-auto"
+                    data-drawer-target="panel"
+                    data-drawer-placement="left"
+                    hidden=""
+                    aria-label="Left drawer"
+                  >
+                    <div
+                      class="pa3 bb b--border-1 flex items-center justify-between g3"
+                    >
+                      <h4 class="f4 fw8 mt0 mb0">Left drawer</h4>
+                      <button
+                        type="button"
+                        class="button-reset pointer bg-transparent hover-bg-surface-2 text-2 hover-text-1 bn br0 w2 h2 f4 lh-solid"
+                        aria-label="Close"
+                        data-action="drawer#close"
+                      >
+                        x
+                      </button>
+                    </div>
+                    <nav class="pa3 flex flex-column g2">
+                      <a
+                        href="#"
+                        class="link flex items-center justify-between text-1 bg-surface-base hover-bg-surface-2 ba b--border-1 br0 pa3"
+                        >Dashboard <span>&gt;</span></a
+                      >
+                      <a
+                        href="#"
+                        class="link flex items-center justify-between text-1 bg-surface-base hover-bg-surface-2 ba b--border-1 br0 pa3"
+                        >Reports <span>&gt;</span></a
+                      >
+                      <a
+                        href="#"
+                        class="link flex items-center justify-between text-1 bg-surface-base hover-bg-surface-2 ba b--border-1 br0 pa3"
+                        >Settings <span>&gt;</span></a
+                      >
+                    </nav>
+                  </aside>
+                </div>
+                <div data-controller="drawer" class="dib">
+                  <button
+                    type="button"
+                    class="button-reset pointer bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 ph3 pv2 fw7"
+                    data-action="drawer#open"
+                  >
+                    Right drawer
+                  </button>
+                  <div
+                    class="fixed absolute--fill z-999 bg-black-50 blur"
+                    data-drawer-target="backdrop"
+                    data-action="click-&gt;drawer#close"
+                    hidden=""
+                  ></div>
+                  <aside
+                    class="fixed top-0 bottom-0 right-0 z-9999 w-90 mw5 bg-surface-base text-1 ba b--border-1 br0 br--right overflow-auto"
+                    data-drawer-target="panel"
+                    data-drawer-placement="right"
+                    hidden=""
+                    aria-label="Right drawer"
+                  >
+                    <div
+                      class="pa3 bb b--border-1 flex items-center justify-between g3"
+                    >
+                      <h4 class="f4 fw8 mt0 mb0">Activity</h4>
+                      <button
+                        type="button"
+                        class="button-reset pointer bg-transparent hover-bg-surface-2 text-2 hover-text-1 bn br0 w2 h2 f4 lh-solid"
+                        aria-label="Close"
+                        data-action="drawer#close"
+                      >
+                        x
+                      </button>
+                    </div>
+                    <div class="pa3 flex flex-column g3">
+                      <div class="pa3 bg-surface-1 ba b--border-1 br0">
+                        <p class="mt0 mb0 text-2">
+                          New deployment finished two minutes ago.
+                        </p>
+                      </div>
+                      <div class="pa3 bg-washed-green ba b--dark-green br0">
+                        <p class="mt0 mb0 text-2">
+                          Backup completed successfully.
+                        </p>
+                      </div>
+                    </div>
+                  </aside>
+                </div>
+                <div data-controller="drawer" class="dib">
+                  <button
+                    type="button"
+                    class="button-reset pointer bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 ph3 pv2 fw7"
+                    data-action="drawer#open"
+                  >
+                    Bottom drawer
+                  </button>
+                  <div
+                    class="fixed absolute--fill z-999 bg-black-50 blur"
+                    data-drawer-target="backdrop"
+                    data-action="click-&gt;drawer#close"
+                    hidden=""
+                  ></div>
+                  <aside
+                    class="fixed bottom-0 left-0 right-0 z-9999 bg-surface-base text-1 ba b--border-1 br0 br--bottom overflow-auto"
+                    data-drawer-target="panel"
+                    data-drawer-placement="bottom"
+                    hidden=""
+                    aria-label="Bottom drawer"
+                  >
+                    <div
+                      class="pa3 bb b--border-1 flex items-center justify-between g3"
+                    >
+                      <h4 class="f4 fw8 mt0 mb0">Bulk actions</h4>
+                      <button
+                        type="button"
+                        class="button-reset pointer bg-transparent hover-bg-surface-2 text-2 hover-text-1 bn br0 w2 h2 f4 lh-solid"
+                        aria-label="Close"
+                        data-action="drawer#close"
+                      >
+                        x
+                      </button>
+                    </div>
+                    <div
+                      class="pa3 flex flex-column flex-row-ns justify-between items-start items-center-ns g3"
+                    >
+                      <p class="text-2 mt0 mb0">
+                        3 rows selected. Choose an action to apply.
+                      </p>
+                      <div class="flex flex-wrap g2">
+                        <button
+                          type="button"
+                          class="button-reset pointer bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 ph3 pv2 fw6"
+                        >
+                          Export
+                        </button>
+                        <button
+                          type="button"
+                          class="button-reset pointer bg-dark-red white ba b--dark-red br0 ph3 pv2 fw7"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </aside>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+        <section id="content" class="mb5" data-scrollspy-target="section">
+          <div class="mb3">
+            <p class="f7 fw8 ttu tracked text-2 mt0 mb1">Content</p>
+            <h2 class="f3 fw8 lh-title mt0 mb1">
+              Cards, carousel, list groups, tables, collapse
+            </h2>
+          </div>
+          <div class="grid gtc1 gtc2-l g3">
+            <article class="bg-surface-base ba b--border-1 br0 overflow-hidden">
+              <div class="aspect-ratio--16x9 bg-text-1"></div>
+              <div class="pa3">
+                <div class="flex items-start justify-between g3 mb2">
+                  <h3 class="f4 fw8 mt0 mb0">Card title</h3>
+                  <span class="dib br0 bg-text-1 text-inverted f7 fw8 ph2 pv1"
+                    >New</span
+                  >
+                </div>
+                <p class="text-2 mt0 mb3">
+                  Card header, media, body, links, and footer patterns are
+                  represented with utility markup.
+                </p>
+                <div class="flex flex-wrap g2">
+                  <a
+                    href="#"
+                    class="link pointer bg-text-1 text-inverted ba b--text-1 br0 ph3 pv2 fw7"
+                    >Primary action</a
+                  >
+                  <a
+                    href="#"
+                    class="link pointer bg-surface-base hover-bg-surface-2 text-1 ba b--border-2 br0 ph3 pv2 fw6"
+                    >Secondary</a
+                  >
+                </div>
+              </div>
+              <div class="pa3 bg-surface-1 bt b--border-1 f6 text-2">
+                Card footer
+              </div>
+            </article>
+            <article
+              class="bg-surface-base ba b--border-1 br0 overflow-hidden"
+              data-controller="carousel"
+            >
+              <div class="relative overflow-hidden br0 bg-surface-1">
+                <div
+                  class="pa5 bg-dark-blue white"
+                  data-carousel-target="slide"
+                >
+                  <p class="f7 fw8 ttu tracked mt0 mb2">First slide</p>
+                  <h3 class="f1 fw8 lh-title mt0 mb2">Carousel component</h3>
+                  <p class="f4 measure mt0 mb0">
+                    Previous, next, and indicators are managed by Stimulus.
+                  </p>
+                </div>
+                <div
+                  class="pa5 bg-dark-green white"
+                  data-carousel-target="slide"
+                  hidden=""
+                >
+                  <p class="f7 fw8 ttu tracked mt0 mb2">Second slide</p>
+                  <h3 class="f1 fw8 lh-title mt0 mb2">Accessible state</h3>
+                  <p class="f4 measure mt0 mb0">
+                    Hidden slides are removed from visual flow.
+                  </p>
+                </div>
+                <div
+                  class="pa5 bg-purple white"
+                  data-carousel-target="slide"
+                  hidden=""
+                >
+                  <p class="f7 fw8 ttu tracked mt0 mb2">Third slide</p>
+                  <h3 class="f1 fw8 lh-title mt0 mb2">Token colors</h3>
+                  <p class="f4 measure mt0 mb0">
+                    The visual system stays close to Tachyons Neo.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  class="button-reset absolute top-2 left-1 z-2 pointer flex items-center justify-center br0 bg-black-50 hover-bg-text-1 text-inverted bn w3 h3 f3 fw8"
+                  data-action="carousel#prev"
+                  aria-label="Previous slide"
+                >
+                  &lt;
+                </button>
+                <button
+                  type="button"
+                  class="button-reset absolute top-2 right-1 z-2 pointer flex items-center justify-center br0 bg-black-50 hover-bg-text-1 text-inverted bn w3 h3 f3 fw8"
+                  data-action="carousel#next"
+                  aria-label="Next slide"
+                >
+                  &gt;
+                </button>
+                <div
+                  class="absolute left-0 right-0 bottom-1 z-2 flex justify-center g2"
+                  aria-label="Slide indicators"
+                >
+                  <button
+                    type="button"
+                    class="button-reset pointer br-100 w1 h1 pa0 ba b--white bg-white"
+                    data-carousel-target="indicator"
+                    data-action="carousel#go"
+                    data-carousel-index-param="0"
+                    aria-current="true"
+                    aria-label="Slide 1"
+                  ></button>
+                  <button
+                    type="button"
+                    class="button-reset pointer br-100 w1 h1 pa0 ba b--white bg-white-40"
+                    data-carousel-target="indicator"
+                    data-action="carousel#go"
+                    data-carousel-index-param="1"
+                    aria-current="false"
+                    aria-label="Slide 2"
+                  ></button>
+                  <button
+                    type="button"
+                    class="button-reset pointer br-100 w1 h1 pa0 ba b--white bg-white-40"
+                    data-carousel-target="indicator"
+                    data-action="carousel#go"
+                    data-carousel-index-param="2"
+                    aria-current="false"
+                    aria-label="Slide 3"
+                  ></button>
+                </div>
+              </div>
+            </article>
+            <article class="bg-surface-base ba b--border-1 br0 overflow-hidden">
+              <div class="pa3 bg-surface-1 bb b--border-1">
+                <h3 class="f4 fw8 mt0 mb0">List group</h3>
+              </div>
+              <div class="ma3 ba b--border-1 br0 overflow-hidden">
+                <a
+                  href="#"
+                  class="link flex items-center justify-between g3 pa3 text-1 bg-surface-1 bb b--border-1"
+                  aria-current="true"
+                  ><span
+                    ><span class="db fw8">Active item</span>
+                    <span class="db f6 text-2"
+                      >Includes supporting copy</span
+                    ></span
+                  >
+                  <span class="dib br0 bg-text-1 text-inverted f7 fw8 ph2 pv1"
+                    >14</span
+                  ></a
+                >
+                <a
+                  href="#"
+                  class="link flex items-center justify-between g3 pa3 text-1 bg-surface-base hover-bg-surface-1 bb b--border-1"
+                  ><span>Second item</span>
+                  <span class="dib br0 bg-surface-3 text-1 f7 fw8 ph2 pv1"
+                    >8</span
+                  ></a
+                >
+                <a
+                  href="#"
+                  class="link flex items-center justify-between g3 pa3 text-1 bg-surface-base hover-bg-surface-1"
+                  ><span>Third item</span>
+                  <span class="dib br0 bg-surface-3 text-1 f7 fw8 ph2 pv1"
+                    >3</span
+                  ></a
+                >
+              </div>
+            </article>
+            <article
+              class="bg-surface-base ba b--border-1 br0 overflow-hidden"
+              data-controller="accordion"
+            >
+              <div class="pa3 bg-surface-1 bb b--border-1">
+                <h3 class="f4 fw8 mt0 mb0">Accordion and collapse</h3>
+              </div>
+              <div>
+                <div class="bb b--border-1">
+                  <button
+                    type="button"
+                    class="button-reset pointer w-100 flex items-center justify-between g3 bg-surface-base hover-bg-surface-1 text-1 bn pa3 fw8 tl"
+                    aria-expanded="true"
+                    data-accordion-target="button"
+                    data-action="accordion#toggle"
+                  >
+                    Accordion item one
+                    <span data-accordion-target="icon">-</span>
+                  </button>
+                  <div class="pa3 pt0 text-2" data-accordion-target="panel">
+                    This panel is visible by default and collapses when another
+                    item opens.
+                  </div>
+                </div>
+                <div class="bb b--border-1">
+                  <button
+                    type="button"
+                    class="button-reset pointer w-100 flex items-center justify-between g3 bg-surface-base hover-bg-surface-1 text-1 bn pa3 fw8 tl"
+                    aria-expanded="false"
+                    data-accordion-target="button"
+                    data-action="accordion#toggle"
+                  >
+                    Accordion item two
+                    <span data-accordion-target="icon">+</span>
+                  </button>
+                  <div
+                    class="pa3 pt0 text-2"
+                    data-accordion-target="panel"
+                    hidden=""
+                  >
+                    Accordion behavior is built with one small Stimulus
+                    controller.
+                  </div>
+                </div>
+                <div>
+                  <button
+                    type="button"
+                    class="button-reset pointer w-100 flex items-center justify-between g3 bg-surface-base hover-bg-surface-1 text-1 bn pa3 fw8 tl"
+                    aria-expanded="false"
+                    data-accordion-target="button"
+                    data-action="accordion#toggle"
+                  >
+                    Accordion item three
+                    <span data-accordion-target="icon">+</span>
+                  </button>
+                  <div
+                    class="pa3 pt0 text-2"
+                    data-accordion-target="panel"
+                    hidden=""
+                  >
+                    Content can be any HTML, including forms or list groups.
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article
+              class="bg-surface-base ba b--border-1 br0 overflow-hidden csp-full"
+            >
+              <div class="pa3 bg-surface-1 bb b--border-1">
+                <h3 class="f4 fw8 mt0 mb0">Responsive table</h3>
+              </div>
+              <div class="overflow-auto">
+                <table class="collapse w-100 f6">
+                  <thead>
+                    <tr class="tl text-2 bg-surface-1">
+                      <th class="fw8 pa3 bb b--border-1">Project</th>
+                      <th class="fw8 pa3 bb b--border-1">Status</th>
+                      <th class="fw8 pa3 bb b--border-1">Owner</th>
+                      <th class="fw8 pa3 bb b--border-1 tr">Budget</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="pa3 bb b--border-1">Catalog rebuild</td>
+                      <td class="pa3 bb b--border-1">
+                        <span
+                          class="dib br0 bg-washed-green dark-green ba b--dark-green f7 fw8 ph2 pv1 ttu tracked"
+                          >Live</span
+                        >
+                      </td>
+                      <td class="pa3 bb b--border-1">Mira Patel</td>
+                      <td class="pa3 bb b--border-1 tr tnum">$24,000</td>
+                    </tr>
+                    <tr>
+                      <td class="pa3 bb b--border-1">Checkout flow</td>
+                      <td class="pa3 bb b--border-1">
+                        <span
+                          class="dib br0 bg-washed-yellow text-1 ba b--gold f7 fw8 ph2 pv1 ttu tracked"
+                          >Queued</span
+                        >
+                      </td>
+                      <td class="pa3 bb b--border-1">Jonas Klein</td>
+                      <td class="pa3 bb b--border-1 tr tnum">$18,500</td>
+                    </tr>
+                    <tr>
+                      <td class="pa3">Notifications</td>
+                      <td class="pa3">
+                        <span
+                          class="dib br0 bg-washed-red dark-red ba b--dark-red f7 fw8 ph2 pv1 ttu tracked"
+                          >Blocked</span
+                        >
+                      </td>
+                      <td class="pa3">Aya Brooks</td>
+                      <td class="pa3 tr tnum">$9,200</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+          </div>
+        </section>
+        <section id="status" class="mb5" data-scrollspy-target="section">
+          <div class="mb3">
+            <p class="f7 fw8 ttu tracked text-2 mt0 mb1">Loading states</p>
+            <h2 class="f3 fw8 lh-title mt0 mb1">
+              Placeholders and utility states
+            </h2>
+          </div>
+          <div class="grid gtc1 gtc2-l g3">
+            <article class="pa3 bg-surface-base ba b--border-1 br0">
+              <h3 class="f4 fw8 mt0 mb3">Placeholder card</h3>
+              <div class="aspect-ratio--16x9 bg-surface-2 br0 mb3"></div>
+              <span class="db h1 bg-surface-3 br0 w-60 mb2"></span>
+              <span class="db h1 bg-surface-3 br0 w-80 mb2"></span>
+              <span class="db h1 bg-surface-3 br0 w-40"></span>
+            </article>
+            <article class="pa3 bg-surface-base ba b--border-1 br0">
+              <h3 class="f4 fw8 mt0 mb3">Bootstrap-like component checklist</h3>
+              <div class="grid gtc1 gtc2-m g2 f6">
+                <span>Accordion</span> <span>Alerts</span> <span>Badges</span>
+                <span>Breadcrumbs</span> <span>Buttons</span>
+                <span>Button groups</span> <span>Cards</span>
+                <span>Carousel</span> <span>Close button</span>
+                <span>Collapse</span> <span>Dropdowns</span> <span>Forms</span>
+                <span>Input group</span> <span>List group</span>
+                <span>Modal</span> <span>Navbar</span>
+                <span>Navs and tabs</span> <span>Offcanvas drawers</span>
+                <span>Pagination</span> <span>Placeholders</span>
+                <span>Popovers</span> <span>Progress</span>
+                <span>Scrollspy</span> <span>Spinners</span>
+                <span>Tables</span> <span>Toasts</span> <span>Tooltips</span>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script type="module">
+      import {
+        Application,
+        Controller,
+      } from "https://cdn.jsdelivr.net/npm/@hotwired/stimulus@3.2.2/+esm";
+
+      const application = Application.start();
+      window.uiApplication = application;
+
+      const classTokens = (value) => (value || "").split(/\s+/).filter(Boolean);
+
+      const swapClasses = (element, removeValue, addValue) => {
+        element.classList.remove(...classTokens(removeValue));
+        element.classList.add(...classTokens(addValue));
+      };
+
+      application.register(
+        "theme",
+        class extends Controller {
+          static targets = ["label"];
+
+          connect() {
+            this.set(document.documentElement.dataset.theme || "light");
+          }
+
+          toggle() {
+            this.set(
+              document.documentElement.dataset.theme === "dark"
+                ? "light"
+                : "dark",
+            );
+          }
+
+          set(theme) {
+            document.documentElement.dataset.theme = theme;
+            if (this.hasLabelTarget)
+              this.labelTarget.textContent =
+                theme === "dark" ? "Dark" : "Light";
+          }
+        },
+      );
+
+      application.register(
+        "scrollspy",
+        class extends Controller {
+          static targets = ["link", "section"];
+
+          connect() {
+            this.observer = new IntersectionObserver(
+              (entries) => {
+                const visible = entries
+                  .filter((entry) => entry.isIntersecting)
+                  .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+                if (visible) this.activate(visible.target.id);
+              },
+              { rootMargin: "-30% 0px -55% 0px", threshold: [0, 0.2, 0.6, 1] },
+            );
+
+            this.sectionTargets.forEach((section) =>
+              this.observer.observe(section),
+            );
+            if (this.sectionTargets[0])
+              this.activate(this.sectionTargets[0].id);
+          }
+
+          disconnect() {
+            if (this.observer) this.observer.disconnect();
+          }
+
+          activate(id) {
+            this.linkTargets.forEach((link) => {
+              const active = link.getAttribute("href") === `#${id}`;
+              link.setAttribute("aria-current", active ? "true" : "false");
+              swapClasses(
+                link,
+                active
+                  ? "text-2 b--transparent"
+                  : "text-1 bg-surface-2 b--text-1",
+                active
+                  ? "text-1 bg-surface-2 b--text-1"
+                  : "text-2 b--transparent",
+              );
+            });
+          }
+        },
+      );
+
+      application.register(
+        "toggle",
+        class extends Controller {
+          static targets = ["button", "content"];
+
+          toggle() {
+            const nextOpen = this.contentTargets.some(
+              (content) => content.hidden,
+            );
+            this.contentTargets.forEach((content) => {
+              content.hidden = !nextOpen;
+            });
+            this.buttonTargets.forEach((button) =>
+              button.setAttribute("aria-expanded", String(nextOpen)),
+            );
+          }
+        },
+      );
+
+      application.register(
+        "dropdown",
+        class extends Controller {
+          static targets = ["button", "menu"];
+
+          connect() {
+            this.boundOutside = this.outside.bind(this);
+            this.boundKeydown = this.keydown.bind(this);
+          }
+
+          toggle(event) {
+            event.stopPropagation();
+            this.menuTarget.hidden ? this.open() : this.close();
+          }
+
+          open() {
+            this.menuTarget.hidden = false;
+            this.buttonTarget.setAttribute("aria-expanded", "true");
+            document.addEventListener("click", this.boundOutside);
+            document.addEventListener("keydown", this.boundKeydown);
+          }
+
+          close() {
+            this.menuTarget.hidden = true;
+            this.buttonTarget.setAttribute("aria-expanded", "false");
+            document.removeEventListener("click", this.boundOutside);
+            document.removeEventListener("keydown", this.boundKeydown);
+          }
+
+          outside(event) {
+            if (!this.element.contains(event.target)) this.close();
+          }
+
+          keydown(event) {
+            if (event.key === "Escape") this.close();
+          }
+        },
+      );
+
+      application.register(
+        "tabs",
+        class extends Controller {
+          static targets = ["tab", "panel"];
+
+          connect() {
+            const selected = this.tabTargets.findIndex(
+              (tab) => tab.getAttribute("aria-selected") === "true",
+            );
+            this.show(selected >= 0 ? selected : 0);
+          }
+
+          select(event) {
+            this.show(this.tabTargets.indexOf(event.currentTarget));
+          }
+
+          show(index) {
+            this.tabTargets.forEach((tab, tabIndex) => {
+              const active = tabIndex === index;
+              tab.setAttribute("aria-selected", String(active));
+              tab.tabIndex = active ? 0 : -1;
+              swapClasses(
+                tab,
+                active ? tab.dataset.inactiveClass : tab.dataset.activeClass,
+                active ? tab.dataset.activeClass : tab.dataset.inactiveClass,
+              );
+            });
+            this.panelTargets.forEach((panel, panelIndex) => {
+              panel.hidden = panelIndex !== index;
+            });
+          }
+        },
+      );
+
+      application.register(
+        "accordion",
+        class extends Controller {
+          static targets = ["button", "panel", "icon"];
+
+          toggle(event) {
+            const index = this.buttonTargets.indexOf(event.currentTarget);
+            const isOpen =
+              event.currentTarget.getAttribute("aria-expanded") === "true";
+            this.buttonTargets.forEach((button, buttonIndex) => {
+              button.setAttribute(
+                "aria-expanded",
+                String(buttonIndex === index && !isOpen),
+              );
+            });
+            this.panelTargets.forEach((panel, panelIndex) => {
+              panel.hidden = !(panelIndex === index && !isOpen);
+            });
+            this.iconTargets.forEach((icon, iconIndex) => {
+              icon.textContent = iconIndex === index && !isOpen ? "-" : "+";
+            });
+          }
+        },
+      );
+
+      application.register(
+        "dismiss",
+        class extends Controller {
+          close() {
+            this.element.remove();
+          }
+        },
+      );
+
+      application.register(
+        "toast",
+        class extends Controller {
+          static targets = ["stack", "template"];
+
+          show() {
+            const toast =
+              this.templateTarget.content.firstElementChild.cloneNode(true);
+            this.stackTarget.prepend(toast);
+            window.setTimeout(() => toast.remove(), 6000);
+          }
+
+          dismiss(event) {
+            event.currentTarget.closest("[data-toast]").remove();
+          }
+        },
+      );
+
+      application.register(
+        "modal",
+        class extends Controller {
+          static targets = ["dialog"];
+
+          open() {
+            this.dialogTarget.showModal();
+          }
+
+          close() {
+            this.dialogTarget.close();
+          }
+
+          backdrop(event) {
+            if (event.target === this.dialogTarget) this.close();
+          }
+        },
+      );
+
+      application.register(
+        "drawer",
+        class extends Controller {
+          static targets = ["backdrop", "panel"];
+
+          connect() {
+            this.boundKeydown = this.keydown.bind(this);
+            this.boundFinishClose = this.finishClose.bind(this);
+            this.backdropTarget.dataset.drawerOpen = "false";
+            this.panelTarget.dataset.drawerOpen = "false";
+          }
+
+          open() {
+            window.clearTimeout(this.closeTimer);
+            this.backdropTarget.hidden = false;
+            this.panelTarget.hidden = false;
+            this.backdropTarget.dataset.drawerOpen = "false";
+            this.panelTarget.dataset.drawerOpen = "false";
+            document.body.classList.add("overflow-hidden");
+            document.addEventListener("keydown", this.boundKeydown);
+
+            window.requestAnimationFrame(() => {
+              window.requestAnimationFrame(() => {
+                this.backdropTarget.dataset.drawerOpen = "true";
+                this.panelTarget.dataset.drawerOpen = "true";
+              });
+            });
+          }
+
+          close() {
+            this.backdropTarget.dataset.drawerOpen = "false";
+            this.panelTarget.dataset.drawerOpen = "false";
+            document.body.classList.remove("overflow-hidden");
+            document.removeEventListener("keydown", this.boundKeydown);
+            this.panelTarget.addEventListener(
+              "transitionend",
+              this.boundFinishClose,
+              { once: true },
+            );
+            this.closeTimer = window.setTimeout(this.boundFinishClose, 240);
+          }
+
+          finishClose() {
+            window.clearTimeout(this.closeTimer);
+            this.panelTarget.removeEventListener(
+              "transitionend",
+              this.boundFinishClose,
+            );
+            this.backdropTarget.hidden = true;
+            this.panelTarget.hidden = true;
+          }
+
+          keydown(event) {
+            if (event.key === "Escape") this.close();
+          }
+        },
+      );
+
+      application.register(
+        "tooltip",
+        class extends Controller {
+          static targets = ["bubble"];
+
+          show() {
+            this.bubbleTarget.hidden = false;
+          }
+
+          hide() {
+            this.bubbleTarget.hidden = true;
+          }
+        },
+      );
+
+      application.register(
+        "popover",
+        class extends Controller {
+          static targets = ["button", "panel"];
+
+          connect() {
+            this.boundOutside = this.outside.bind(this);
+          }
+
+          toggle(event) {
+            event.stopPropagation();
+            this.panelTarget.hidden ? this.open() : this.close();
+          }
+
+          open() {
+            this.panelTarget.hidden = false;
+            this.buttonTarget.setAttribute("aria-expanded", "true");
+            document.addEventListener("click", this.boundOutside);
+          }
+
+          close() {
+            this.panelTarget.hidden = true;
+            this.buttonTarget.setAttribute("aria-expanded", "false");
+            document.removeEventListener("click", this.boundOutside);
+          }
+
+          outside(event) {
+            if (!this.element.contains(event.target)) this.close();
+          }
+        },
+      );
+
+      application.register(
+        "carousel",
+        class extends Controller {
+          static targets = ["slide", "indicator"];
+
+          connect() {
+            this.index = 0;
+            this.show(this.index);
+          }
+
+          next() {
+            this.show(this.index + 1);
+          }
+
+          prev() {
+            this.show(this.index - 1);
+          }
+
+          go(event) {
+            this.show(event.params.index);
+          }
+
+          show(index) {
+            this.index =
+              (index + this.slideTargets.length) % this.slideTargets.length;
+            this.slideTargets.forEach((slide, slideIndex) => {
+              slide.hidden = slideIndex !== this.index;
+            });
+            this.indicatorTargets.forEach((indicator, indicatorIndex) => {
+              const active = indicatorIndex === this.index;
+              indicator.setAttribute("aria-current", String(active));
+              swapClasses(
+                indicator,
+                active ? "bg-white-40" : "bg-white",
+                active ? "bg-white" : "bg-white-40",
+              );
+            });
+          }
+        },
+      );
+
+      application.register(
+        "range",
+        class extends Controller {
+          static targets = ["input", "output"];
+
+          connect() {
+            this.update();
+          }
+
+          update() {
+            this.outputTarget.value = this.inputTarget.value;
+            this.outputTarget.textContent = this.inputTarget.value;
+          }
+        },
+      );
+
+      application.register(
+        "validation",
+        class extends Controller {
+          submit(event) {
+            event.preventDefault();
+            this.element.dataset.validated = "true";
+            if (this.element.checkValidity()) {
+              this.element.querySelector("[type='submit']").textContent =
+                "Valid";
+            }
+          }
+        },
+      );
+    </script>
+  </body>
+</html>
