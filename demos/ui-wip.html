@@ -3,6 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (() => {
+        try {
+          const theme = localStorage.getItem("tachyons-neo-theme");
+          if (theme === "dark" || theme === "light")
+            document.documentElement.dataset.theme = theme;
+        } catch {}
+      })();
+    </script>
     <title>Tachyons Neo UI Components</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="../tachyons.css" />
@@ -175,6 +184,8 @@
           <button
             type="button"
             class="button-reset link pointer inline-flex items-center g2 bg-transparent hover-bg-surface-2 text-1 ba b--transparent br0 ph2 ph3-ns pv2 f6 fw6"
+            aria-pressed="false"
+            data-theme-toggle
             data-action="theme#toggle"
           >
             <span aria-hidden="true">◐</span>
@@ -1736,14 +1747,83 @@
                 <span>Navs and tabs</span> <span>Offcanvas drawers</span>
                 <span>Pagination</span> <span>Placeholders</span>
                 <span>Popovers</span> <span>Progress</span>
-                <span>Scrollspy</span> <span>Spinners</span>
-                <span>Tables</span> <span>Toasts</span> <span>Tooltips</span>
+                <span>Scrollspy</span> <span>Spinners</span> <span>Tables</span>
+                <span>Toasts</span> <span>Tooltips</span>
               </div>
             </article>
           </div>
         </section>
       </main>
     </div>
+    <script>
+      (() => {
+        const storageKey = "tachyons-neo-theme";
+        const validTheme = (theme) => theme === "dark" || theme === "light";
+        const storedTheme = () => {
+          try {
+            const theme = localStorage.getItem(storageKey);
+            return validTheme(theme) ? theme : null;
+          } catch {
+            return null;
+          }
+        };
+        const persistTheme = (theme) => {
+          try {
+            localStorage.setItem(storageKey, theme);
+          } catch {}
+        };
+        const currentTheme = () =>
+          validTheme(document.documentElement.dataset.theme)
+            ? document.documentElement.dataset.theme
+            : "light";
+        const syncControls = (theme) => {
+          document
+            .querySelectorAll("[data-theme-target='label']")
+            .forEach((label) => {
+              label.textContent = theme === "dark" ? "Dark" : "Light";
+            });
+          document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+            button.setAttribute("aria-pressed", String(theme === "dark"));
+            button.setAttribute(
+              "aria-label",
+              `${theme === "dark" ? "Dark" : "Light"} theme`,
+            );
+          });
+        };
+        const setTheme = (theme, options = {}) => {
+          const nextTheme = validTheme(theme) ? theme : "light";
+          document.documentElement.dataset.theme = nextTheme;
+          if (options.persist !== false) persistTheme(nextTheme);
+
+          if (document.readyState === "loading") {
+            document.addEventListener(
+              "DOMContentLoaded",
+              () => syncControls(nextTheme),
+              { once: true },
+            );
+          } else {
+            syncControls(nextTheme);
+          }
+        };
+
+        window.tachyonsNeoTheme = {
+          set: setTheme,
+          sync() {
+            setTheme(storedTheme() || currentTheme(), { persist: false });
+          },
+          toggle() {
+            setTheme(currentTheme() === "dark" ? "light" : "dark");
+          },
+        };
+
+        window.tachyonsNeoTheme.sync();
+        document.addEventListener("click", (event) => {
+          const button = event.target.closest("[data-theme-toggle]");
+          if (!button || button.dataset.themeStimulus === "true") return;
+          window.tachyonsNeoTheme.toggle();
+        });
+      })();
+    </script>
     <script type="module">
       import {
         Application,
@@ -1766,22 +1846,25 @@
           static targets = ["label"];
 
           connect() {
-            this.set(document.documentElement.dataset.theme || "light");
+            this.element
+              .querySelectorAll("[data-theme-toggle]")
+              .forEach((button) => {
+                button.dataset.themeStimulus = "true";
+              });
+            window.tachyonsNeoTheme.sync();
           }
 
-          toggle() {
-            this.set(
-              document.documentElement.dataset.theme === "dark"
-                ? "light"
-                : "dark",
-            );
+          disconnect() {
+            this.element
+              .querySelectorAll("[data-theme-toggle]")
+              .forEach((button) => {
+                delete button.dataset.themeStimulus;
+              });
           }
 
-          set(theme) {
-            document.documentElement.dataset.theme = theme;
-            if (this.hasLabelTarget)
-              this.labelTarget.textContent =
-                theme === "dark" ? "Dark" : "Light";
+          toggle(event) {
+            event.preventDefault();
+            window.tachyonsNeoTheme.toggle();
           }
         },
       );
