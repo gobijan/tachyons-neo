@@ -210,7 +210,7 @@ curl -O \
       <div class="tnum f3 f1-l fw9 lh-solid w-100 w-10-l">06</div>
       <div class="w-100 w-40-l pr4-l">
         <h2 class="ttu tracked f5 f4-l fw7 mt0 mb3">Grid system</h2>
-        <p class="lh-copy mt0 measure">A small, opinionated CSS&nbsp;Grid layer — equal-fraction, shrink-safe columns and column spans. Pairs with the gap scale. Responsive variants query the nearest container.</p>
+        <p class="lh-copy mt0 measure">A small, opinionated CSS&nbsp;Grid layer — grid and grid-lanes display utilities, equal-fraction shrink-safe columns, and column spans. Pairs with the gap scale. Responsive variants query the nearest container.</p>
 
         <div class="grid gtc4 g2 mt4 h3 grid-demo near-black" aria-hidden="true">
           <div class="csp1"></div>
@@ -218,17 +218,18 @@ curl -O \
           <div class="csp1"></div>
         </div>
       </div>
-      <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>.grid     display: grid
+      <pre class="w-100 w-50-l ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>.grid       display: grid
+.grid-lanes display: grid-lanes
 
-.gtc1     grid-template-columns: repeat(1, minmax(0, 1fr))
-.gtc2     grid-template-columns: repeat(2, minmax(0, 1fr))
-.gtc3     grid-template-columns: repeat(3, minmax(0, 1fr))
-.gtc4     grid-template-columns: repeat(4, minmax(0, 1fr))
+.gtc1       grid-template-columns: repeat(1, minmax(0, 1fr))
+.gtc2       grid-template-columns: repeat(2, minmax(0, 1fr))
+.gtc3       grid-template-columns: repeat(3, minmax(0, 1fr))
+.gtc4       grid-template-columns: repeat(4, minmax(0, 1fr))
 
-.csp1     grid-column: span 1
-.csp2     grid-column: span 2
-.csp3     grid-column: span 3
-.csp-full grid-column: 1 / -1</code></pre>
+.csp1       grid-column: span 1
+.csp2       grid-column: span 2
+.csp3       grid-column: span 3
+.csp-full   grid-column: 1 / -1</code></pre>
     </article>
 
     <!-- 07 -->

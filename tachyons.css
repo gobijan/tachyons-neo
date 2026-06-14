@@ -11,7 +11,7 @@ The -m size still has no upper bound, so -m styles continue at large unless over
 There is a new class for inverting images using a filter: .invert
 Added .g0-7 utility classes for Gap (flex and grid).
 Added .dvh-* variations mirroring .vh-* for mobile devices with dynamic toolbars.
-Added a small grid system: .grid and .gtc1-4, .csp1-3, .csp-full; .gtc* tracks use minmax(0, 1fr).
+Added a small grid system: .grid, .grid-lanes, .gtc1-4, .csp1-3, .csp-full; .gtc* tracks use minmax(0, 1fr).
 Added .blur (backdrop) and .list-inside utilities.
 Added .lh-headline (tight leading for display type) and .tnum (tabular figures).
 Added .root utility for declaring component query roots.
@@ -2472,6 +2472,7 @@ img { max-width: 100% }
 }
 
 .grid { display: grid; }
+.grid-lanes { display: grid-lanes; }
 
 .gtc1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
 .gtc2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -2485,6 +2486,7 @@ img { max-width: 100% }
 
 @container (min-width: 30em) {
   .grid-ns { display: grid; }
+  .grid-lanes-ns { display: grid-lanes; }
   .gtc1-ns { grid-template-columns: repeat(1, minmax(0, 1fr)); }
   .gtc2-ns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gtc3-ns { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -2497,6 +2499,7 @@ img { max-width: 100% }
 
 @container (min-width: 48em) {
   .grid-m { display: grid; }
+  .grid-lanes-m { display: grid-lanes; }
   .gtc1-m { grid-template-columns: repeat(1, minmax(0, 1fr)); }
   .gtc2-m { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gtc3-m { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -2509,6 +2512,7 @@ img { max-width: 100% }
 
 @container (min-width: 64em) {
   .grid-l { display: grid; }
+  .grid-lanes-l { display: grid-lanes; }
   .gtc1-l { grid-template-columns: repeat(1, minmax(0, 1fr)); }
   .gtc2-l { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gtc3-l { grid-template-columns: repeat(3, minmax(0, 1fr)); }
