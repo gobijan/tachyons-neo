@@ -26,8 +26,8 @@ For application UI, load the optional semantic layer after the core utilities:
 Or load from jsDelivr:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v2.0.0/tachyons.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v2.0.0/app.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v2.0.1/tachyons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v2.0.1/app.css">
 ```
 
 Pin to a tag for production. For floating major, use `@2`; for bleeding-edge off `main`, drop the ref entirely (`.../tachyons-neo/tachyons.css`).
@@ -118,6 +118,14 @@ Brand, action, and state colours expose seven utilities: `.color`, `.bg-color`, 
 Release notes, newest first.
 
 <!-- CHANGELOG:INSERT -->
+### v2.0.1 — 2026-06-14
+
+- Move grid helpers into utility order
+- Move grid display utilities into display group
+- Add grid-lanes display utility
+- use sizing var in form example
+- more fix
+
 ### v2.0.0 — 2026-06-08
 
 - Responsive `-ns`, `-m`, and `-l` variants now use container queries instead of viewport media queries.
