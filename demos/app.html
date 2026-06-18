@@ -1,7 +1,7 @@
 <!--
   Application shell — app.css semantic token demo
   Covers: bg-surface-*, text-*, b--border-*, accent/state/on-* utilities,
-  focus helpers, root theme defaults, and scoped data-theme="dark" surfaces.
+  focus helpers, fade-y popover motion, root theme defaults, and scoped data-theme="dark" surfaces.
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +11,17 @@
   <title>Application shell — tachyons-neo demo</title>
   <link rel="stylesheet" href="../tachyons.css">
   <link rel="stylesheet" href="../app.css">
+  <style>
+    .app-popover {
+      position: absolute;
+      position-anchor: var(--anchor);
+      position-try-fallbacks: flip-block, flip-inline;
+      inset: auto;
+      top: anchor(bottom);
+      right: anchor(right);
+      margin: var(--spacing-2) 0 0;
+    }
+  </style>
 </head>
 <body class="sans-serif lh-copy">
 
@@ -83,7 +94,12 @@
                 <h3 class="f4 fw7 lh-title mt0 mb1">Recent orders</h3>
                 <p class="f6 text-2 mt0 mb0">Synced 2 minutes ago</p>
               </div>
-              <button class="button-reset bg-surface-base text-1 ba b--border-1 hover-bg-surface-2 focus-ring pointer br3 ph3 pv2 f6">Export</button>
+              <button popovertarget="order-export-menu" class="button-reset bg-surface-base text-1 ba b--border-1 hover-bg-surface-2 focus-ring pointer br3 ph3 pv2 f6" style="anchor-name: --order-export;">Export</button>
+              <div id="order-export-menu" popover class="app-popover fade-y bg-surface-base text-1 ba b--border-1 br3 shadow-3 pa2 f6 fw5" style="--anchor: --order-export;">
+                <a href="#" class="db link text-1 hover-bg-surface-2 br2 pa2">Download CSV</a>
+                <a href="#" class="db link text-1 hover-bg-surface-2 br2 pa2">Send to finance</a>
+                <button class="button-reset db w-100 tl pointer bg-transparent danger hover-bg-danger hover-text-inverted bn br2 pa2 f6">Archive batch</button>
+              </div>
             </div>
           </div>
 
@@ -94,23 +110,27 @@
                   <th class="fw6 pa3 bb b--border-1">Customer</th>
                   <th class="fw6 pa3 bb b--border-1">Status</th>
                   <th class="fw6 pa3 bb b--border-1 tr">Total</th>
+                  <th class="fw6 pa3 bb b--border-1 tr">Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="pa3 bb b--border-1">Mira Patel</td>
+                <tr class="hide-child hover-bg-surface-2 bg-animate">
+                  <td class="pa3 bb b--border-1"><a href="#" class="link text-1 focus-ring br2">Mira Patel</a></td>
                   <td class="pa3 bb b--border-1"><span class="f7 fw7 ttu tracked bg-success on-success br-pill ph2 pv1">Paid</span></td>
                   <td class="pa3 bb b--border-1 tr tnum">$480</td>
+                  <td class="pa3 bb b--border-1 tr"><a href="#" class="child link dib text-2 hover-text-1 focus-ring br2 ph2 pv1">Open</a></td>
                 </tr>
-                <tr>
-                  <td class="pa3 bb b--border-1">Jonas Klein</td>
+                <tr class="hide-child hover-bg-surface-2 bg-animate">
+                  <td class="pa3 bb b--border-1"><a href="#" class="link text-1 focus-ring br2">Jonas Klein</a></td>
                   <td class="pa3 bb b--border-1"><span class="f7 fw7 ttu tracked bg-info on-info br-pill ph2 pv1">Pending</span></td>
                   <td class="pa3 bb b--border-1 tr tnum">$126</td>
+                  <td class="pa3 bb b--border-1 tr"><a href="#" class="child link dib text-2 hover-text-1 focus-ring br2 ph2 pv1">Open</a></td>
                 </tr>
-                <tr>
-                  <td class="pa3">Aya Brooks</td>
+                <tr class="hide-child hover-bg-surface-2 bg-animate">
+                  <td class="pa3"><a href="#" class="link text-1 focus-ring br2">Aya Brooks</a></td>
                   <td class="pa3"><span class="f7 fw7 ttu tracked bg-danger on-danger br-pill ph2 pv1">Failed</span></td>
                   <td class="pa3 tr tnum">$76</td>
+                  <td class="pa3 tr"><a href="#" class="child link dib text-2 hover-text-1 focus-ring br2 ph2 pv1">Open</a></td>
                 </tr>
               </tbody>
             </table>

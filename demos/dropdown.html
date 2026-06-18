@@ -1,5 +1,5 @@
 <!--
-  Dropdown — Popover API · CSS Anchor Positioning · @starting-style · transition-behavior: allow-discrete
+  Dropdown — Popover API · CSS Anchor Positioning · app.css .fade-y · allow-discrete
   Zero-JS. Rails-ready markup.
 -->
 <!DOCTYPE html>
@@ -9,30 +9,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dropdown — tachyons-neo demo</title>
   <link rel="stylesheet" href="../tachyons.css">
+  <link rel="stylesheet" href="../app.css">
   <style>
     .dropdown-menu {
       position: absolute;
       position-anchor: var(--anchor);
       position-try-fallbacks: flip-block, flip-inline;
+      inset: auto;
       top: anchor(bottom);
       left: anchor(left);
       margin: 0;
-      opacity: 1;
-      transform: translateY(0);
-      /* allow-discrete keeps the element displayed long enough for the exit transition */
-      transition: opacity var(--duration-fast) ease, transform var(--duration-fast) ease, display var(--duration-fast) allow-discrete;
-    }
-
-    .dropdown-menu:not(:popover-open) {
-      opacity: 0;
-      transform: translateY(-8px);
-    }
-
-    @starting-style {
-      .dropdown-menu:popover-open {
-        opacity: 0;
-        transform: translateY(-8px);
-      }
     }
   </style>
 </head>
@@ -53,12 +39,12 @@
     <div
       id="dropdown-1"
       popover
-      class="dropdown-menu pa2 bg-white shadow-3 br4 f6 fw5 bn"
+      class="dropdown-menu fade-y pa2 bg-white shadow-3 br4 f6 fw5 bn"
       style="--anchor: --anchor-1;"
     >
-      <a href="#" class="db pa2 no-underline dark-gray hover-bg-light-gray bg-animate br3">Edit</a>
-      <a href="#" class="db pa2 no-underline dark-gray hover-bg-light-gray bg-animate br3">Duplicate</a>
-      <a href="#" class="db pa2 no-underline dark-gray hover-bg-light-gray bg-animate br3">Delete</a>
+      <a href="#" class="db pa2 no-underline dark-gray hover-bg-light-gray bg-animate br3 active-dim">Edit</a>
+      <a href="#" class="db pa2 no-underline dark-gray hover-bg-light-gray bg-animate br3 active-dim">Duplicate</a>
+      <a href="#" class="db pa2 no-underline dark-gray hover-bg-light-gray bg-animate br3 active-dim">Delete</a>
     </div>
   </div>
 

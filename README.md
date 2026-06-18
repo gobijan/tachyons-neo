@@ -88,7 +88,7 @@ See [`tachyons.css`](tachyons.css) or the [live docs](https://screenisland.com/t
 
 ## § 03 — Application CSS
 
-`app.css` is a small semantic layer for product UI. It does not add components. Set a few colours and the derived palette follows: `light-dark()` selects theme defaults, `color-mix()` builds text, surface, border, and focus ramps, and `contrast-color()` returns black or white foregrounds for `on-*` helpers. Accent and focus use Apple-style System Blue by default, with a Display P3 override.
+`app.css` is a small semantic layer for product UI. It does not add components. Set a few colours and the derived palette follows: `light-dark()` selects theme defaults, `color-mix()` builds text, surface, border, and focus ramps, and `contrast-color()` returns black or white foregrounds for `on-*` helpers. Accent and focus share one seed.
 
 ```html
 <link rel="stylesheet" href="tachyons.css">
@@ -122,7 +122,7 @@ Use `data-theme="light"` or `data-theme="dark"` on `html` or any subtree to forc
 </aside>
 ```
 
-Accent and state colours expose seven utilities: `.color`, `.bg-color`, `.b--color`, `.on-color`, `.hover-color`, `.hover-bg-color`, and `.hover-b--color`. Text, surface, and border ramps omit `on-*` and expose the other six utilities, for example `.surface-1`, `.bg-surface-1`, `.b--surface-1`, `.hover-surface-1`, `.hover-bg-surface-1`, and `.hover-b--surface-1`. Focus helpers are `.focus-ring`, `.focus-ring-box`, and `.hover-border`.
+Accent and state colours expose seven utilities: `.color`, `.bg-color`, `.b--color`, `.on-color`, `.hover-color`, `.hover-bg-color`, and `.hover-b--color`. Text, surface, and border ramps omit `on-*` and expose the other six utilities, for example `.surface-1`, `.bg-surface-1`, `.b--surface-1`, `.hover-surface-1`, `.hover-bg-surface-1`, and `.hover-b--surface-1`. Focus helpers are `.focus-ring`, `.focus-ring-box`, and `.hover-border`; `.fade-y` adds token-timed y-axis entrance motion to popovers and open dialogs. Use Tachyons' `.hide-child .child` for child reveal.
 
 ---
 
