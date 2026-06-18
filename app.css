@@ -7,219 +7,76 @@
 :root {
   color-scheme: light dark;
 
-  /* Identity and actions */
-  --brand-light: var(--black);
-  --brand-dark: var(--white);
-  --action-light: #007aff;
-  --action-dark: #0a84ff;
-  --on-brand-light: var(--white);
-  --on-brand-dark: var(--black);
-  --on-action-light: var(--white);
-  --on-action-dark: var(--white);
-
-  /* Text */
-  --text-1-light: var(--black-90);
-  --text-1-dark: var(--white-90);
-  --text-2-light: var(--black-60);
-  --text-2-dark: var(--white-60);
-  --text-3-light: var(--black-40);
-  --text-3-dark: var(--white-40);
-  --text-inverted-light: var(--white-90);
-  --text-inverted-dark: var(--black-90);
-
-  /* Surfaces */
+  /* Seeds */
+  --accent-light: var(--light-blue);
+  --accent-dark: var(--light-blue);
   --surface-base-light: var(--white);
-  --surface-base-dark: var(--black);
-  --surface-1-light: var(--black-0125);
-  --surface-2-light: var(--black-025);
-  --surface-3-light: var(--black-05);
-  --surface-4-light: var(--black-10);
-  --surface-1-dark: var(--white-0125);
-  --surface-2-dark: var(--white-025);
-  --surface-3-dark: var(--white-05);
-  --surface-4-dark: var(--white-10);
-
-  /* Borders */
-  --border-1-light: var(--black-10);
-  --border-1-dark: var(--white-10);
-  --border-2-light: var(--black-20);
-  --border-2-dark: var(--white-20);
-  --border-3-light: var(--black-30);
-  --border-3-dark: var(--white-30);
-
-  /* State */
+  --surface-base-dark: oklch(0.08 0 0);
+  --ink-light: var(--black);
+  --ink-dark: var(--white);
   --danger-light: var(--dark-red);
   --danger-dark: var(--light-red);
-  --success-light: var(--dark-green);
+  --success-light: var(--green);
   --success-dark: var(--light-green);
   --warning-light: var(--orange);
   --warning-dark: var(--yellow);
-  --info-light: var(--dark-blue);
+  --info-light: var(--light-blue);
   --info-dark: var(--light-blue);
-  --on-danger-light: var(--white);
-  --on-danger-dark: var(--black);
-  --on-success-light: var(--white);
-  --on-success-dark: var(--black);
-  --on-warning-light: var(--black);
-  --on-warning-dark: var(--black);
-  --on-info-light: var(--white);
-  --on-info-dark: var(--black);
 
-  /* Focus and motion */
-  --focus-light: var(--action-light);
-  --focus-dark: var(--action-dark);
+  /* Theme-aware public seeds */
+  --accent: light-dark(var(--accent-light), var(--accent-dark));
+  --surface-base: light-dark(var(--surface-base-light), var(--surface-base-dark));
+  --ink: light-dark(var(--ink-light), var(--ink-dark));
+  --danger: light-dark(var(--danger-light), var(--danger-dark));
+  --success: light-dark(var(--success-light), var(--success-dark));
+  --warning: light-dark(var(--warning-light), var(--warning-dark));
+  --info: light-dark(var(--info-light), var(--info-dark));
+
+  /* Derived text, surfaces, borders, and contrast */
+  --text-1: color-mix(in srgb, var(--ink) 90%, transparent);
+  --text-2: color-mix(in srgb, var(--ink) 60%, transparent);
+  --text-3: color-mix(in srgb, var(--ink) 40%, transparent);
+  --text-inverted: contrast-color(var(--ink));
+  --surface-1: color-mix(in oklch, var(--surface-base), var(--ink) 5%);
+  --surface-2: color-mix(in oklch, var(--surface-base), var(--ink) 8%);
+  --surface-3: color-mix(in oklch, var(--surface-base), var(--ink) 12%);
+  --surface-4: color-mix(in oklch, var(--surface-base), var(--ink) 16%);
+  --border-1: color-mix(in srgb, var(--ink) 10%, transparent);
+  --border-2: color-mix(in srgb, var(--ink) 20%, transparent);
+  --border-3: color-mix(in srgb, var(--ink) 30%, transparent);
+  --on-accent: contrast-color(var(--accent));
+  --on-danger: contrast-color(var(--danger));
+  --on-success: contrast-color(var(--success));
+  --on-warning: contrast-color(var(--warning));
+  --on-info: contrast-color(var(--info));
+  --focus: var(--accent);
   --focus-offset: 2px;
-
-  /* Light theme = default aliases */
-  --brand: var(--brand-light);
-  --action: var(--action-light);
-  --on-brand: var(--on-brand-light);
-  --on-action: var(--on-action-light);
-  --text-1: var(--text-1-light);
-  --text-2: var(--text-2-light);
-  --text-3: var(--text-3-light);
-  --text-inverted: var(--text-inverted-light);
-  --surface-base: var(--surface-base-light);
-  --surface-1: var(--surface-1-light);
-  --surface-2: var(--surface-2-light);
-  --surface-3: var(--surface-3-light);
-  --surface-4: var(--surface-4-light);
-  --border-1: var(--border-1-light);
-  --border-2: var(--border-2-light);
-  --border-3: var(--border-3-light);
-  --danger: var(--danger-light);
-  --success: var(--success-light);
-  --warning: var(--warning-light);
-  --info: var(--info-light);
-  --on-danger: var(--on-danger-light);
-  --on-success: var(--on-success-light);
-  --on-warning: var(--on-warning-light);
-  --on-info: var(--on-info-light);
-  --focus: var(--focus-light);
-  --focus-ring: 0 0 0 3px color-mix(in srgb, var(--focus), transparent 70%);
-
-  accent-color: var(--action);
+  --focus-ring: 0 0 0 3px color-mix(in srgb, var(--focus) 30%, transparent);
 }
 
-@supports (color: color(display-p3 0 0 0)) {
-  :root {
-    --action-light: color(display-p3 0 0.478 1);
-    --action-dark: color(display-p3 0.039 0.518 1);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --brand: var(--brand-dark);
-    --action: var(--action-dark);
-    --on-brand: var(--on-brand-dark);
-    --on-action: var(--on-action-dark);
-    --text-1: var(--text-1-dark);
-    --text-2: var(--text-2-dark);
-    --text-3: var(--text-3-dark);
-    --text-inverted: var(--text-inverted-dark);
-    --surface-base: var(--surface-base-dark);
-    --surface-1: var(--surface-1-dark);
-    --surface-2: var(--surface-2-dark);
-    --surface-3: var(--surface-3-dark);
-    --surface-4: var(--surface-4-dark);
-    --border-1: var(--border-1-dark);
-    --border-2: var(--border-2-dark);
-    --border-3: var(--border-3-dark);
-    --danger: var(--danger-dark);
-    --success: var(--success-dark);
-    --warning: var(--warning-dark);
-    --info: var(--info-dark);
-    --on-danger: var(--on-danger-dark);
-    --on-success: var(--on-success-dark);
-    --on-warning: var(--on-warning-dark);
-    --on-info: var(--on-info-dark);
-    --focus: var(--focus-dark);
-  }
+:root,
+[data-theme] {
+  accent-color: var(--accent);
 }
 
 [data-theme="light"] {
   color-scheme: light;
-  accent-color: var(--action);
-  --brand: var(--brand-light);
-  --action: var(--action-light);
-  --on-brand: var(--on-brand-light);
-  --on-action: var(--on-action-light);
-  --text-1: var(--text-1-light);
-  --text-2: var(--text-2-light);
-  --text-3: var(--text-3-light);
-  --text-inverted: var(--text-inverted-light);
-  --surface-base: var(--surface-base-light);
-  --surface-1: var(--surface-1-light);
-  --surface-2: var(--surface-2-light);
-  --surface-3: var(--surface-3-light);
-  --surface-4: var(--surface-4-light);
-  --border-1: var(--border-1-light);
-  --border-2: var(--border-2-light);
-  --border-3: var(--border-3-light);
-  --danger: var(--danger-light);
-  --success: var(--success-light);
-  --warning: var(--warning-light);
-  --info: var(--info-light);
-  --on-danger: var(--on-danger-light);
-  --on-success: var(--on-success-light);
-  --on-warning: var(--on-warning-light);
-  --on-info: var(--on-info-light);
-  --focus: var(--focus-light);
 }
 
 [data-theme="dark"] {
   color-scheme: dark;
-  accent-color: var(--action);
-  --brand: var(--brand-dark);
-  --action: var(--action-dark);
-  --on-brand: var(--on-brand-dark);
-  --on-action: var(--on-action-dark);
-  --text-1: var(--text-1-dark);
-  --text-2: var(--text-2-dark);
-  --text-3: var(--text-3-dark);
-  --text-inverted: var(--text-inverted-dark);
-  --surface-base: var(--surface-base-dark);
-  --surface-1: var(--surface-1-dark);
-  --surface-2: var(--surface-2-dark);
-  --surface-3: var(--surface-3-dark);
-  --surface-4: var(--surface-4-dark);
-  --border-1: var(--border-1-dark);
-  --border-2: var(--border-2-dark);
-  --border-3: var(--border-3-dark);
-  --danger: var(--danger-dark);
-  --success: var(--success-dark);
-  --warning: var(--warning-dark);
-  --info: var(--info-dark);
-  --on-danger: var(--on-danger-dark);
-  --on-success: var(--on-success-dark);
-  --on-warning: var(--on-warning-dark);
-  --on-info: var(--on-info-dark);
-  --focus: var(--focus-dark);
 }
 
-.brand { color: var(--brand); }
-.bg-brand { background-color: var(--brand); }
-.b--brand { border-color: var(--brand); }
-.on-brand { color: var(--on-brand); }
-.hover-brand:hover,
-.hover-brand:focus-visible { color: var(--brand); }
-.hover-bg-brand:hover,
-.hover-bg-brand:focus-visible { background-color: var(--brand); }
-.hover-b--brand:hover,
-.hover-b--brand:focus-visible { border-color: var(--brand); }
-
-.action { color: var(--action); }
-.bg-action { background-color: var(--action); }
-.b--action { border-color: var(--action); }
-.on-action { color: var(--on-action); }
-.hover-action:hover,
-.hover-action:focus-visible { color: var(--action); }
-.hover-bg-action:hover,
-.hover-bg-action:focus-visible { background-color: var(--action); }
-.hover-b--action:hover,
-.hover-b--action:focus-visible { border-color: var(--action); }
+.accent { color: var(--accent); }
+.bg-accent { background-color: var(--accent); }
+.b--accent { border-color: var(--accent); }
+.on-accent { color: var(--on-accent); }
+.hover-accent:hover,
+.hover-accent:focus-visible { color: var(--accent); }
+.hover-bg-accent:hover,
+.hover-bg-accent:focus-visible { background-color: var(--accent); }
+.hover-b--accent:hover,
+.hover-b--accent:focus-visible { border-color: var(--accent); }
 
 .text-1 { color: var(--text-1); }
 .bg-text-1 { background-color: var(--text-1); }
@@ -410,8 +267,8 @@ body {
 }
 
 ::selection {
-  color: var(--on-action);
-  background-color: var(--action);
+  color: var(--on-accent);
+  background-color: var(--accent);
 }
 
 } /* end @layer reset */

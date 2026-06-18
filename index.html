@@ -331,7 +331,7 @@ curl -O \
 &lt;button class="btn bg-gold"&gt;  → purple
 
 /* optional app.css — layered, beats utilities */
-@layer app { .bg-action { background: var(--action) } }
+@layer app { .bg-accent { background: var(--accent) } }
 
 /* your reset — layered, utilities win */
 @layer reset { dialog { padding: 0 } }
@@ -603,10 +603,10 @@ curl -O \
     <div class="grid-l gtc3-l g4-l mb4 mb5-ns">
       <div class="csp2-l">
         <p class="f4 f3-l lh-copy measure-wide mt0 mb0">
-          <code class="ph1 bg-light-blue near-black">app.css</code> is an optional semantic layer for product UI. It maps the core tokens into theme-aware names for surfaces, text, borders, actions, states, and focus rings. Neutral text, surface, and border ramps use the black/white transparency ladder; action and focus use Apple-style System Blue with a Display P3 override. Load it after <code class="ph1 bg-light-blue near-black">tachyons.css</code>; use <code class="ph1 bg-light-blue near-black">data-theme</code> on the root or any subtree to force light or dark.
+          <code class="ph1 bg-light-blue near-black">app.css</code> is an optional semantic layer for product UI. Set a few seeds for accent, state, surface, and ink colours; text, surfaces, borders, focus rings, and contrasting foregrounds derive from there. Load it after <code class="ph1 bg-light-blue near-black">tachyons.css</code>; use <code class="ph1 bg-light-blue near-black">data-theme</code> on the root or any subtree to force light or dark.
         </p>
         <p class="f5 lh-copy measure-wide mt3 mb0">
-          Brand, action, and state colours expose seven utilities: <code class="ph1 bg-light-blue near-black">.color</code>, <code class="ph1 bg-light-blue near-black">.bg-color</code>, <code class="ph1 bg-light-blue near-black">.b--color</code>, <code class="ph1 bg-light-blue near-black">.on-color</code>, <code class="ph1 bg-light-blue near-black">.hover-color</code>, <code class="ph1 bg-light-blue near-black">.hover-bg-color</code>, and <code class="ph1 bg-light-blue near-black">.hover-b--color</code>. Text, surface, and border ramps omit <code class="ph1 bg-light-blue near-black">on-*</code> and expose the other six utilities.
+          <code class="ph1 bg-light-blue near-black">light-dark()</code> picks theme defaults, <code class="ph1 bg-light-blue near-black">color-mix()</code> builds ramps, and <code class="ph1 bg-light-blue near-black">contrast-color()</code> returns black or white for <code class="ph1 bg-light-blue near-black">on-*</code>. Accent and state colours expose seven utilities; text, surface, and border ramps omit <code class="ph1 bg-light-blue near-black">on-*</code> and expose the other six.
         </p>
       </div>
       <aside class="mt4 mt0-l csp1-l">
@@ -626,7 +626,7 @@ curl -O \
               <h3 class="f4 fw7 lh-title mt0 mb1">Orders</h3>
               <p class="f6 text-2 lh-copy mt0 mb0">Monday pipeline</p>
             </div>
-            <button class="button-reset bg-action on-action focus-ring dim pointer bn br3 ph3 pv2 f6 fw6">Create</button>
+            <button class="button-reset bg-accent on-accent focus-ring dim pointer bn br3 ph3 pv2 f6 fw6">Create</button>
           </div>
         </div>
         <div class="pa3 pa4-ns">
@@ -661,7 +661,7 @@ curl -O \
               <h3 class="f4 fw7 lh-title mt0 mb1">Scanner</h3>
               <p class="f6 text-2 lh-copy mt0 mb0">Night event</p>
             </div>
-            <button class="button-reset bg-action on-action focus-ring dim pointer bn br3 ph3 pv2 f6 fw6">Pair</button>
+            <button class="button-reset bg-accent on-accent focus-ring dim pointer bn br3 ph3 pv2 f6 fw6">Pair</button>
           </div>
         </div>
         <div class="pa3 pa4-ns">
@@ -692,8 +692,19 @@ curl -O \
 
     <article class="mt4 mt5-ns">
       <h3 class="ttu tracked f6 fw7 mt0 mb3 bt b--near-black bw1 pt3">Pattern</h3>
-      <pre class="ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>&lt;main class="bg-surface-base text-1"&gt;
-  &lt;button class="button-reset bg-action on-action focus-ring"&gt;
+      <pre class="ma0 pa3 bg-near-black light-blue f6 lh-copy overflow-auto"><code>/* One-colour override */
+:root {
+  --accent: oklch(0.62 0.22 255);
+}
+
+/* Or theme-specific defaults */
+:root {
+  --accent-light: oklch(0.58 0.23 255);
+  --accent-dark: oklch(0.72 0.18 255);
+}
+
+&lt;main class="bg-surface-base text-1"&gt;
+  &lt;button class="button-reset bg-accent on-accent focus-ring"&gt;
     Save
   &lt;/button&gt;
 &lt;/main&gt;
@@ -747,9 +758,9 @@ curl -O \
           <li class="mb2">Give <code>body</code> a reset-layer <code>min-height: 100dvh</code> so the page canvas remains at least the dynamic viewport height.</li>
           <li class="mb2">Add <code>.root</code> as the component query root for local responsive behavior.</li>
           <li class="mb2">Add Neo-native button and input demos for the stable v2 surface.</li>
-          <li class="mb2">Add optional <code>app.css</code> companion with semantic application tokens, surface/text/border/action/state utilities, focus helpers, and scoped light/dark theming via <code>data-theme</code>.</li>
+          <li class="mb2">Add optional <code>app.css</code> companion with semantic application tokens, surface/text/border/accent/state utilities, focus helpers, and scoped light/dark theming via <code>data-theme</code>.</li>
           <li class="mb2">Base neutral app text, surface, and border ramps on Tachyons' black/white transparency tokens.</li>
-          <li class="mb2">Use Apple-style System Blue as the action, focus, and native <code>accent-color</code> default, with a Display P3 override where supported.</li>
+          <li class="mb2">Use Apple-style System Blue as the accent, focus, and native <code>accent-color</code> default, with a Display P3 override where supported.</li>
           <li class="mb2">Reserve <code>@layer app</code> between core utilities and debug helpers in the layer order.</li>
           <li class="mb2">Add an application demo showing <code>app.css</code> in a dashboard-style product surface.</li>
         </ul>

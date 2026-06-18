@@ -80,7 +80,7 @@ Every design value — spacing, type scale, colours, radii, shadows, durations �
 
 **118 tokens** across **18 groups**: spacing, font-size, measure, line-height, letter-spacing, radius, border-width, shadow, duration, grayscale, black/white alpha, warm, purple/pink, green, blue, washed, font families.
 
-Tokens are declared inside `@layer tachyons`, so `var()` resolves everywhere and redefining one in your own (unlayered) `:root` overrides it. The optional `app.css` companion aliases these base tokens into semantic application tokens.
+Tokens are declared inside `@layer tachyons`, so `var()` resolves everywhere and redefining one in your own (unlayered) `:root` overrides it. The optional `app.css` companion derives semantic application tokens from a small set of theme seeds.
 
 See [`tachyons.css`](tachyons.css) or the [live docs](https://screenisland.com/tachyons-neo/) for the full list.
 
@@ -88,7 +88,7 @@ See [`tachyons.css`](tachyons.css) or the [live docs](https://screenisland.com/t
 
 ## § 03 — Application CSS
 
-`app.css` is a small semantic layer for product UI. It does not add components. It maps Tachyons Neo tokens into application names for text, surfaces, borders, action colours, state colours, focus rings, and light/dark themes. Neutral text, surface, and border ramps use the existing black/white transparency tokens; action and focus use Apple-style System Blue with a Display P3 override.
+`app.css` is a small semantic layer for product UI. It does not add components. Set a few colours and the derived palette follows: `light-dark()` selects theme defaults, `color-mix()` builds text, surface, border, and focus ramps, and `contrast-color()` returns black or white foregrounds for `on-*` helpers. Accent and focus use Apple-style System Blue by default, with a Display P3 override.
 
 ```html
 <link rel="stylesheet" href="tachyons.css">
@@ -97,9 +97,22 @@ See [`tachyons.css`](tachyons.css) or the [live docs](https://screenisland.com/t
 
 Use `data-theme="light"` or `data-theme="dark"` on `html` or any subtree to force a theme; otherwise the root follows `prefers-color-scheme`.
 
+```css
+/* One-colour override */
+:root {
+  --accent: oklch(0.62 0.22 255);
+}
+
+/* Or theme-specific defaults */
+:root {
+  --accent-light: oklch(0.58 0.23 255);
+  --accent-dark: oklch(0.72 0.18 255);
+}
+```
+
 ```html
 <main class="bg-surface-base text-1">
-  <button class="button-reset bg-action on-action focus-ring">
+  <button class="button-reset bg-accent on-accent focus-ring">
     Save
   </button>
 </main>
@@ -109,7 +122,7 @@ Use `data-theme="light"` or `data-theme="dark"` on `html` or any subtree to forc
 </aside>
 ```
 
-Brand, action, and state colours expose seven utilities: `.color`, `.bg-color`, `.b--color`, `.on-color`, `.hover-color`, `.hover-bg-color`, and `.hover-b--color`. Text, surface, and border ramps omit `on-*` and expose the other six utilities, for example `.surface-1`, `.bg-surface-1`, `.b--surface-1`, `.hover-surface-1`, `.hover-bg-surface-1`, and `.hover-b--surface-1`. Focus helpers are `.focus-ring`, `.focus-ring-box`, and `.hover-border`.
+Accent and state colours expose seven utilities: `.color`, `.bg-color`, `.b--color`, `.on-color`, `.hover-color`, `.hover-bg-color`, and `.hover-b--color`. Text, surface, and border ramps omit `on-*` and expose the other six utilities, for example `.surface-1`, `.bg-surface-1`, `.b--surface-1`, `.hover-surface-1`, `.hover-bg-surface-1`, and `.hover-b--surface-1`. Focus helpers are `.focus-ring`, `.focus-ring-box`, and `.hover-border`.
 
 ---
 
@@ -133,9 +146,9 @@ Release notes, newest first.
 - Give `body` a reset-layer `min-height: 100dvh` so the page canvas remains at least the dynamic viewport height.
 - Add `.root` as the component query root for local responsive behavior.
 - Add Neo-native button and input demos for the stable v2 surface.
-- Add optional `app.css` companion with semantic application tokens, surface/text/border/action/state utilities, focus helpers, and scoped light/dark theming via `data-theme`.
+- Add optional `app.css` companion with semantic application tokens, surface/text/border/accent/state utilities, focus helpers, and scoped light/dark theming via `data-theme`.
 - Base neutral app text, surface, and border ramps on Tachyons' black/white transparency tokens.
-- Use Apple-style System Blue as the action, focus, and native `accent-color` default, with a Display P3 override where supported.
+- Use Apple-style System Blue as the accent, focus, and native `accent-color` default, with a Display P3 override where supported.
 - Reserve `@layer app` between core utilities and debug helpers in the layer order.
 - Add an application demo showing `app.css` in a dashboard-style product surface.
 
