@@ -1,0 +1,38 @@
+title: Tachyons Neo
+description: A small, composable CSS toolkit with modern viewport defaults, design tokens, grid helpers, and application UI tokens.
+url: "https://tachyonsneo.com"
+baseurl: ""
+repository: gobijan/tachyons-neo
+github_url: "https://github.com/gobijan/tachyons-neo"
+upstream_url: "https://tachyons.io"
+version: "2.0.1"
+lang: en
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+permalink: pretty
+
+defaults:
+  - scope:
+      path: "docs"
+      type: "pages"
+    values:
+      layout: doc
+
+exclude:
+  - .bundle/
+  - .github/
+  - .jekyll-cache/
+  - .sass-cache/
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - scripts/
+  - vendor/

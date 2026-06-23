@@ -1,0 +1,18 @@
+- name: Accent
+  tokens: ["--accent", "--on-accent"]
+  utilities: ["accent", "bg-accent", "b--accent", "on-accent", "hover-accent", "hover-bg-accent", "hover-b--accent"]
+- name: Text
+  tokens: ["--text-1", "--text-2", "--text-3", "--text-inverted"]
+  utilities: ["text-*", "bg-text-*", "b--text-*", "hover-text-*", "hover-bg-text-*", "hover-b--text-*"]
+- name: Surface
+  tokens: ["--surface-base", "--surface-1", "--surface-2", "--surface-3", "--surface-4"]
+  utilities: ["surface-*", "bg-surface-*", "b--surface-*", "hover-surface-*", "hover-bg-surface-*", "hover-b--surface-*"]
+- name: Border
+  tokens: ["--border-1", "--border-2", "--border-3"]
+  utilities: ["border-*", "bg-border-*", "b--border-*", "hover-border-*", "hover-bg-border-*", "hover-b--border-*"]
+- name: State
+  tokens: ["--danger", "--success", "--warning", "--info", "--on-danger", "--on-success", "--on-warning", "--on-info"]
+  utilities: ["danger", "success", "warning", "info", "bg-*", "b--*", "on-*", "hover-*", "hover-bg-*", "hover-b--*"]
+- name: Focus and motion
+  tokens: ["--focus", "--focus-offset", "--focus-ring"]
+  utilities: ["focus-ring", "focus-ring-box", "hover-border", "fade-y"]

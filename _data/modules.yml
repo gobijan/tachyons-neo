@@ -1,0 +1,28 @@
+- title: Spacing
+  url: /docs/spacing/
+  summary: Padding, margin, negative margin, and gap utilities mapped to the same powers-of-two scale.
+  classes: pa*, ph*, pv*, ma*, mh*, mv*, na*, g*
+- title: Layout and Grid
+  url: /docs/layout/
+  summary: Display, flexbox, shrink-safe grid tracks, spans, widths, heights, and overflow helpers.
+  classes: flex, grid, gtc*, csp*, w-*, h-*, min-w-0
+- title: Typography
+  url: /docs/typography/
+  summary: Type scale, families, measures, leading, tracking, transforms, and display-outline helpers.
+  classes: f*, lh-*, measure*, tracked*, stroke, tnum
+- title: Color
+  url: /docs/color/
+  summary: Original Tachyons palette plus finer black and white alpha steps for hairline UI.
+  classes: black-*, white-*, bg-*, b--*, hover-*
+- title: Tokens
+  url: /docs/tokens/
+  summary: CSS custom properties for spacing, type, radii, shadow, duration, and color values.
+  classes: --spacing-*, --font-size-*, --radius-*, --shadow-*
+- title: Responsive
+  url: /docs/responsive/
+  summary: Container-query responsive suffixes with page-level defaults and component-local roots.
+  classes: -ns, -m, -l, root
+- title: App CSS
+  url: /docs/app-css/
+  summary: Optional semantic product UI tokens for themes, surfaces, text, borders, focus, and states.
+  classes: bg-surface-*, text-*, accent, focus-ring

@@ -1,0 +1,56 @@
+- number: "01"
+  title: "-m query step"
+  summary: "Container-query based and no upper bound: -m styles continue at large unless overridden."
+  sample: '<div class="pa3 pa5-m">Padding grows from 30em and up.</div>'
+- number: "02"
+  title: Gap scale
+  summary: ".g0 through .g7 for flex and grid, mapped to the spacing scale."
+  sample: '<div class="flex g3">...</div>'
+- number: "03"
+  title: Dynamic viewport heights
+  summary: ".dvh-25, .dvh-50, .dvh-75, .dvh-100, and .min-dvh-100 use the dvh unit."
+  sample: '<main class="min-dvh-100">...</main>'
+- number: "04"
+  title: Hairline opacities
+  summary: "Extra-low black and white alpha steps for dividers, overlays, and subtle surfaces."
+  sample: '<div class="bt b--black-025">...</div>'
+- number: "05"
+  title: Outlined type
+  summary: ".stroke renders display text as an outline using -webkit-text-stroke."
+  sample: '<span class="stroke yellow">Neo</span>'
+- number: "06"
+  title: Grid system
+  summary: "Small CSS Grid layer with grid display, equal tracks, lanes, and column spans."
+  sample: '<div class="grid gtc3 g3"><div class="csp2">...</div></div>'
+- number: "07"
+  title: Filters and effects
+  summary: ".active-dim, .invert, and .blur add compact interaction and backdrop effects."
+  sample: '<button class="active-dim">Save</button>'
+- number: "08"
+  title: Form and list helpers
+  summary: ".resize-none and .list-inside cover common form and prose edge cases."
+  sample: '<textarea class="resize-none"></textarea>'
+- number: "09"
+  title: Placeholder backgrounds
+  summary: ".random-image variants provide fast image placeholders during prototyping."
+  sample: '<div class="random-image-landscape"></div>'
+- number: "10"
+  title: Writing mode
+  summary: ".sideways-lr and .horizontal-tb support vertical spine labels and resets."
+  sample: '<span class="sideways-lr">Label</span>'
+- number: "11"
+  title: Object fit
+  summary: ".object-cover and .object-contain give images the media counterpart to cover and contain."
+  sample: '<img class="object-cover aspect-ratio--4x5" src="..." alt="">'
+- number: "12"
+  title: Cascade layers
+  summary: "Ships as @layer reset, tachyons, app, debug so project CSS can override utilities cleanly."
+  sample: '@layer reset, tachyons, app, debug;'
+- number: "13"
+  title: Min-width and min-height zero
+  summary: ".min-w-0 and .min-h-0 let flex and grid children shrink below content width."
+  sample: '<div class="min-w-0 truncate">long-url...</div>'
+- number: "14"
+  title: Container queries
+  summary: "Responsive variants query the page by default; .root makes behavior component-local."
+  sample: '<article class="root"><div class="pa3 pa5-l">...</div></article>'

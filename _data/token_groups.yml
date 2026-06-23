@@ -1,0 +1,152 @@
+- name: Spacing
+  tokens:
+    - ["--spacing-0", "0"]
+    - ["--spacing-1", ".25rem"]
+    - ["--spacing-2", ".5rem"]
+    - ["--spacing-3", "1rem"]
+    - ["--spacing-4", "2rem"]
+    - ["--spacing-5", "4rem"]
+    - ["--spacing-6", "8rem"]
+    - ["--spacing-7", "16rem"]
+- name: Font size
+  tokens:
+    - ["--font-size-headline", "6rem"]
+    - ["--font-size-subheadline", "5rem"]
+    - ["--font-size-1", "3rem"]
+    - ["--font-size-2", "2.25rem"]
+    - ["--font-size-3", "1.5rem"]
+    - ["--font-size-4", "1.25rem"]
+    - ["--font-size-5", "1rem"]
+    - ["--font-size-6", ".875rem"]
+    - ["--font-size-7", ".75rem"]
+- name: Measure
+  tokens:
+    - ["--measure", "30em"]
+    - ["--measure-wide", "34em"]
+    - ["--measure-narrow", "20em"]
+    - ["--mw-6", "32rem"]
+    - ["--mw-7", "48rem"]
+    - ["--mw-8", "64rem"]
+    - ["--mw-9", "96rem"]
+- name: Letter spacing
+  tokens:
+    - ["--tracked", ".1em"]
+    - ["--tracked-tight", "-.05em"]
+    - ["--tracked-mega", ".25em"]
+- name: Line height
+  tokens:
+    - ["--lh-solid", "1"]
+    - ["--lh-title", "1.25"]
+    - ["--lh-copy", "1.5"]
+    - ["--lh-headline", ".85"]
+- name: Radius
+  tokens:
+    - ["--radius-0", "0"]
+    - ["--radius-1", ".125rem"]
+    - ["--radius-2", ".25rem"]
+    - ["--radius-3", ".5rem"]
+    - ["--radius-4", "1rem"]
+    - ["--radius-100", "100%"]
+    - ["--radius-pill", "9999px"]
+- name: Border width
+  tokens:
+    - ["--border-width-0", "0"]
+    - ["--border-width-1", ".125rem"]
+    - ["--border-width-2", ".25rem"]
+    - ["--border-width-3", ".5rem"]
+    - ["--border-width-4", "1rem"]
+    - ["--border-width-5", "2rem"]
+- name: Shadow
+  tokens:
+    - ["--shadow-1", "0 1px 2px rgba(0, 0, 0, .06)"]
+    - ["--shadow-2", "0 2px 4px rgba(0, 0, 0, .08)"]
+    - ["--shadow-3", "0 1px 2px rgba(0, 0, 0, .06), 0 4px 8px rgba(0, 0, 0, .08)"]
+    - ["--shadow-4", "0 2px 4px rgba(0, 0, 0, .06), 0 8px 16px rgba(0, 0, 0, .10)"]
+    - ["--shadow-5", "0 4px 8px rgba(0, 0, 0, .08), 0 16px 32px rgba(0, 0, 0, .12)"]
+- name: Transition
+  tokens:
+    - ["--duration-fast", ".15s"]
+    - ["--duration-medium", ".25s"]
+    - ["--duration-slow", ".5s"]
+    - ["--ease-shadow", "cubic-bezier(.4, 0, .2, 1)"]
+- name: Font family
+  tokens:
+    - ["--font-sans-serif", "system-ui, -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif"]
+    - ["--font-serif", "georgia, times, serif"]
+    - ["--font-system-sans-serif", "ui-sans-serif, sans-serif"]
+    - ["--font-system-serif", "ui-serif, serif"]
+    - ["--font-code", "ui-monospace, SF Mono, Consolas, monaco, monospace"]
+- name: Grayscale
+  tokens:
+    - ["--black", "#000"]
+    - ["--near-black", "#111"]
+    - ["--dark-gray", "#333"]
+    - ["--mid-gray", "#555"]
+    - ["--gray", "#777"]
+    - ["--silver", "#999"]
+    - ["--light-silver", "#aaa"]
+    - ["--moon-gray", "#ccc"]
+    - ["--light-gray", "#eee"]
+    - ["--near-white", "#f4f4f4"]
+    - ["--white", "#fff"]
+- name: Black and white alpha
+  tokens:
+    - ["--black-90", "rgba(0, 0, 0, .9)"]
+    - ["--black-80", "rgba(0, 0, 0, .8)"]
+    - ["--black-70", "rgba(0, 0, 0, .7)"]
+    - ["--black-60", "rgba(0, 0, 0, .6)"]
+    - ["--black-50", "rgba(0, 0, 0, .5)"]
+    - ["--black-40", "rgba(0, 0, 0, .4)"]
+    - ["--black-30", "rgba(0, 0, 0, .3)"]
+    - ["--black-20", "rgba(0, 0, 0, .2)"]
+    - ["--black-10", "rgba(0, 0, 0, .1)"]
+    - ["--black-05", "rgba(0, 0, 0, .05)"]
+    - ["--black-025", "rgba(0, 0, 0, .025)"]
+    - ["--black-0125", "rgba(0, 0, 0, .0125)"]
+    - ["--white-90", "hsla(0, 0%, 100%, .9)"]
+    - ["--white-80", "hsla(0, 0%, 100%, .8)"]
+    - ["--white-70", "hsla(0, 0%, 100%, .7)"]
+    - ["--white-60", "hsla(0, 0%, 100%, .6)"]
+    - ["--white-50", "hsla(0, 0%, 100%, .5)"]
+    - ["--white-40", "hsla(0, 0%, 100%, .4)"]
+    - ["--white-30", "hsla(0, 0%, 100%, .3)"]
+    - ["--white-20", "hsla(0, 0%, 100%, .2)"]
+    - ["--white-10", "hsla(0, 0%, 100%, .1)"]
+    - ["--white-05", "hsla(0, 0%, 100%, .05)"]
+    - ["--white-025", "hsla(0, 0%, 100%, .025)"]
+    - ["--white-0125", "hsla(0, 0%, 100%, .0125)"]
+- name: Warm color
+  tokens:
+    - ["--dark-red", "#e7040f"]
+    - ["--red", "#ff4136"]
+    - ["--light-red", "#ff725c"]
+    - ["--orange", "#ff6300"]
+    - ["--gold", "#ffb700"]
+    - ["--yellow", "#ffd700"]
+    - ["--light-yellow", "#fbf1a9"]
+- name: Purple and pink
+  tokens:
+    - ["--purple", "#5e2ca5"]
+    - ["--light-purple", "#a463f2"]
+    - ["--dark-pink", "#d5008f"]
+    - ["--hot-pink", "#ff41b4"]
+    - ["--pink", "#ff80cc"]
+    - ["--light-pink", "#ffa3d7"]
+- name: Green
+  tokens:
+    - ["--dark-green", "#137752"]
+    - ["--green", "#19a974"]
+    - ["--light-green", "#9eebcf"]
+- name: Blue
+  tokens:
+    - ["--navy", "#001b44"]
+    - ["--dark-blue", "#00449e"]
+    - ["--blue", "#357edd"]
+    - ["--light-blue", "#96ccff"]
+    - ["--lightest-blue", "#cdecff"]
+- name: Washed color
+  tokens:
+    - ["--washed-blue", "#f6fffe"]
+    - ["--washed-green", "#e8fdf5"]
+    - ["--washed-yellow", "#fffceb"]
+    - ["--washed-red", "#ffdfdf"]

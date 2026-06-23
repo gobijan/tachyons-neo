@@ -2,7 +2,7 @@
 
 A small, composable CSS toolkit. Sharper defaults for modern viewports, finer-grained colour steps, a small CSS Grid layer, and a handful of utilities for prototyping. No build step, no dependencies, one core stylesheet; add `app.css` when an application needs semantic theme tokens.
 
-**Docs:** [screenisland.com/tachyons-neo](https://screenisland.com/tachyons-neo/) · **Upstream:** [tachyons.io](http://tachyons.io) v4.13.0 · **License:** MIT
+**Docs:** [tachyonsneo.com](https://tachyonsneo.com/) · **Upstream:** [tachyons.io](http://tachyons.io) v4.13.0 · **License:** MIT
 
 ---
 
@@ -37,6 +37,12 @@ Or vendor it:
 ```sh
 curl -O https://raw.githubusercontent.com/gobijan/tachyons-neo/main/tachyons.css
 curl -O https://raw.githubusercontent.com/gobijan/tachyons-neo/main/app.css
+```
+
+Run the documentation site locally:
+
+```sh
+bin/serve
 ```
 
 ---
@@ -82,7 +88,7 @@ Every design value — spacing, type scale, colours, radii, shadows, durations �
 
 Tokens are declared inside `@layer tachyons`, so `var()` resolves everywhere and redefining one in your own (unlayered) `:root` overrides it. The optional `app.css` companion derives semantic application tokens from a small set of theme seeds.
 
-See [`tachyons.css`](tachyons.css) or the [live docs](https://screenisland.com/tachyons-neo/) for the full list.
+See [`tachyons.css`](tachyons.css) or the [live docs](https://tachyonsneo.com/) for the full list.
 
 ---
 

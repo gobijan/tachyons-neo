@@ -4,10 +4,10 @@
 # Usage: scripts/release.sh [patch|minor|major]
 #        scripts/release.sh vX.Y.Z   # pin an exact version
 #
-# Bumps the version in tachyons.css and index.html, summarises the diff since
-# the previous tag via `claude -p`, prepends a changelog entry to index.html
-# and README.md, commits, tags, pushes, and creates a GitHub release with the
-# same bullets as the release body.
+# Bumps the version in tachyons.css and _config.yml, summarises the diff since
+# the previous tag via `claude -p`, prepends changelog entries to
+# _data/releases.yml and README.md, commits, tags, pushes, and creates a GitHub
+# release with the same bullets as the release body.
 
 set -euo pipefail
 
@@ -57,14 +57,13 @@ if git rev-parse --verify --quiet "refs/tags/${new}" >/dev/null; then
 fi
 
 date_iso="$(date +%Y-%m-%d)"
-date_human="$(date +'%Y &mdash; %m &mdash; %d')"
 
 # Diff of real changes since the previous tag, stripping version-banner noise.
 diff_text=""
 if [[ "$latest" != "v0.0.0" ]]; then
-  diff_text="$(git diff "${latest}..HEAD" -- tachyons.css app.css index.html README.md \
+  diff_text="$(git diff "${latest}..HEAD" -- tachyons.css app.css index.html README.md _config.yml _data docs \
     | grep -Ev "^[-+].*TACHYONS NEO ${version_pattern}" \
-    | grep -Ev "^[-+].*id=\"version\"[^>]*>${version_pattern}" \
+    | grep -Ev "^[-+]version: \"[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?\"" \
     || true)"
 fi
 
@@ -114,15 +113,16 @@ if [[ -z "${bullets// }" ]]; then
 fi
 
 tmp_bullets="$(mktemp -t tn-changelog.XXXXXX)"
-entry_html="$(mktemp -t tn-entry-html.XXXXXX)"
+entry_yml="$(mktemp -t tn-entry-yml.XXXXXX)"
 entry_md="$(mktemp -t tn-entry-md.XXXXXX)"
+tmp_releases=""
 
 cleanup() {
   local rc=$?
-  rm -f "$tmp_bullets" "$entry_html" "$entry_md" 2>/dev/null || true
+  rm -f "$tmp_bullets" "$entry_yml" "$entry_md" "$tmp_releases" 2>/dev/null || true
   if (( rc != 0 )); then
     echo "error: release aborted mid-run; reverting working tree" >&2
-    git checkout -- tachyons.css index.html README.md 2>/dev/null || true
+    git checkout -- tachyons.css _config.yml _data/releases.yml README.md 2>/dev/null || true
   fi
 }
 trap cleanup EXIT
@@ -136,28 +136,18 @@ if [[ -z "${bullets// }" ]]; then
   exit 1
 fi
 
-# Render the HTML entry.
+# Render the site data entry.
 {
-  printf '    <article class="bt b--near-black bw1 pv4 pv5-l flex flex-column flex-row-l g3 g0-l">\n'
-  printf '      <div class="tnum f3 f1-l fw9 lh-solid w-100 w-20-l">\n'
-  printf '        %s\n' "$new"
-  printf '        <div class="f6 fw4 ttu tracked mt2 silver"><time datetime="%s">%s</time></div>\n' \
-         "$date_iso" "$date_human"
-  printf '      </div>\n'
-  printf '      <div class="w-100 w-80-l pr4-l">\n'
-  printf '        <ul class="list pa0 ma0 lh-copy measure">\n'
+  printf -- '- version: "%s"\n' "$new"
+  printf '  date: "%s"\n' "$date_iso"
+  printf '  notes:\n'
   while IFS= read -r line; do
     [[ -z "${line// }" ]] && continue
     text="${line#- }"
-    text="${text//&/&amp;}"
-    text="${text//</&lt;}"
-    text="${text//>/&gt;}"
-    printf '          <li class="mb2">%s</li>\n' "$text"
+    printf '    - >-\n'
+    printf '      %s\n' "$text"
   done <<< "$bullets"
-  printf '        </ul>\n'
-  printf '      </div>\n'
-  printf '    </article>\n'
-} > "$entry_html"
+} > "$entry_yml"
 
 # Render the Markdown entry.
 {
@@ -170,9 +160,10 @@ fi
   printf '\n'
 } > "$entry_md"
 
-# Prepend entries after the <!-- CHANGELOG:INSERT --> marker in each file.
-sed -i.bak "/<!-- CHANGELOG:INSERT -->/r ${entry_html}" index.html
-rm -f index.html.bak
+# Prepend entries to the site data and README changelog.
+tmp_releases="$(mktemp -t tn-releases.XXXXXX)"
+cat "$entry_yml" _data/releases.yml > "$tmp_releases"
+mv "$tmp_releases" _data/releases.yml
 sed -i.bak "/<!-- CHANGELOG:INSERT -->/r ${entry_md}" README.md
 rm -f README.md.bak
 
@@ -180,22 +171,24 @@ rm -f README.md.bak
 sed -i.bak -E "1 s|TACHYONS NEO ${version_pattern}|TACHYONS NEO ${new}|" tachyons.css
 rm -f tachyons.css.bak
 
-# Update the version badge in index.html (the <span id="version">…</span>).
-sed -i.bak -E "s|(id=\"version\"[^>]*>)${version_pattern}|\1${new}|" index.html
-rm -f index.html.bak
+# Update the site version used by Jekyll templates.
+new_without_v="${new#v}"
+semver_pattern='[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?'
+sed -i.bak -E "s|^version: \"${semver_pattern}\"|version: \"${new_without_v}\"|" _config.yml
+rm -f _config.yml.bak
 
-# Update the pinned CDN examples (index.html + README.md). Leaves floating-major
-# and unpinned forms alone — only the semver @vX.Y.Z pins.
+# Update the pinned CDN examples in README.md. Leaves floating-major and
+# unpinned forms alone - only the semver @vX.Y.Z pins.
 sed -i.bak -E \
   -e "s|tachyons-neo@${version_pattern}/tachyons\.css|tachyons-neo@${new}/tachyons.css|g" \
   -e "s|tachyons-neo@${version_pattern}/app\.css|tachyons-neo@${new}/app.css|g" \
-  index.html README.md
-rm -f index.html.bak README.md.bak
+  README.md
+rm -f README.md.bak
 
-if git diff --quiet tachyons.css index.html README.md; then
+if git diff --quiet tachyons.css _config.yml _data/releases.yml README.md; then
   echo "note: no file changes, skipping commit"
 else
-  git add tachyons.css index.html README.md
+  git add tachyons.css _config.yml _data/releases.yml README.md
   git commit -m "Release ${new}"
   git push origin main
 fi

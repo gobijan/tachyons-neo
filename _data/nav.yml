@@ -1,0 +1,6 @@
+- label: Docs
+  url: /docs/
+  match: /docs/
+- label: Demos
+  url: /demos/
+  match: /demos/

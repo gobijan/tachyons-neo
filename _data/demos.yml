@@ -1,0 +1,24 @@
+- title: Dropdown
+  url: /demos/dropdown.html
+  features: "Popover API, CSS Anchor Positioning, fade-y, allow-discrete"
+- title: Modal Dialog
+  url: /demos/modal.html
+  features: "dialog, showModal(), backdrop, form method=dialog"
+- title: Flash
+  url: /demos/flash.html
+  features: "Toast pattern, keyframes, inline dismiss"
+- title: Buttons
+  url: /demos/buttons.html
+  features: "Default, primary, small, large, and icon-only button links"
+- title: App Shell
+  url: /demos/app.html
+  features: "app.css semantic tokens, scoped themes, focus helpers"
+- title: Form Fields
+  url: /demos/form-field.html
+  features: "Rails-friendly labels, hints, errors, native controls"
+- title: Inputs
+  url: /demos/inputs.html
+  features: "Native input showcase with Neo grid"
+- title: Tooltip
+  url: /demos/tooltip.html
+  features: "hide-child, focus-within, visibility transition"

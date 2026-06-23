@@ -1,0 +1,37 @@
+---
+layout: default
+---
+<main>
+  <section class="bt b--near-black bw1 bw2-ns ph3 ph4-ns pv4 pv5-ns bg-purple white">
+    <div class="ttu tracked f6 fw7 mb4 flex items-baseline">
+      <span class="tnum nowrap w3">Docs</span>
+      <span>{{ page.section | default: "Reference" }}</span>
+    </div>
+    <div class="grid-l gtc3-l g4-l">
+      <div class="csp2-l">
+        <h1 class="lh-headline ttu fw9 ma0 f1 f-subheadline-m f-headline-l tracked-tight">{{ page.title }}</h1>
+        {% if page.summary %}
+          <p class="f4 f3-l lh-copy measure-wide mt4 mb0">{{ page.summary }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <div class="flex-l items-start">
+    <aside class="w-100 w-25-l ph3 ph4-ns pv4 sticky-l top-0-l self-start docs-sidebar">
+      <div class="ttu tracked f6 fw7 mb3">Docs</div>
+      <nav class="lh-copy">
+        {% for group in site.data.reference_nav %}
+          <div class="ttu tracked f7 fw7 silver mt3 mb1">{{ group.title }}</div>
+          {% for item in group.items %}
+            <a class="db link near-black hover-dark-blue pv2 bt b--black-10{% if page.url == item.url %} fw7 dark-blue{% endif %}" href="{{ item.url | relative_url }}">{{ item.label }}</a>
+          {% endfor %}
+        {% endfor %}
+      </nav>
+    </aside>
+
+    <article class="w-100 w-75-l ph3 ph4-ns pv4 pv5-ns docs-content">
+      {{ content }}
+    </article>
+  </div>
+</main>

@@ -1,0 +1,196 @@
+- name: Grayscale
+  colors:
+    - name: black
+      value: "#000"
+      text: white
+    - name: near-black
+      value: "#111"
+      text: white
+    - name: dark-gray
+      value: "#333"
+      text: white
+    - name: mid-gray
+      value: "#555"
+      text: white
+    - name: gray
+      value: "#777"
+      text: white
+    - name: silver
+      value: "#999"
+      text: near-black
+    - name: light-silver
+      value: "#aaa"
+      text: near-black
+    - name: moon-gray
+      value: "#ccc"
+      text: near-black
+    - name: light-gray
+      value: "#eee"
+      text: near-black
+    - name: near-white
+      value: "#f4f4f4"
+      text: near-black
+    - name: white
+      value: "#fff"
+      text: near-black
+- name: Black alpha
+  colors:
+    - name: black-90
+      value: "rgba(0, 0, 0, .9)"
+      text: white
+    - name: black-80
+      value: "rgba(0, 0, 0, .8)"
+      text: white
+    - name: black-70
+      value: "rgba(0, 0, 0, .7)"
+      text: white
+    - name: black-60
+      value: "rgba(0, 0, 0, .6)"
+      text: white
+    - name: black-50
+      value: "rgba(0, 0, 0, .5)"
+      text: white
+    - name: black-40
+      value: "rgba(0, 0, 0, .4)"
+      text: near-black
+    - name: black-30
+      value: "rgba(0, 0, 0, .3)"
+      text: near-black
+    - name: black-20
+      value: "rgba(0, 0, 0, .2)"
+      text: near-black
+    - name: black-10
+      value: "rgba(0, 0, 0, .1)"
+      text: near-black
+    - name: black-05
+      value: "rgba(0, 0, 0, .05)"
+      text: near-black
+    - name: black-025
+      value: "rgba(0, 0, 0, .025)"
+      text: near-black
+    - name: black-0125
+      value: "rgba(0, 0, 0, .0125)"
+      text: near-black
+- name: White alpha
+  colors:
+    - name: white-90
+      value: "hsla(0, 0%, 100%, .9)"
+      text: near-black
+    - name: white-80
+      value: "hsla(0, 0%, 100%, .8)"
+      text: near-black
+    - name: white-70
+      value: "hsla(0, 0%, 100%, .7)"
+      text: near-black
+    - name: white-60
+      value: "hsla(0, 0%, 100%, .6)"
+      text: near-black
+    - name: white-50
+      value: "hsla(0, 0%, 100%, .5)"
+      text: near-black
+    - name: white-40
+      value: "hsla(0, 0%, 100%, .4)"
+      text: near-black
+    - name: white-30
+      value: "hsla(0, 0%, 100%, .3)"
+      text: near-black
+    - name: white-20
+      value: "hsla(0, 0%, 100%, .2)"
+      text: near-black
+    - name: white-10
+      value: "hsla(0, 0%, 100%, .1)"
+      text: near-black
+    - name: white-05
+      value: "hsla(0, 0%, 100%, .05)"
+      text: near-black
+    - name: white-025
+      value: "hsla(0, 0%, 100%, .025)"
+      text: near-black
+    - name: white-0125
+      value: "hsla(0, 0%, 100%, .0125)"
+      text: near-black
+- name: Warm
+  colors:
+    - name: dark-red
+      value: "#e7040f"
+      text: white
+    - name: red
+      value: "#ff4136"
+      text: near-black
+    - name: light-red
+      value: "#ff725c"
+      text: near-black
+    - name: orange
+      value: "#ff6300"
+      text: near-black
+    - name: gold
+      value: "#ffb700"
+      text: near-black
+    - name: yellow
+      value: "#ffd700"
+      text: near-black
+    - name: light-yellow
+      value: "#fbf1a9"
+      text: near-black
+- name: Purple and pink
+  colors:
+    - name: purple
+      value: "#5e2ca5"
+      text: white
+    - name: light-purple
+      value: "#a463f2"
+      text: near-black
+    - name: dark-pink
+      value: "#d5008f"
+      text: white
+    - name: hot-pink
+      value: "#ff41b4"
+      text: near-black
+    - name: pink
+      value: "#ff80cc"
+      text: near-black
+    - name: light-pink
+      value: "#ffa3d7"
+      text: near-black
+- name: Green
+  colors:
+    - name: dark-green
+      value: "#137752"
+      text: white
+    - name: green
+      value: "#19a974"
+      text: near-black
+    - name: light-green
+      value: "#9eebcf"
+      text: near-black
+- name: Blue
+  colors:
+    - name: navy
+      value: "#001b44"
+      text: white
+    - name: dark-blue
+      value: "#00449e"
+      text: white
+    - name: blue
+      value: "#357edd"
+      text: white
+    - name: light-blue
+      value: "#96ccff"
+      text: near-black
+    - name: lightest-blue
+      value: "#cdecff"
+      text: near-black
+- name: Washed
+  colors:
+    - name: washed-blue
+      value: "#f6fffe"
+      text: near-black
+    - name: washed-green
+      value: "#e8fdf5"
+      text: near-black
+    - name: washed-yellow
+      value: "#fffceb"
+      text: near-black
+    - name: washed-red
+      value: "#ffdfdf"
+      text: near-black

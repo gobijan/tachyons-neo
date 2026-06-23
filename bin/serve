@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+set -eu
+
+bundle check >/dev/null 2>&1 || bundle install
+exec bundle exec jekyll serve "$@"

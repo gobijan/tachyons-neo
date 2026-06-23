@@ -1,4 +1,8 @@
 .DS_Store
 .claude/
+.bundle/
+.jekyll-cache/
+_site/
+vendor/bundle/
 private
 .superpowers/

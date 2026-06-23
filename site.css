@@ -1,0 +1,109 @@
+:root {
+  --docs-rail: 5rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.stroke-2 {
+  -webkit-text-stroke-width: 2px;
+}
+
+.docs-hero {
+  min-height: clamp(30rem, 68dvh, 42rem);
+}
+
+.site-version {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.docs-content {
+  max-width: 72rem;
+}
+
+.docs-content h2,
+.docs-content h3 {
+  font-weight: 700;
+  letter-spacing: var(--tracked);
+  margin-top: var(--spacing-5);
+  text-transform: uppercase;
+}
+
+.docs-content h2 {
+  border-top: var(--border-width-1) solid var(--near-black);
+  font-size: var(--font-size-4);
+  padding-top: var(--spacing-3);
+}
+
+.docs-content h3 {
+  font-size: var(--font-size-6);
+}
+
+.docs-content p,
+.docs-content li {
+  line-height: var(--lh-copy);
+  max-width: var(--measure-wide);
+}
+
+.docs-content table {
+  border-collapse: collapse;
+  font-size: var(--font-size-6);
+  line-height: var(--lh-copy);
+  margin: var(--spacing-4) 0;
+  width: 100%;
+}
+
+.docs-content th,
+.docs-content td {
+  border-top: 1px solid var(--black-20);
+  padding: var(--spacing-2);
+  text-align: left;
+  vertical-align: top;
+}
+
+.docs-content th {
+  font-weight: 700;
+  letter-spacing: var(--tracked);
+  text-transform: uppercase;
+}
+
+.docs-content pre,
+.code-panel {
+  background: var(--near-black);
+  color: var(--light-blue);
+  overflow: auto;
+  padding: var(--spacing-3);
+}
+
+.docs-content :not(pre) > code,
+.code-chip {
+  background: var(--black-05);
+  border: 1px solid var(--black-10);
+  color: var(--near-black);
+  padding: 0 .2rem;
+}
+
+.swatch {
+  aspect-ratio: 1;
+  border: 1px solid var(--black-20);
+}
+
+.docs-content .swatch .swatch-label {
+  background: var(--black-70);
+  border: 0;
+  color: var(--white);
+  padding: 0 .25rem;
+}
+
+.docs-sidebar {
+  max-height: 100dvh;
+  overflow: auto;
+}
+
+@media (max-width: 63.99em) {
+  .docs-sidebar {
+    max-height: none;
+  }
+}

@@ -1,0 +1,71 @@
+- version: "v2.0.1"
+  date: "2026-06-14"
+  notes:
+    - Move grid helpers into utility order.
+    - Move grid display utilities into display group.
+    - Add grid-lanes display utility.
+    - Use sizing var in form example.
+- version: "v2.0.0"
+  date: "2026-06-08"
+  notes:
+    - Responsive -ns, -m, and -l variants now use container queries.
+    - Make html an inline-size query container for page-level responsive behavior.
+    - Add .root as the component query root for local responsive behavior.
+    - Add optional app.css with semantic application tokens and scoped theming.
+    - Reserve @layer app between core utilities and debug helpers.
+- version: "v1.1.2"
+  date: "2026-06-01"
+  notes:
+    - Add object-cover and object-contain with responsive variants.
+    - Make gtc1 through gtc4 tracks shrink-safe with minmax(0, 1fr).
+- version: "v1.1.1"
+  date: "2026-05-29"
+  notes:
+    - Add min-w-0 and min-h-0 utilities with responsive variants.
+- version: "v1.1.0"
+  date: "2026-05-29"
+  notes:
+    - Wrap tachyons.css in cascade layers.
+    - Drop stray !important from cover, contain, and clip.
+- version: "v1.0.8"
+  date: "2026-05-25"
+  notes:
+    - Make hide-child toggle visibility and respond to focus-within.
+    - Recolor the hero and rename the project Tachyons Neo.
+- version: "v1.0.7"
+  date: "2026-05-12"
+  notes:
+    - Add object-fit utilities and a 4x5 image example.
+    - Remove the JetBrains Mono webfont.
+- version: "v1.0.6"
+  date: "2026-05-08"
+  notes:
+    - Add aspect-ratio--4x5 with responsive variants.
+- version: "v1.0.5"
+  date: "2026-04-29"
+  notes:
+    - Replace the yellow keyword token with hex #ffd700.
+    - Remove antialiased from the body in index.html.
+- version: "v1.0.4"
+  date: "2026-04-24"
+  notes:
+    - Remove font smoothing from the body reset.
+- version: "v1.0.3"
+  date: "2026-04-22"
+  notes:
+    - Add sideways-lr and horizontal-tb writing-mode utilities.
+    - Add mt-auto and mb-auto margin utilities.
+- version: "v1.0.2"
+  date: "2026-04-20"
+  notes:
+    - Add install docs and a jsDelivr link snippet.
+    - Rebuild shadow tokens as layered elevation.
+- version: "v1.0.1"
+  date: "2026-04-19"
+  notes:
+    - Swap focus selectors to focus-visible.
+    - Add a changelog section to the site and README.
+- version: "v1.0.0"
+  date: "2026-04-19"
+  notes:
+    - Initial release: Tachyons v4.13.0 with nine patches, tokens, and a small grid layer.
