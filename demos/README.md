@@ -18,6 +18,7 @@ Canonical component patterns built with tachyons-neo. Reference for Rails/ERB wo
 | [modal.html](modal.html)             | Modal dialog   | `<dialog>` + `showModal()`, `::backdrop`, `form method="dialog"`, `@starting-style`, `overlay` + `allow-discrete` |
 | [flash.html](flash.html)             | Flash / toast  | `@keyframes` slide-in, inline dismiss; pattern for Rails `flash.each`         |
 | [buttons.html](buttons.html)         | Buttons        | Default, primary, small, large, and icon-only button-like links               |
+| [card.html](card.html)               | Card           | Placeholder imagery, clipped radius, elevation, and stacked content           |
 | [app.html](app.html)                 | App shell      | `app.css` semantic tokens, scoped `data-theme`, accent/state utilities, focus and popover motion helpers |
 | [form-field.html](form-field.html)   | Form fields    | Canonical markup for `form_with` output; text/textarea/select/radio/checkbox + hint/error states |
 | [inputs.html](inputs.html)           | Inputs         | Broad native input showcase using the small Neo grid layer                    |

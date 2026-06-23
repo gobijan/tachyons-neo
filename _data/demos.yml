@@ -10,6 +10,9 @@
 - title: Buttons
   url: /demos/buttons.html
   features: "Default, primary, small, large, and icon-only button links"
+- title: Card
+  url: /demos/card.html
+  features: "Placeholder image, clipped radius, elevation, and stacked content"
 - title: App Shell
   url: /demos/app.html
   features: "app.css semantic tokens, scoped themes, focus helpers"
