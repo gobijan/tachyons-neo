@@ -23,7 +23,7 @@ summary: "Use display, flexbox, widths, overflow, and Neo's tiny grid layer to g
 | `flex` | `display: flex` |
 | `inline-flex` | `display: inline-flex` |
 | `grid` | `display: grid` |
-| `grid-lanes` | `display: grid-lanes` |
+| `grid-lanes` | experimental `display: grid-lanes`, with `display: grid` fallback |
 
 ## Flex
 
@@ -50,6 +50,8 @@ Common flex primitives stay intentionally small.
 ## Grid
 
 Neo adds equal-fraction, shrink-safe grid tracks and simple column spans.
+
+`grid-lanes` is an experimental enhancement, not a portable masonry layout. Browsers that do not support it use regular grid. Its responsive variants use the same fallback. Use `grid` when the layout must remain identical across browsers.
 
 | Class | Output |
 | --- | --- |

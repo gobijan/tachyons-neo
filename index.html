@@ -51,11 +51,11 @@ description: A small, composable CSS toolkit with modern viewport defaults, CSS 
 
     <div class="grid-l gtc2-l g3">
       <article>
-        <h3 class="ttu tracked f6 fw7 mt0 mb3 bt b--near-black bw1 pt3">CDN - pinned</h3>
+        <h3 class="ttu tracked f6 fw7 mt0 mb3 bt b--near-black bw1 pt3">CDN - {% if site.cdn_ref == 'main' %}development{% else %}pinned{% endif %}</h3>
         <pre class="ma0 code-panel f6 lh-copy"><code>&lt;link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v{{ site.version }}/tachyons.css"&gt;
+      href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@{{ site.cdn_ref }}/tachyons.css"&gt;
 &lt;link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v{{ site.version }}/app.css"&gt;</code></pre>
+      href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@{{ site.cdn_ref }}/app.css"&gt;</code></pre>
       </article>
 
       <article class="mt4 mt0-l">

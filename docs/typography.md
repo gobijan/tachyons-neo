@@ -67,6 +67,8 @@ summary: "Type utilities cover scale, families, measure, leading, tracking, tran
 | Vertical align | `v-base`, `v-mid`, `v-top`, `v-btm` |
 | Overflow copy | `truncate`, `overflow-container` |
 
+`pre` preserves whitespace and enables scrolling. Its `-ns`, `-m`, and `-l` variants apply both behaviors at the matching container width.
+
 ## Lists, Links, and Nested Copy
 
 | Group | Classes |

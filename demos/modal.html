@@ -9,11 +9,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Modal — tachyons-neo demo</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../tachyons.css">
   <style>
     dialog {            
       opacity: 0;
-      transform: translateY(-8px);
+      transform: translateY(calc(var(--spacing-2) * -1));
       transition:
         opacity var(--duration-fast) ease,
         transform var(--duration-fast) ease,
@@ -29,7 +30,7 @@
     @starting-style {
       dialog[open] {
         opacity: 0;
-        transform: translateY(-8px);
+        transform: translateY(calc(var(--spacing-2) * -1));
       }
     }
 

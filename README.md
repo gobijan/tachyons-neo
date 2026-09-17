@@ -4,6 +4,10 @@ A small, composable CSS toolkit. Sharper defaults for modern viewports, finer-gr
 
 **Docs:** [tachyonsneo.com](https://tachyonsneo.com/) · **Upstream:** [tachyons.io](http://tachyons.io) v4.13.0 · **License:** MIT
 
+<!-- RELEASE:STATUS -->
+**Development documentation: main.** The examples and downloads below use unreleased `main`. The latest published release is [v2.0.1](https://github.com/gobijan/tachyons-neo/releases/tag/v2.0.1), whose `app.css` API differs. Read the [migration notes](docs/app-css.md#migrating-from-v201) before upgrading.
+<!-- /RELEASE:STATUS -->
+
 ---
 
 ## § 00 — Install
@@ -26,11 +30,11 @@ For application UI, load the optional semantic layer after the core utilities:
 Or load from jsDelivr:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v2.0.1/tachyons.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v2.0.1/app.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@main/tachyons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@main/app.css">
 ```
 
-Pin to a tag for production. For floating major, use `@2`; for bleeding-edge off `main`, drop the ref entirely (`.../tachyons-neo/tachyons.css`).
+For production, vendor both matching files or pin both URLs to the same published tag or full commit SHA. `@main` follows development; a floating major such as `@2` stays on that release line. v2.0.1 uses the earlier app API and cannot run the current app examples unchanged.
 
 Or vendor it:
 
@@ -44,6 +48,20 @@ Run the documentation site locally:
 ```sh
 bin/serve
 ```
+
+Core requires cascade layers, container queries, and dynamic viewport units. `app.css` also requires `light-dark()` and `color-mix()`. Experimental `grid-lanes` falls back to regular grid; automatic contrast colors have explicit defaults for older browsers. See [browser support and reduced motion](docs/index.md#browser-support) and [custom theme fallbacks](docs/app-css.md#contrast-fallbacks).
+
+For contributors, activate the Ruby version in `.ruby-version`, run `bundle install`, then `bin/check`. The check validates CSS/docs consistency and builds the site; the shipped CSS still needs no build step. Run the same check before a release. `scripts/release.sh major` is required when public classes or tokens have been removed since the latest tag. For new development after a release, set `cdn_ref` to `main`, mark the CSS banner with `+dev`, and update the README status and download refs together.
+
+For the browser regression check, start `bin/serve` and use Playwright CLI 0.1.20:
+
+```sh
+npx --yes --package @playwright/cli@0.1.20 playwright-cli -s=neo-check open http://127.0.0.1:4000
+npx --yes --package @playwright/cli@0.1.20 playwright-cli -s=neo-check run-code --filename scripts/browser-check.js
+npx --yes --package @playwright/cli@0.1.20 playwright-cli -s=neo-check close
+```
+
+This checks all documentation/demo pages at mobile and desktop widths, container boundaries, themes, reduced motion, native interactions, and contrast fallbacks. It requires an installed Chrome browser. CI runs both checks on pull requests and before deploying Pages.
 
 ---
 
@@ -84,7 +102,7 @@ Every design value — spacing, type scale, colours, radii, shadows, durations �
 }
 ```
 
-**118 tokens** across **18 groups**: spacing, font-size, measure, line-height, letter-spacing, radius, border-width, shadow, duration, grayscale, black/white alpha, warm, purple/pink, green, blue, washed, font families.
+**118 tokens** across **17 groups**: spacing, font-size, measure, line-height, letter-spacing, radius, border-width, shadow, duration, grayscale, black/white alpha, warm, purple/pink, green, blue, washed, font families.
 
 Tokens are declared inside `@layer tachyons`, so `var()` resolves everywhere and redefining one in your own (unlayered) `:root` overrides it. The optional `app.css` companion derives semantic application tokens from a small set of theme seeds.
 
@@ -135,6 +153,13 @@ Accent and state colours expose seven utilities: `.color`, `.bg-color`, `.b--col
 ## § 04 — Changelog
 
 Release notes, newest first.
+
+### Unreleased
+
+- Keep documentation downloads on the matching development ref and document the breaking app API migration from v2.0.1.
+- Respect reduced motion, provide regular-grid and contrast-color fallbacks, and correct responsive and demo examples.
+- Improve default focus contrast and dark-mode demo labels; make responsive `pre` helpers match the base whitespace and scrolling behavior.
+- Check tokens, responsive variants, documented classes, local links, and release metadata before deployment.
 
 <!-- CHANGELOG:INSERT -->
 ### v2.0.1 — 2026-06-14

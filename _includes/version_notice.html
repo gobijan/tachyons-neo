@@ -1,0 +1,8 @@
+{% if site.cdn_ref == 'main' %}
+<p class="ma0 ph3 ph4-ns pv3 f6 lh-copy bg-washed-yellow near-black bb b--black-10">
+  These docs describe unreleased <strong>main</strong>. The latest release,
+  <a class="link dark-blue underline" href="{{ site.github_url }}/releases/tag/v{{ site.version }}">v{{ site.version }}</a>,
+  uses the earlier app API. Use the matching downloads below and read the
+  <a class="link dark-blue underline" href="{{ '/docs/app-css/#migrating-from-v201' | relative_url }}">migration notes</a> before upgrading.
+</p>
+{% endif %}

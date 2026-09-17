@@ -3,6 +3,7 @@
 #
 # Usage: scripts/release.sh [patch|minor|major]
 #        scripts/release.sh vX.Y.Z   # pin an exact version
+#        RELEASE_NOTES_FILE=notes.md EDITOR=true scripts/release.sh major
 #
 # Bumps the version in tachyons.css and _config.yml, summarises the diff since
 # the previous tag via `claude -p`, prepends changelog entries to
@@ -28,9 +29,14 @@ fi
 
 git fetch --tags origin
 
-latest="$(git tag -l 'v*' --sort=-v:refname | head -n1)"
+if ! git merge-base --is-ancestor origin/main HEAD; then
+  echo "error: main is behind or diverged from origin/main — reconcile it first" >&2
+  exit 1
+fi
+
+latest="$(git tag -l 'v*' | ruby -e 'puts STDIN.each_line.map(&:strip).grep(/\Av\d+\.\d+\.\d+\z/).max_by { |v| v.delete_prefix("v").split(".").map(&:to_i) }')"
 latest="${latest:-v0.0.0}"
-version_pattern='v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?'
+version_pattern='v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?'
 
 if [[ "$arg" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
   new="$arg"
@@ -56,6 +62,9 @@ if git rev-parse --verify --quiet "refs/tags/${new}" >/dev/null; then
   exit 1
 fi
 
+# Verify the files and reject a patch/minor release that removes public API.
+bin/check --release "$new"
+
 date_iso="$(date +%Y-%m-%d)"
 
 # Diff of real changes since the previous tag, stripping version-banner noise.
@@ -78,9 +87,15 @@ case "$reply" in
   *) echo "aborted" >&2; exit 1 ;;
 esac
 
-# Ask the LLM for a short editorial summary of the diff.
+# Use reviewed notes when supplied; otherwise summarize the diff.
 bullets=""
-if [[ -n "$diff_text" ]]; then
+if [[ -n "${RELEASE_NOTES_FILE:-}" ]]; then
+  if [[ ! -s "$RELEASE_NOTES_FILE" ]]; then
+    echo "error: RELEASE_NOTES_FILE must name a nonempty file" >&2
+    exit 1
+  fi
+  bullets="$(cat "$RELEASE_NOTES_FILE")"
+elif [[ -n "$diff_text" ]]; then
   echo "→ asking claude for a changelog summary…"
   prompt='Summarize these changes as 1-3 terse bullets for an editorial changelog.
 Output only the bullets, one per line, starting with "- ".
@@ -116,13 +131,18 @@ tmp_bullets="$(mktemp -t tn-changelog.XXXXXX)"
 entry_yml="$(mktemp -t tn-entry-yml.XXXXXX)"
 entry_md="$(mktemp -t tn-entry-md.XXXXXX)"
 tmp_releases=""
+release_committed=false
 
 cleanup() {
   local rc=$?
   rm -f "$tmp_bullets" "$entry_yml" "$entry_md" "$tmp_releases" 2>/dev/null || true
   if (( rc != 0 )); then
-    echo "error: release aborted mid-run; reverting working tree" >&2
-    git checkout -- tachyons.css _config.yml _data/releases.yml README.md 2>/dev/null || true
+    if [[ "$release_committed" == false ]]; then
+      echo "error: release aborted before commit; reverting release metadata" >&2
+      git checkout -- tachyons.css _config.yml _data/releases.yml README.md 2>/dev/null || true
+    else
+      echo "error: release interrupted after commit; inspect the local tag and remote before retrying" >&2
+    fi
   fi
 }
 trap cleanup EXIT
@@ -177,24 +197,40 @@ semver_pattern='[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?'
 sed -i.bak -E "s|^version: \"${semver_pattern}\"|version: \"${new_without_v}\"|" _config.yml
 rm -f _config.yml.bak
 
+sed -i.bak -E "s|^cdn_ref: .*|cdn_ref: \"${new}\"|" _config.yml
+rm -f _config.yml.bak
+
 # Update the pinned CDN examples in README.md. Leaves floating-major and
-# unpinned forms alone - only the semver @vX.Y.Z pins.
+# unpinned forms alone. Development @main refs become release pins as well.
 sed -i.bak -E \
-  -e "s|tachyons-neo@${version_pattern}/tachyons\.css|tachyons-neo@${new}/tachyons.css|g" \
-  -e "s|tachyons-neo@${version_pattern}/app\.css|tachyons-neo@${new}/app.css|g" \
+  -e "s~tachyons-neo@(${version_pattern}|main)/tachyons\.css~tachyons-neo@${new}/tachyons.css~g" \
+  -e "s~tachyons-neo@(${version_pattern}|main)/app\.css~tachyons-neo@${new}/app.css~g" \
   README.md
 rm -f README.md.bak
+
+ruby - "$new" <<'RUBY'
+path = "README.md"
+text = File.read(path)
+text.sub!(/<!-- RELEASE:STATUS -->.*?<!-- \/RELEASE:STATUS -->/m,
+  "<!-- RELEASE:STATUS -->\n**Released documentation: #{ARGV.fetch(0)}.** The downloads below match this release.\n<!-- /RELEASE:STATUS -->")
+text.sub!(/### Unreleased\n.*?(?=<!-- CHANGELOG:INSERT -->)/m, "")
+File.write(path, text)
+RUBY
+
+# Check the actual release metadata and rendered CDN links before publishing.
+bin/check --release "$new"
+git diff --check
 
 if git diff --quiet tachyons.css _config.yml _data/releases.yml README.md; then
   echo "note: no file changes, skipping commit"
 else
   git add tachyons.css _config.yml _data/releases.yml README.md
   git commit -m "Release ${new}"
-  git push origin main
+  release_committed=true
 fi
 
 git tag -a "${new}" -m "Release ${new}"
-git push origin "${new}"
+git push --atomic origin main "${new}"
 
 gh release create "${new}" --title "${new}" --notes "$bullets"
 

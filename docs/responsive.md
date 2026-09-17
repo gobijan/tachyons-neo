@@ -22,7 +22,7 @@ Unlike the original medium range, Neo's `-m` has no upper bound. A medium utilit
 
 ## Responsive Families
 
-Most core utilities have responsive forms. Add the suffix to the class name: `db-l`, `pa4-ns`, `gtc3-m`, `dark-blue-l`.
+Layout, spacing, and type utilities have responsive forms. Add the suffix to the class name: `db-l`, `pa4-ns`, `gtc3-m`.
 
 | Family | Examples |
 | --- | --- |
@@ -32,10 +32,10 @@ Most core utilities have responsive forms. Add the suffix to the class name: `db
 | Grid and gap | `grid-l`, `gtc4-l`, `csp2-m`, `g3-ns` |
 | Width and height | `w-50-l`, `mw7-ns`, `dvh-100-m`, `min-w-0-l` |
 | Position and overflow | `absolute-l`, `sticky-ns`, `overflow-auto-m` |
-| Color | `dark-blue-l`, `bg-light-blue-ns`, `b--black-10-m` |
 | Spacing | `pa4-l`, `mt5-m`, `nl3-ns` |
 | Type | `f2-m`, `lh-copy-l`, `tc-ns`, `nowrap-l` |
-| Interaction and effects | `dim-l`, `shadow-hover-ns`, `debug-grid-16-l` |
+
+Color, hover/focus effects, debug helpers, and semantic `app.css` utilities are base-only. They do not have `-ns`, `-m`, or `-l` variants. For a responsive color change, write a project rule inside a container query.
 
 ## Page-Level Behavior
 

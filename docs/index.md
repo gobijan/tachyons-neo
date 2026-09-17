@@ -19,16 +19,28 @@ Load `app.css` after it when the interface needs semantic theme tokens, surfaces
 <link rel="stylesheet" href="/app.css">
 ```
 
-Pinned CDN links are best for production.
+These CDN links match this documentation. {% if site.cdn_ref == 'main' %}`@main` follows unreleased development. {% endif %}For production, vendor both files together or pin both to the same published tag or full commit SHA.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v{{ site.version }}/tachyons.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v{{ site.version }}/app.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@{{ site.cdn_ref }}/tachyons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@{{ site.cdn_ref }}/app.css">
 ```
 
 ## Mental Model
 
 Tachyons Neo stays close to Tachyons: classes do one thing, compose directly in markup, and avoid component assumptions. Neo adds modern defaults where the original web has moved: container queries, dynamic viewport units, cascade layers, CSS variables, and a tiny grid layer.
+
+## Browser Support
+
+Core layout requires CSS cascade layers, inline-size container queries, and dynamic viewport units. The optional app layer also requires `light-dark()` and `color-mix()`. Check the browsers your product supports against those features.
+
+`grid-lanes` is experimental and falls back to regular grid. Automatic `contrast-color()` foregrounds have explicit defaults for older browsers; custom themes must provide matching foreground overrides when that function is unavailable. See [App CSS]({{ '/docs/app-css/' | relative_url }}).
+
+The popover demos additionally use the Popover API and CSS anchor positioning. Modal demos use native `dialog`. These examples target browsers with those platform features.
+
+## Reduced Motion
+
+When `prefers-reduced-motion: reduce` is active, Neo sets its three duration tokens to `0s`, removes interaction scaling, and opens popovers without entrance motion. Token-based animations in the demos follow the same preference. Project CSS that overrides durations or adds animations should also respect it.
 
 ## Modules
 

@@ -1,4 +1,4 @@
-/*! TACHYONS NEO v2.0.1 | Screen Island edition https://github.com/gobijan/tachyons-neo | http://tachyons.io */
+/*! TACHYONS NEO v2.0.1+dev | Screen Island edition https://github.com/gobijan/tachyons-neo | http://tachyons.io */
 
 /*
 Patches by Screen Island:
@@ -409,7 +409,7 @@ img { max-width: 100% }
 .flex { display: flex }
 .inline-flex { display: inline-flex }
 .grid { display: grid }
-.grid-lanes { display: grid-lanes }
+.grid-lanes { display: grid; display: grid-lanes }
 .flex-auto { flex: 1 1 auto; min-width: 0; min-height: 0 }
 .flex-none { flex: none }
 .min-w-0 { min-width: 0 }
@@ -1161,6 +1161,7 @@ img { max-width: 100% }
   .shadow-3-ns { box-shadow: var(--shadow-3) }
   .shadow-4-ns { box-shadow: var(--shadow-4) }
   .shadow-5-ns { box-shadow: var(--shadow-5) }
+  .pre-ns { overflow-x: auto; overflow-y: hidden; overflow: scroll }
   .top-0-ns { top: 0 }
   .left-0-ns { left: 0 }
   .right-0-ns { right: 0 }
@@ -1201,7 +1202,7 @@ img { max-width: 100% }
   .flex-ns { display: flex }
   .inline-flex-ns { display: inline-flex }
   .grid-ns { display: grid }
-  .grid-lanes-ns { display: grid-lanes }
+  .grid-lanes-ns { display: grid; display: grid-lanes }
   .flex-auto-ns { flex: 1 1 auto; min-width: 0; min-height: 0 }
   .flex-none-ns { flex: none }
   .min-w-0-ns { min-width: 0 }
@@ -1626,6 +1627,7 @@ img { max-width: 100% }
   .shadow-3-m { box-shadow: var(--shadow-3) }
   .shadow-4-m { box-shadow: var(--shadow-4) }
   .shadow-5-m { box-shadow: var(--shadow-5) }
+  .pre-m { overflow-x: auto; overflow-y: hidden; overflow: scroll }
   .top-0-m { top: 0 }
   .left-0-m { left: 0 }
   .right-0-m { right: 0 }
@@ -1666,7 +1668,7 @@ img { max-width: 100% }
   .flex-m { display: flex }
   .inline-flex-m { display: inline-flex }
   .grid-m { display: grid }
-  .grid-lanes-m { display: grid-lanes }
+  .grid-lanes-m { display: grid; display: grid-lanes }
   .flex-auto-m { flex: 1 1 auto; min-width: 0; min-height: 0 }
   .flex-none-m { flex: none }
   .min-w-0-m { min-width: 0 }
@@ -2091,6 +2093,7 @@ img { max-width: 100% }
   .shadow-3-l { box-shadow: var(--shadow-3) }
   .shadow-4-l { box-shadow: var(--shadow-4) }
   .shadow-5-l { box-shadow: var(--shadow-5) }
+  .pre-l { overflow-x: auto; overflow-y: hidden; overflow: scroll }
   .top-0-l { top: 0 }
   .left-0-l { left: 0 }
   .right-0-l { right: 0 }
@@ -2131,7 +2134,7 @@ img { max-width: 100% }
   .flex-l { display: flex }
   .inline-flex-l { display: inline-flex }
   .grid-l { display: grid }
-  .grid-lanes-l { display: grid-lanes }
+  .grid-lanes-l { display: grid; display: grid-lanes }
   .flex-auto-l { flex: 1 1 auto; min-width: 0; min-height: 0 }
   .flex-none-l { flex: none }
   .min-w-0-l { min-width: 0 }
@@ -2509,6 +2512,23 @@ img { max-width: 100% }
 .random-image-portrait {
     background-image: url(https://picsum.photos/1080/1920);
     background-size: cover;
+}
+
+/* Keep state changes immediate and remove interaction scaling when motion is reduced.
+   Token-based animations in companion styles and demos inherit the same preference. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0s;
+    --duration-medium: 0s;
+    --duration-slow: 0s;
+  }
+
+  .grow, .grow:hover, .grow:focus-visible, .grow:active,
+  .grow-large, .grow-large:hover, .grow-large:focus-visible, .grow-large:active {
+    -webkit-transform: none;
+    transform: none;
+    transition: none;
+  }
 }
 
 } /* @layer tachyons */

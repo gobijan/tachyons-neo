@@ -1,7 +1,7 @@
 - number: "01"
   title: "-m query step"
   summary: "Container-query based and no upper bound: -m styles continue at large unless overridden."
-  sample: '<div class="pa3 pa5-m">Padding grows from 30em and up.</div>'
+  sample: '<div class="pa3 pa5-m">Padding grows from 48em and up.</div>'
 - number: "02"
   title: Gap scale
   summary: ".g0 through .g7 for flex and grid, mapped to the spacing scale."

@@ -13,6 +13,6 @@
       {% endfor %}
       <a href="{{ site.github_url }}" class="link white underline-hover">GitHub</a>
     </nav>
-    <span class="site-version tnum f7 fw4 white-60 nowrap pl3 bl b--white-20" aria-label="Version {{ site.version }}">v{{ site.version }}</span>
+    <span class="site-version tnum f7 fw4 white-60 nowrap pl3 bl b--white-20">{% if site.cdn_ref == 'main' %}main · unreleased{% else %}v{{ site.version }}{% endif %}</span>
   </div>
 </header>

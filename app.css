@@ -36,7 +36,7 @@
   --text-1: color-mix(in srgb, var(--ink) 90%, transparent);
   --text-2: color-mix(in srgb, var(--ink) 60%, transparent);
   --text-3: color-mix(in srgb, var(--ink) 40%, transparent);
-  --text-inverted: contrast-color(var(--ink));
+  --text-inverted: light-dark(var(--white), var(--black));
   --surface-1: color-mix(in oklch, var(--surface-base), var(--ink) 5%);
   --surface-2: color-mix(in oklch, var(--surface-base), var(--ink) 8%);
   --surface-3: color-mix(in oklch, var(--surface-base), var(--ink) 12%);
@@ -44,14 +44,26 @@
   --border-1: color-mix(in srgb, var(--ink) 10%, transparent);
   --border-2: color-mix(in srgb, var(--ink) 20%, transparent);
   --border-3: color-mix(in srgb, var(--ink) 30%, transparent);
-  --on-accent: contrast-color(var(--accent));
-  --on-danger: contrast-color(var(--danger));
-  --on-success: contrast-color(var(--success));
-  --on-warning: contrast-color(var(--warning));
-  --on-info: contrast-color(var(--info));
-  --focus: var(--accent);
+  /* Readable defaults for browsers without contrast-color(). */
+  --on-accent: var(--black);
+  --on-danger: light-dark(var(--white), var(--black));
+  --on-success: var(--black);
+  --on-warning: var(--black);
+  --on-info: var(--black);
+  --focus: color-mix(in oklch, var(--accent), var(--ink) 45%);
   --focus-offset: 2px;
   --focus-ring: 0 0 0 1px var(--focus);
+}
+
+@supports (color: contrast-color(white)) {
+  :root {
+    --text-inverted: contrast-color(var(--ink));
+    --on-accent: contrast-color(var(--accent));
+    --on-danger: contrast-color(var(--danger));
+    --on-success: contrast-color(var(--success));
+    --on-warning: contrast-color(var(--warning));
+    --on-info: contrast-color(var(--info));
+  }
 }
 
 :root,
@@ -282,6 +294,13 @@
   .fade-y[open] {
     opacity: 0;
     transform: translateY(calc(var(--spacing-2) * -1));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-y {
+    transform: none;
+    transition: none;
   }
 }
 

@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+set -eu
+cd "$(dirname "$0")/.."
+ruby scripts/check.rb "$@"
+bash -n scripts/release.sh
+sh -n bin/serve
+BUNDLE_FROZEN=true bundle exec jekyll build --trace
+ruby scripts/check-site.rb
