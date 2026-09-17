@@ -1,3 +1,14 @@
+- version: "v3.0.0"
+  date: "2026-09-17"
+  notes:
+    - >-
+      Breaking app API: replace action utilities and seeds with accent, remove the built-in brand API, and derive text, surface, border, and focus colors from shared theme seeds. Follow the migration guide at https://tachyonsneo.com/docs/app-css/#migrating-from-v201 when upgrading from v2.0.1.
+    - >-
+      Respect reduced motion, improve default focus contrast and dark-mode demo labels, and provide regular-grid and contrast-color fallbacks. Add fade-y for popover and dialog entrance motion.
+    - >-
+      Align responsive pre helpers with the base whitespace and scrolling behavior; correct unsupported responsive examples, token counts, card classes, and demo accessibility. Keep documentation and CDN downloads on the same version.
+    - >-
+      Add CSS/documentation consistency checks and browser regressions for all 21 pages before Pages deployment. Validate public API changes during releases and publish the release commit and tag atomically.
 - version: "v2.0.1"
   date: "2026-06-14"
   notes:

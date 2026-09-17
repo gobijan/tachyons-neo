@@ -6,8 +6,8 @@ repository: gobijan/tachyons-neo
 github_url: "https://github.com/gobijan/tachyons-neo"
 upstream_url: "https://tachyons.io"
 # Latest release; cdn_ref identifies the files described by this documentation.
-version: "2.0.1"
-cdn_ref: "main"
+version: "3.0.0"
+cdn_ref: "v3.0.0"
 lang: en
 
 markdown: kramdown

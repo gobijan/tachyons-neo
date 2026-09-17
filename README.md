@@ -5,7 +5,7 @@ A small, composable CSS toolkit. Sharper defaults for modern viewports, finer-gr
 **Docs:** [tachyonsneo.com](https://tachyonsneo.com/) · **Upstream:** [tachyons.io](http://tachyons.io) v4.13.0 · **License:** MIT
 
 <!-- RELEASE:STATUS -->
-**Development documentation: main.** The examples and downloads below use unreleased `main`. The latest published release is [v2.0.1](https://github.com/gobijan/tachyons-neo/releases/tag/v2.0.1), whose `app.css` API differs. Read the [migration notes](docs/app-css.md#migrating-from-v201) before upgrading.
+**Released documentation: v3.0.0.** The downloads below match this release.
 <!-- /RELEASE:STATUS -->
 
 ---
@@ -30,8 +30,8 @@ For application UI, load the optional semantic layer after the core utilities:
 Or load from jsDelivr:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@main/tachyons.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@main/app.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v3.0.0/tachyons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gobijan/tachyons-neo@v3.0.0/app.css">
 ```
 
 For production, vendor both matching files or pin both URLs to the same published tag or full commit SHA. `@main` follows development; a floating major such as `@2` stays on that release line. v2.0.1 uses the earlier app API and cannot run the current app examples unchanged.
@@ -154,14 +154,14 @@ Accent and state colours expose seven utilities: `.color`, `.bg-color`, `.b--col
 
 Release notes, newest first.
 
-### Unreleased
-
-- Keep documentation downloads on the matching development ref and document the breaking app API migration from v2.0.1.
-- Respect reduced motion, provide regular-grid and contrast-color fallbacks, and correct responsive and demo examples.
-- Improve default focus contrast and dark-mode demo labels; make responsive `pre` helpers match the base whitespace and scrolling behavior.
-- Check tokens, responsive variants, documented classes, local links, and release metadata before deployment.
-
 <!-- CHANGELOG:INSERT -->
+### v3.0.0 — 2026-09-17
+
+- Breaking app API: replace action utilities and seeds with accent, remove the built-in brand API, and derive text, surface, border, and focus colors from shared theme seeds. Follow the migration guide at https://tachyonsneo.com/docs/app-css/#migrating-from-v201 when upgrading from v2.0.1.
+- Respect reduced motion, improve default focus contrast and dark-mode demo labels, and provide regular-grid and contrast-color fallbacks. Add fade-y for popover and dialog entrance motion.
+- Align responsive pre helpers with the base whitespace and scrolling behavior; correct unsupported responsive examples, token counts, card classes, and demo accessibility. Keep documentation and CDN downloads on the same version.
+- Add CSS/documentation consistency checks and browser regressions for all 21 pages before Pages deployment. Validate public API changes during releases and publish the release commit and tag atomically.
+
 ### v2.0.1 — 2026-06-14
 
 - Move grid helpers into utility order
